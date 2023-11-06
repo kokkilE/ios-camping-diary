@@ -9,7 +9,7 @@ import UIKit
 import NMapsMap
 import CoreLocation
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     private var locationManager = CLLocationManager()
     
     private let naverMapView: NMFNaverMapView = {
