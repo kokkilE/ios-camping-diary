@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  CampingDiary
 //
 //  Created by 조향래 on 11/5/23.
@@ -9,7 +9,7 @@ import UIKit
 import NMapsMap
 import CoreLocation
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     private var locationManager = CLLocationManager()
     
     private let naverMapView: NMFNaverMapView = {
