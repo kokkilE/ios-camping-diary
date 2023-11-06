@@ -1,0 +1,6 @@
+framework module Pods_CampingDiary {
+  umbrella header "Pods-CampingDiary-umbrella.h"
+
+  export *
+  module * { export * }
+}
