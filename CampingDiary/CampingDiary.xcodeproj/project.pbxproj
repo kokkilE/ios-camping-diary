@@ -10,7 +10,7 @@
 		A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */; };
 		AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820012AF780FE00464B97 /* AppDelegate.swift */; };
 		AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820032AF780FE00464B97 /* SceneDelegate.swift */; };
-		AA6820062AF780FE00464B97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820052AF780FE00464B97 /* ViewController.swift */; };
+		AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820052AF780FE00464B97 /* HomeViewController.swift */; };
 		AA68200B2AF780FF00464B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA68200A2AF780FF00464B97 /* Assets.xcassets */; };
 		AA68200E2AF780FF00464B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA68200C2AF780FF00464B97 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -21,7 +21,7 @@
 		AA681FFE2AF780FE00464B97 /* CampingDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampingDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6820012AF780FE00464B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6820032AF780FE00464B97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA6820052AF780FE00464B97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA6820052AF780FE00464B97 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AA68200A2AF780FF00464B97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA68200D2AF780FF00464B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA68200F2AF780FF00464B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			children = (
 				AA7C28362AF8B0910017F7F7 /* Application */,
 				AA7C28372AF8B09B0017F7F7 /* Resources */,
-				AA6820052AF780FE00464B97 /* ViewController.swift */,
+				AAA909A02AF932C700DC1479 /* HomeView */,
 			);
 			path = CampingDiary;
 			sourceTree = "<group>";
@@ -102,6 +102,14 @@
 				AA68200F2AF780FF00464B97 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AAA909A02AF932C700DC1479 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				AA6820052AF780FE00464B97 /* HomeViewController.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA6820062AF780FE00464B97 /* ViewController.swift in Sources */,
+				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
 			);
