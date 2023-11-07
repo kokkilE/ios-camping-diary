@@ -8,6 +8,7 @@
 import UIKit
 import NMapsMap
 import CoreLocation
+import Combine
 
 final class SearchMapView: UIView {
     private var locationManager = CLLocationManager()
@@ -47,13 +48,15 @@ final class SearchMapView: UIView {
     private lazy var searchButton = {
         let button = UIButton()
         button.setTitle("검색", for: .normal)
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.setTitleColor(UIColor.placeholderText, for: .normal)
+        button.isEnabled = false
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         
         return button
     }()
     private var buttonAction: (() -> Void)?
+    private var subscriptions = Set<AnyCancellable>()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,6 +65,7 @@ final class SearchMapView: UIView {
         addSubviews()
         layout()
         setupLocationData()
+        bindTextToButtonState()
     }
     
     required init?(coder: NSCoder) {
@@ -105,6 +109,20 @@ final class SearchMapView: UIView {
         
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 7)
         naverMapView.mapView.moveCamera(cameraUpdate)
+    }
+    
+    private func bindTextToButtonState() {
+        searchTextField.publisher
+            .sink { [weak self] in
+                if $0.isEmpty {
+                    self?.searchButton.isEnabled = false
+                    self?.searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
+                } else {
+                    self?.searchButton.isEnabled = true
+                    self?.searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     @objc private func searchButtonTapped() {

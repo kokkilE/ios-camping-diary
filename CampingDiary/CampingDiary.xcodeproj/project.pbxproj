@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */; };
 		AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */; };
+		AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */; };
 		AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820012AF780FE00464B97 /* AppDelegate.swift */; };
 		AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820032AF780FE00464B97 /* SceneDelegate.swift */; };
 		AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820052AF780FE00464B97 /* HomeViewController.swift */; };
@@ -21,6 +22,7 @@
 		46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampingDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E07F4CD225E6626D2AF97A /* Pods-CampingDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.release.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.release.xcconfig"; sourceTree = "<group>"; };
 		AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
+		AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+publisher.swift"; sourceTree = "<group>"; };
 		AA681FFE2AF780FE00464B97 /* CampingDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampingDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6820012AF780FE00464B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6820032AF780FE00464B97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AA4930C42AF9E33D008E725E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		AA681FF52AF780FE00464B97 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 			children = (
 				AA7C28362AF8B0910017F7F7 /* Application */,
 				AA7C28372AF8B09B0017F7F7 /* Resources */,
+				AA4930C42AF9E33D008E725E /* Extension */,
 				AA7830D22AF935570046FF85 /* SearchMapView */,
 				AAA909A02AF932C700DC1479 /* HomeView */,
 			);
@@ -244,6 +255,7 @@
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
+				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
