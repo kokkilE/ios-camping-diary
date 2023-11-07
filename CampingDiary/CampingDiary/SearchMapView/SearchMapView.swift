@@ -132,4 +132,8 @@ final class SearchMapView: UIView {
     func configureSearchButtonAction(action: @escaping () -> Void) {
         buttonAction = action
     }
+    
+    func getText() -> String {
+        return searchTextField.text ?? ""
+    }
 }
