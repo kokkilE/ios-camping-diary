@@ -42,9 +42,12 @@ final class HomeViewController: UIViewController {
     
     private func setupSearchMapView() {
         searchMapView.configureSearchButtonAction { [weak self] in
-            let searchMapViewController = SearchMapViewController()
+            guard let self else { return }
             
-            self?.navigationController?.pushViewController(searchMapViewController, animated: false)
+            let searchKeyword = searchMapView.getText()
+            let searchMapViewController = SearchMapViewController(keyword: searchKeyword)
+            
+            navigationController?.pushViewController(searchMapViewController, animated: false)
         }
     }
 }
