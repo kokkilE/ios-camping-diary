@@ -13,7 +13,6 @@
 		AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D12AFA072E008E725E /* CombineMoya */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
-		AA4930D92AFA0C39008E725E /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D82AFA0C39008E725E /* UserAPI.swift */; };
 		AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820012AF780FE00464B97 /* AppDelegate.swift */; };
 		AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820032AF780FE00464B97 /* SceneDelegate.swift */; };
 		AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820052AF780FE00464B97 /* HomeViewController.swift */; };
@@ -28,7 +27,6 @@
 		AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
 		AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+publisher.swift"; sourceTree = "<group>"; };
 		AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewModel.swift; sourceTree = "<group>"; };
-		AA4930D82AFA0C39008E725E /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		AA681FFE2AF780FE00464B97 /* CampingDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampingDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6820012AF780FE00464B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6820032AF780FE00464B97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 		AA4930D72AFA0C29008E725E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				AA4930D82AFA0C39008E725E /* UserAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -277,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
-				AA4930D92AFA0C39008E725E /* UserAPI.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
