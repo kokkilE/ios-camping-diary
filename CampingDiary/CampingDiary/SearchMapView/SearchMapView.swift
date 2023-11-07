@@ -44,14 +44,16 @@ final class SearchMapView: UIView {
 
         return textField
     }()
-    private let searchButton = {
+    private lazy var searchButton = {
         let button = UIButton()
         button.setTitle("검색", for: .normal)
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         
         return button
     }()
+    private var buttonAction: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -103,5 +105,13 @@ final class SearchMapView: UIView {
         
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 7)
         naverMapView.mapView.moveCamera(cameraUpdate)
+    }
+    
+    @objc private func searchButtonTapped() {
+        buttonAction?()
+    }
+    
+    func configureSearchButtonAction(action: @escaping () -> Void) {
+        buttonAction = action
     }
 }

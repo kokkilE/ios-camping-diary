@@ -18,6 +18,7 @@ final class HomeViewController: UIViewController {
         setupView()
         addSubviews()
         layout()
+        setupSearchMapView()
     }
     
     private func setupView() {
@@ -37,5 +38,13 @@ final class HomeViewController: UIViewController {
             searchMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
             searchMapView.heightAnchor.constraint(equalTo: searchMapView.widthAnchor, multiplier: 1.0)
         ])
+    }
+    
+    private func setupSearchMapView() {
+        searchMapView.configureSearchButtonAction { [weak self] in
+            let searchMapViewController = SearchMapViewController()
+            
+            self?.navigationController?.pushViewController(searchMapViewController, animated: false)
+        }
     }
 }
