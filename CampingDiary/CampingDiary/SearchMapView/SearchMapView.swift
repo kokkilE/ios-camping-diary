@@ -8,7 +8,8 @@
 import UIKit
 import NMapsMap
 import CoreLocation
-import Combine
+import RxSwift
+import RxCocoa
 
 final class SearchMapView: UIView {
     private var locationManager = CLLocationManager()
@@ -56,10 +57,12 @@ final class SearchMapView: UIView {
         return button
     }()
     private var buttonAction: (() -> Void)?
-    private var subscriptions = Set<AnyCancellable>()
+    private var disposeBag = DisposeBag()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(inputKeyword: String? = nil) {
+        searchTextField.text = inputKeyword
+        
+        super.init(frame: .zero)
         
         setupView()
         addSubviews()
@@ -112,17 +115,17 @@ final class SearchMapView: UIView {
     }
     
     private func bindTextToButtonState() {
-        searchTextField.publisher
-            .sink { [weak self] in
-                if $0.isEmpty {
-                    self?.searchButton.isEnabled = false
-                    self?.searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
-                } else {
+        searchTextField.rx.text
+            .subscribe(onNext: { [weak self] text in
+                if let text, !text.isEmpty {
                     self?.searchButton.isEnabled = true
                     self?.searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                } else {
+                    self?.searchButton.isEnabled = false
+                    self?.searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
                 }
-            }
-            .store(in: &subscriptions)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc private func searchButtonTapped() {

@@ -5,15 +5,15 @@
 //  Created by 조향래 on 11/7/23.
 //
 
-//import Foundation
-import Combine
 import Moya
-import CombineMoya
+import RxMoya
+import RxSwift
+import RxCocoa
 
 final class SearchMapViewModel {
-    private let searchKeyworkd: String
-    private var subscriptions = Set<AnyCancellable>()
-    @Published private(set) var searchedLocations = [LocationItem]()
+    private var searchKeyworkd: String
+    private var disposeBag = DisposeBag()
+    private let searchedLocations = BehaviorRelay<[LocationItem]>(value: [])
     
     init(searchKeyworkd: String) {
         self.searchKeyworkd = searchKeyworkd
@@ -22,17 +22,26 @@ final class SearchMapViewModel {
     func fetch() {
         let provider = MoyaProvider<UserAPI>()
         
-        provider.requestPublisher(.search(keyword: searchKeyworkd))
-            .sink(receiveCompletion: { completion in
-                guard case let .failure(error) = completion else { return }
-
-                print(error)
-            }, receiveValue: { [weak self] response in
-                let locationData = Decoder.decodeJSON(response.data, returnType: LocationData.self)
-                guard let locationItems = locationData?.items else { return }
-                
-                self?.searchedLocations.append(contentsOf: locationItems)
-            })
-            .store(in: &subscriptions)
+        provider.rx.request(.search(keyword: searchKeyworkd))
+            .subscribe { [weak self] result in
+                switch result {
+                case let .success(response):
+                    let locationData = Decoder.decodeJSON(response.data, returnType: LocationData.self)
+                    guard let locationItems = locationData?.items else { return }
+                    
+                    self?.searchedLocations.accept(locationItems)
+                case let .failure(error):
+                    print(error)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func getCellData() -> Observable<[LocationItem]> {
+        return searchedLocations.asObservable()
+    }
+    
+    func configureSearchKeyword(_ keyword: String) {
+        searchKeyworkd = keyword
     }
 }

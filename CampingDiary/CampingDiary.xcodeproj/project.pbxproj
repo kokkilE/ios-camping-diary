@@ -16,12 +16,22 @@
 		AA6342CA2AFA17300033EFD5 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342C92AFA17300033EFD5 /* UserAPI.swift */; };
 		AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CB2AFA19750033EFD5 /* LocationData.swift */; };
 		AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CE2AFA1B800033EFD5 /* Decoder.swift */; };
+		AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D22AFA31300033EFD5 /* CombineMoya */; };
+		AA6342D52AFA31300033EFD5 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D42AFA31300033EFD5 /* Moya */; };
+		AA6342D72AFA31300033EFD5 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D62AFA31300033EFD5 /* ReactiveMoya */; };
+		AA6342D92AFA31300033EFD5 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D82AFA31300033EFD5 /* RxMoya */; };
+		AA6342DC2AFA32770033EFD5 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342DB2AFA32770033EFD5 /* RxBlocking */; };
+		AA6342DE2AFA32770033EFD5 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342DD2AFA32770033EFD5 /* RxBlocking-Dynamic */; };
+		AA6342E02AFA32770033EFD5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342DF2AFA32770033EFD5 /* RxCocoa */; };
+		AA6342E22AFA32770033EFD5 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342E12AFA32770033EFD5 /* RxCocoa-Dynamic */; };
+		AA6342E42AFA32770033EFD5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342E32AFA32770033EFD5 /* RxRelay */; };
 		AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820012AF780FE00464B97 /* AppDelegate.swift */; };
 		AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820032AF780FE00464B97 /* SceneDelegate.swift */; };
 		AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820052AF780FE00464B97 /* HomeViewController.swift */; };
 		AA68200B2AF780FF00464B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA68200A2AF780FF00464B97 /* Assets.xcassets */; };
 		AA68200E2AF780FF00464B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA68200C2AF780FF00464B97 /* LaunchScreen.storyboard */; };
 		AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7830D32AF935840046FF85 /* SearchMapView.swift */; };
+		AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +51,7 @@
 		AA68200D2AF780FF00464B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA68200F2AF780FF00464B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7830D32AF935840046FF85 /* SearchMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapView.swift; sourceTree = "<group>"; };
+		AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
 		D63B5224631A1CCA4367C293 /* Pods-CampingDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.debug.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,7 +62,16 @@
 			files = (
 				AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */,
 				A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */,
+				AA6342E02AFA32770033EFD5 /* RxCocoa in Frameworks */,
+				AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */,
+				AA6342D52AFA31300033EFD5 /* Moya in Frameworks */,
+				AA6342D92AFA31300033EFD5 /* RxMoya in Frameworks */,
+				AA6342E42AFA32770033EFD5 /* RxRelay in Frameworks */,
+				AA6342DC2AFA32770033EFD5 /* RxBlocking in Frameworks */,
+				AA6342DE2AFA32770033EFD5 /* RxBlocking-Dynamic in Frameworks */,
 				AA4930D42AFA072E008E725E /* Moya in Frameworks */,
+				AA6342D72AFA31300033EFD5 /* ReactiveMoya in Frameworks */,
+				AA6342E22AFA32770033EFD5 /* RxCocoa-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				AA4930C42AF9E33D008E725E /* Extension */,
+				AAE832E82AFA4D0A001D4202 /* Protocol */,
 				AA6342CE2AFA1B800033EFD5 /* Decoder.swift */,
 			);
 			path = Utility;
@@ -169,6 +190,14 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
+		AAE832E82AFA4D0A001D4202 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +219,15 @@
 			packageProductDependencies = (
 				AA4930D12AFA072E008E725E /* CombineMoya */,
 				AA4930D32AFA072E008E725E /* Moya */,
+				AA6342D22AFA31300033EFD5 /* CombineMoya */,
+				AA6342D42AFA31300033EFD5 /* Moya */,
+				AA6342D62AFA31300033EFD5 /* ReactiveMoya */,
+				AA6342D82AFA31300033EFD5 /* RxMoya */,
+				AA6342DB2AFA32770033EFD5 /* RxBlocking */,
+				AA6342DD2AFA32770033EFD5 /* RxBlocking-Dynamic */,
+				AA6342DF2AFA32770033EFD5 /* RxCocoa */,
+				AA6342E12AFA32770033EFD5 /* RxCocoa-Dynamic */,
+				AA6342E32AFA32770033EFD5 /* RxRelay */,
 			);
 			productName = CampingDiary;
 			productReference = AA681FFE2AF780FE00464B97 /* CampingDiary.app */;
@@ -221,6 +259,7 @@
 			mainGroup = AA681FF52AF780FE00464B97;
 			packageReferences = (
 				AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */,
+				AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = AA681FFF2AF780FE00464B97 /* Products */;
 			projectDirPath = "";
@@ -295,6 +334,7 @@
 				AA6342CA2AFA17300033EFD5 /* UserAPI.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
+				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
@@ -528,6 +568,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -540,6 +588,51 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		AA6342D22AFA31300033EFD5 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		AA6342D42AFA31300033EFD5 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		AA6342D62AFA31300033EFD5 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		AA6342D82AFA31300033EFD5 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		AA6342DB2AFA32770033EFD5 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		AA6342DD2AFA32770033EFD5 /* RxBlocking-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxBlocking-Dynamic";
+		};
+		AA6342DF2AFA32770033EFD5 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		AA6342E12AFA32770033EFD5 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		AA6342E32AFA32770033EFD5 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
