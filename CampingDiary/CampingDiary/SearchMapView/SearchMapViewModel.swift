@@ -5,6 +5,7 @@
 //  Created by 조향래 on 11/7/23.
 //
 
+//import Foundation
 import Combine
 import Moya
 import CombineMoya
@@ -12,6 +13,7 @@ import CombineMoya
 final class SearchMapViewModel {
     private let searchKeyworkd: String
     private var subscriptions = Set<AnyCancellable>()
+    @Published private(set) var searchedLocations = [LocationItem]()
     
     init(searchKeyworkd: String) {
         self.searchKeyworkd = searchKeyworkd
@@ -25,8 +27,11 @@ final class SearchMapViewModel {
                 guard case let .failure(error) = completion else { return }
 
                 print(error)
-            }, receiveValue: { response in
-                print(response.data)
+            }, receiveValue: { [weak self] response in
+                let locationData = Decoder.decodeJSON(response.data, returnType: LocationData.self)
+                guard let locationItems = locationData?.items else { return }
+                
+                self?.searchedLocations.append(contentsOf: locationItems)
             })
             .store(in: &subscriptions)
     }

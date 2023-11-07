@@ -13,6 +13,9 @@
 		AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D12AFA072E008E725E /* CombineMoya */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
+		AA6342CA2AFA17300033EFD5 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342C92AFA17300033EFD5 /* UserAPI.swift */; };
+		AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CB2AFA19750033EFD5 /* LocationData.swift */; };
+		AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CE2AFA1B800033EFD5 /* Decoder.swift */; };
 		AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820012AF780FE00464B97 /* AppDelegate.swift */; };
 		AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820032AF780FE00464B97 /* SceneDelegate.swift */; };
 		AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6820052AF780FE00464B97 /* HomeViewController.swift */; };
@@ -27,6 +30,9 @@
 		AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
 		AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+publisher.swift"; sourceTree = "<group>"; };
 		AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewModel.swift; sourceTree = "<group>"; };
+		AA6342C92AFA17300033EFD5 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		AA6342CB2AFA19750033EFD5 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		AA6342CE2AFA1B800033EFD5 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		AA681FFE2AF780FE00464B97 /* CampingDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampingDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6820012AF780FE00464B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6820032AF780FE00464B97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,8 +86,19 @@
 		AA4930D72AFA0C29008E725E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AA6342C92AFA17300033EFD5 /* UserAPI.swift */,
+				AA6342CB2AFA19750033EFD5 /* LocationData.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		AA6342CD2AFA1B6C0033EFD5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AA4930C42AF9E33D008E725E /* Extension */,
+				AA6342CE2AFA1B800033EFD5 /* Decoder.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		AA681FF52AF780FE00464B97 = {
@@ -107,7 +124,7 @@
 			children = (
 				AA7C28362AF8B0910017F7F7 /* Application */,
 				AA7C28372AF8B09B0017F7F7 /* Resources */,
-				AA4930C42AF9E33D008E725E /* Extension */,
+				AA6342CD2AFA1B6C0033EFD5 /* Utility */,
 				AA4930D72AFA0C29008E725E /* Network */,
 				AA7830D22AF935570046FF85 /* SearchMapView */,
 				AAA909A02AF932C700DC1479 /* HomeView */,
@@ -273,12 +290,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
+				AA6342CA2AFA17300033EFD5 /* UserAPI.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
+				AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */,
 				AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
