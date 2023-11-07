@@ -43,7 +43,8 @@ final class SearchMapView: UIView {
         let textField = UITextField()
         textField.placeholder = "캠핑장 검색"
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-
+        textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
         return textField
     }()
     private lazy var searchButton = {
@@ -53,11 +54,13 @@ final class SearchMapView: UIView {
         button.isEnabled = false
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         return button
     }()
     private var buttonAction: (() -> Void)?
     private var disposeBag = DisposeBag()
+    private var markerList = [NMFMarker](repeating: NMFMarker(), count: Constant.maxSearchCount)
     
     init(inputKeyword: String? = nil) {
         searchTextField.text = inputKeyword
@@ -138,5 +141,14 @@ final class SearchMapView: UIView {
     
     func getText() -> String {
         return searchTextField.text ?? ""
+    }
+}
+
+// MARK: control MapView's Marker
+extension SearchMapView {
+    func configureMarkers(latitude: Double, longitude: Double, at index: Int) {
+        markerList[index] = NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude))
+        
+        markerList[index].mapView = naverMapView.mapView
     }
 }

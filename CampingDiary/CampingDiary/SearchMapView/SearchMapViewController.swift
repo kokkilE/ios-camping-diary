@@ -90,9 +90,15 @@ final class SearchMapViewController: UIViewController {
                 cellType: UITableViewCell.self)
             ) { index, locationItem, cell in
                 var content = cell.defaultContentConfiguration()
-                content.text = locationItem.title
+                var title = locationItem.title.replacingOccurrences(of: "<b>", with: "")
+                title = title.replacingOccurrences(of: "</b>", with: "")
+                content.text = title
                 
                 cell.contentConfiguration = content
+                
+                self.searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(), 
+                                                    longitude: locationItem.mapx.toLongitude(),
+                                                    at: index)
             }
             .disposed(by: disposeBag)
     }
