@@ -32,6 +32,6 @@ final class SearchMapViewController: UIViewController {
     }
     
     private func requestFetch() {
-        viewModel.fetchCombine()
+        viewModel.fetch()
     }
 }
