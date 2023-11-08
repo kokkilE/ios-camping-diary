@@ -19,8 +19,8 @@ final class SearchMapView: UIView {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.showLocationButton = true
         mapView.showZoomControls = true
-        mapView.layer.borderWidth = 1.0
-        mapView.layer.borderColor = UIColor.systemGreen.cgColor
+        mapView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        mapView.layer.shadowOpacity = 0.5
         
         return mapView
     }()
@@ -92,8 +92,8 @@ final class SearchMapView: UIView {
         
         NSLayoutConstraint.activate([
             naverMapView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 8),
-            naverMapView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 8),
-            naverMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -8),
+            naverMapView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 0),
+            naverMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: 0),
             naverMapView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -8),
             
             searchTextFieldStackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 24),

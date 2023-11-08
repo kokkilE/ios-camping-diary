@@ -74,7 +74,7 @@ final class SearchMapViewController: UIViewController {
     
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
+        tableView.register(SearchMapViewTableViewCell.self, forCellReuseIdentifier: SearchMapViewTableViewCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.delegate = self
     }
@@ -87,19 +87,17 @@ final class SearchMapViewController: UIViewController {
         viewModel
             .getCellData()
             .bind(to: tableView.rx.items(
-                cellIdentifier: UITableViewCell.reuseIdentifier,
-                cellType: UITableViewCell.self)
-            ) { index, locationItem, cell in
-                var content = cell.defaultContentConfiguration()
-                var title = locationItem.title.replacingOccurrences(of: "<b>", with: "")
-                title = title.replacingOccurrences(of: "</b>", with: "")
-                content.text = title
+                cellIdentifier: SearchMapViewTableViewCell.reuseIdentifier,
+                cellType: SearchMapViewTableViewCell.self)
+            ) { [weak self] index, locationItem, cell in
+                guard let self else { return }
                 
-                cell.contentConfiguration = content
+                cell.configure(title: locationItem.title.toLocationTitle(),
+                               address: locationItem.roadAddress)
                 
-                self.searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(), 
-                                                    longitude: locationItem.mapx.toLongitude(),
-                                                    at: index)
+                searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(),
+                                               longitude: locationItem.mapx.toLongitude(),
+                                               at: index)
             }
             .disposed(by: disposeBag)
     }

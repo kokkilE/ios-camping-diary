@@ -36,5 +36,12 @@ extension String {
         
         return number?.doubleValue ?? 0
     }
+    
+    func toLocationTitle() -> String {
+        var title = self.replacingOccurrences(of: "<b>", with: "")
+        title = title.replacingOccurrences(of: "</b>", with: "")
+        
+        return title
+    }
 }
 
