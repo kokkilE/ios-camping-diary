@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class SearchMapViewTableViewCell: UITableViewCell {
     private lazy var mainStackView = {
@@ -39,7 +40,7 @@ final class SearchMapViewTableViewCell: UITableViewCell {
         
         return label
     }()
-    private lazy var bookmarkButton = {
+    private(set) lazy var bookmarkButton = {
         let button = UIButton()
         button.setImage(defaultStarImage, for: .normal)
         button.tintColor = .systemYellow
@@ -58,6 +59,7 @@ final class SearchMapViewTableViewCell: UITableViewCell {
         
         return image
     }()
+    var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -71,7 +73,7 @@ final class SearchMapViewTableViewCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        addSubview(mainStackView)
+        contentView.addSubview(mainStackView)
     }
     
     private func layout() {
@@ -85,8 +87,13 @@ final class SearchMapViewTableViewCell: UITableViewCell {
         ])
     }
     
-    private func toggleBookmarkButtonImage() {
-        bookmarkButton.setImage(filledStarImage, for: .normal)
+    func toggleBookmarkButtonImage(shouldFiilStar: Bool) {
+        if shouldFiilStar {
+            bookmarkButton.setImage(filledStarImage, for: .normal)
+            return
+        }
+        
+        bookmarkButton.setImage(defaultStarImage, for: .normal)
     }
     
     func configure(title: String, address: String) {

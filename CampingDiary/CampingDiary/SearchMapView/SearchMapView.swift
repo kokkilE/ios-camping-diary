@@ -59,7 +59,7 @@ final class SearchMapView: UIView {
         return button
     }()
     private var buttonAction: (() -> Void)?
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private var markerList = [NMFMarker](repeating: NMFMarker(), count: Constant.maxSearchCount)
     
     init(inputKeyword: String? = nil) {

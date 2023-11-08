@@ -92,6 +92,22 @@ final class SearchMapViewController: UIViewController {
             ) { [weak self] index, locationItem, cell in
                 guard let self else { return }
                 
+                cell.disposeBag = DisposeBag()
+                cell.bookmarkButton.rx.tap
+                    .bind { [weak self] in
+                        guard let self else { return }
+                        
+                        if viewModel.isBookmarked(locationItem) {
+                            viewModel.removeBookmark(locationItem)
+                            cell.toggleBookmarkButtonImage(shouldFiilStar: false)
+                            return
+                        }
+                        
+                        viewModel.addBookmark(locationItem)
+                        cell.toggleBookmarkButtonImage(shouldFiilStar: true)
+                    }
+                    .disposed(by: cell.disposeBag)
+                
                 cell.configure(title: locationItem.title.toLocationTitle(),
                                address: locationItem.roadAddress)
                 

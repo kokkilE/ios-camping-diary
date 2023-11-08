@@ -11,8 +11,9 @@ import RxSwift
 import RxCocoa
 
 final class SearchMapViewModel {
+    private let dataManager = DataManager.shared
     private var searchKeyworkd: String
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private let searchedLocations = BehaviorRelay<[LocationItem]>(value: [])
     
     init(searchKeyworkd: String) {
@@ -47,5 +48,17 @@ final class SearchMapViewModel {
     
     func configureSearchKeyword(_ keyword: String) {
         searchKeyworkd = keyword
+    }
+    
+    func addBookmark(_ locationItem: LocationItem) {
+        dataManager.addBookmark(locationItem)
+    }
+    
+    func removeBookmark(_ locationItem: LocationItem) {
+        dataManager.removeBookmark(locationItem)
+    }
+    
+    func isBookmarked(_ locationItem: LocationItem) -> Bool {
+        return dataManager.isBookmarked(locationItem)
     }
 }
