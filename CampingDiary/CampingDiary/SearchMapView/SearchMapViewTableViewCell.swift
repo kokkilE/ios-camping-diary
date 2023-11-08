@@ -77,7 +77,7 @@ final class SearchMapViewTableViewCell: UITableViewCell {
     }
     
     private func layout() {
-        let safe = safeAreaLayoutGuide
+        let safe = contentView.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 8),
