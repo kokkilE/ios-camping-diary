@@ -31,6 +31,8 @@
 		AA68200B2AF780FF00464B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA68200A2AF780FF00464B97 /* Assets.xcassets */; };
 		AA68200E2AF780FF00464B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA68200C2AF780FF00464B97 /* LaunchScreen.storyboard */; };
 		AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7830D32AF935840046FF85 /* SearchMapView.swift */; };
+		AA959E1F2AFBF920009E8657 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AA959E1E2AFBF920009E8657 /* Realm */; };
+		AA959E212AFBF920009E8657 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA959E202AFBF920009E8657 /* RealmSwift */; };
 		AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */; };
 		AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F852AFA681300AD26E0 /* Constant.swift */; };
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
@@ -70,6 +72,7 @@
 			files = (
 				AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */,
 				A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */,
+				AA959E212AFBF920009E8657 /* RealmSwift in Frameworks */,
 				AA6342E02AFA32770033EFD5 /* RxCocoa in Frameworks */,
 				AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */,
 				AA6342D52AFA31300033EFD5 /* Moya in Frameworks */,
@@ -79,6 +82,7 @@
 				AA6342DE2AFA32770033EFD5 /* RxBlocking-Dynamic in Frameworks */,
 				AA4930D42AFA072E008E725E /* Moya in Frameworks */,
 				AA6342D72AFA31300033EFD5 /* ReactiveMoya in Frameworks */,
+				AA959E1F2AFBF920009E8657 /* Realm in Frameworks */,
 				AA6342E22AFA32770033EFD5 /* RxCocoa-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +260,8 @@
 				AA6342DF2AFA32770033EFD5 /* RxCocoa */,
 				AA6342E12AFA32770033EFD5 /* RxCocoa-Dynamic */,
 				AA6342E32AFA32770033EFD5 /* RxRelay */,
+				AA959E1E2AFBF920009E8657 /* Realm */,
+				AA959E202AFBF920009E8657 /* RealmSwift */,
 			);
 			productName = CampingDiary;
 			productReference = AA681FFE2AF780FE00464B97 /* CampingDiary.app */;
@@ -288,6 +294,7 @@
 			packageReferences = (
 				AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */,
 				AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				AA959E1D2AFBF920009E8657 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = AA681FFF2AF780FE00464B97 /* Products */;
 			projectDirPath = "";
@@ -608,6 +615,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		AA959E1D2AFBF920009E8657 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.44.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -665,6 +680,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
+		};
+		AA959E1E2AFBF920009E8657 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA959E1D2AFBF920009E8657 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		AA959E202AFBF920009E8657 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA959E1D2AFBF920009E8657 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
