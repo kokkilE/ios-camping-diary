@@ -76,6 +76,7 @@ final class SearchMapViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
         tableView.separatorStyle = .none
+        tableView.delegate = self
     }
     
     private func requestFetch() {
@@ -101,5 +102,15 @@ final class SearchMapViewController: UIViewController {
                                                     at: index)
             }
             .disposed(by: disposeBag)
+    }
+}
+
+extension SearchMapViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedLocation = viewModel.getSelectedLocation(at: indexPath.item)
+        
+        searchMapView.focusMarker(latitude: selectedLocation.mapy.toLatitude(),
+                                  longitude: selectedLocation.mapx.toLongitude(),
+                                  at: indexPath.item)
     }
 }

@@ -148,7 +148,25 @@ final class SearchMapView: UIView {
 extension SearchMapView {
     func configureMarkers(latitude: Double, longitude: Double, at index: Int) {
         markerList[index] = NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude))
-        
+        markerList[index].iconTintColor = .systemGreen
         markerList[index].mapView = naverMapView.mapView
+    }
+    
+    func focusMarker(latitude: Double, longitude: Double, at index: Int) {
+        highlightMarkerColor(at: index)
+        highlightMarkerCamera(latitude: latitude, longitude: longitude, at: index)
+    }
+    
+    private func highlightMarkerColor(at selectedIndex: Int) {
+        for index in 0..<Constant.maxSearchCount {
+            markerList[index].iconTintColor = .systemGreen
+        }
+        
+        markerList[selectedIndex].iconTintColor = .systemRed
+    }
+    
+    private func highlightMarkerCamera(latitude: Double, longitude: Double, at index: Int) {
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 9)
+        naverMapView.mapView.moveCamera(cameraUpdate)
     }
 }

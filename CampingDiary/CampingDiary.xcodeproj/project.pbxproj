@@ -13,7 +13,6 @@
 		AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D12AFA072E008E725E /* CombineMoya */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
-		AA6342CA2AFA17300033EFD5 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342C92AFA17300033EFD5 /* UserAPI.swift */; };
 		AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CB2AFA19750033EFD5 /* LocationData.swift */; };
 		AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CE2AFA1B800033EFD5 /* Decoder.swift */; };
 		AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D22AFA31300033EFD5 /* CombineMoya */; };
@@ -34,6 +33,7 @@
 		AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */; };
 		AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F852AFA681300AD26E0 /* Constant.swift */; };
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
+		AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE62DB42AFA7563004DCD67 /* UserAPI.swift */; };
 		AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +43,6 @@
 		AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
 		AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+publisher.swift"; sourceTree = "<group>"; };
 		AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewModel.swift; sourceTree = "<group>"; };
-		AA6342C92AFA17300033EFD5 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		AA6342CB2AFA19750033EFD5 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		AA6342CE2AFA1B800033EFD5 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		AA681FFE2AF780FE00464B97 /* CampingDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampingDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +56,7 @@
 		AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewTableViewCell.swift; sourceTree = "<group>"; };
 		AAD91F852AFA681300AD26E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AAD91F872AFA6A8C00AD26E0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		AAE62DB42AFA7563004DCD67 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
 		D63B5224631A1CCA4367C293 /* Pods-CampingDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.debug.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +113,7 @@
 		AA4930D72AFA0C29008E725E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				AA6342C92AFA17300033EFD5 /* UserAPI.swift */,
+				AAE62DB42AFA7563004DCD67 /* UserAPI.swift */,
 				AA6342CB2AFA19750033EFD5 /* LocationData.swift */,
 			);
 			path = Network;
@@ -348,7 +348,6 @@
 			files = (
 				AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
-				AA6342CA2AFA17300033EFD5 /* UserAPI.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
@@ -360,6 +359,7 @@
 				AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */,
 				AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */,
 				AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */,
+				AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

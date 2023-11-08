@@ -41,6 +41,10 @@ final class SearchMapViewModel {
         return searchedLocations.asObservable()
     }
     
+    func getSelectedLocation(at index: Int) -> LocationItem {
+        return searchedLocations.value[index]
+    }
+    
     func configureSearchKeyword(_ keyword: String) {
         searchKeyworkd = keyword
     }
