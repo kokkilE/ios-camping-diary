@@ -31,6 +31,7 @@ final class SearchMapViewController: UIViewController {
         setupView()
         addSubviews()
         layout()
+        setupNavigationLeftBarButtonItem()
         setupSearchMapView()
         setupTableView()
         requestFetch()
@@ -61,6 +62,15 @@ final class SearchMapViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -12),
             tableView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -12)
         ])
+    }
+    
+    private func setupNavigationLeftBarButtonItem() {
+        let backImage = UIImage(systemName: "arrow.left")
+        
+        let leftBarButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(dismissViewController))
+        leftBarButton.tintColor = .systemBlue
+        
+        navigationItem.leftBarButtonItem = leftBarButton
     }
     
     private func setupSearchMapView() {
@@ -136,6 +146,10 @@ final class SearchMapViewController: UIViewController {
                                                longitude: longitude)
             }
             .disposed(by: disposeBag)
+    }
+    
+    @objc func dismissViewController() {
+        navigationController?.popViewController(animated: false)
     }
 }
 
