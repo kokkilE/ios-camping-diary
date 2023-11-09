@@ -33,6 +33,8 @@
 		AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7830D32AF935840046FF85 /* SearchMapView.swift */; };
 		AA959E1F2AFBF920009E8657 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AA959E1E2AFBF920009E8657 /* Realm */; };
 		AA959E212AFBF920009E8657 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA959E202AFBF920009E8657 /* RealmSwift */; };
+		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
+		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
 		AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */; };
 		AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F852AFA681300AD26E0 /* Constant.swift */; };
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
@@ -57,6 +59,8 @@
 		AA68200D2AF780FF00464B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA68200F2AF780FF00464B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7830D32AF935840046FF85 /* SearchMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapView.swift; sourceTree = "<group>"; };
+		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
+		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
 		AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewTableViewCell.swift; sourceTree = "<group>"; };
 		AAD91F852AFA681300AD26E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AAD91F872AFA6A8C00AD26E0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				AA6342CD2AFA1B6C0033EFD5 /* Utility */,
 				AAD91F842AFA67FE00AD26E0 /* Common */,
 				AA4930D72AFA0C29008E725E /* Network */,
+				AA959E222AFBFA7B009E8657 /* LocalDatabase */,
 				AA67AD8E2AFB911400F01DE6 /* DataManager */,
 				AA7830D22AF935570046FF85 /* SearchMapView */,
 				AAA909A02AF932C700DC1479 /* HomeView */,
@@ -204,6 +209,15 @@
 				AA68200F2AF780FF00464B97 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA959E222AFBFA7B009E8657 /* LocalDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */,
+				AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */,
+			);
+			path = LocalDatabase;
 			sourceTree = "<group>";
 		};
 		AAA909A02AF932C700DC1479 /* HomeView */ = {
@@ -368,9 +382,11 @@
 				AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
+				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
+				AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */,
 				AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */,
 				AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
