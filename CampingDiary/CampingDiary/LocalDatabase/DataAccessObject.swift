@@ -8,5 +8,5 @@
 import RealmSwift
 
 protocol DataAccessObject where Self: Object {
-    var roadAddress: String { get set }
+    var primaryKey: String { get set }
 }
