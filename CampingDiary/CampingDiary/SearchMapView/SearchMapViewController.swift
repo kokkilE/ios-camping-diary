@@ -108,6 +108,12 @@ final class SearchMapViewController: UIViewController {
                     }
                     .disposed(by: cell.disposeBag)
                 
+                if viewModel.isBookmarked(locationItem) {
+                    cell.toggleBookmarkButtonImage(shouldFiilStar: true)
+                } else {
+                    cell.toggleBookmarkButtonImage(shouldFiilStar: false)
+                }
+                
                 cell.configure(title: locationItem.title.toLocationTitle(),
                                address: locationItem.roadAddress)
                 

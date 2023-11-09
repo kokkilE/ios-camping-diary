@@ -166,7 +166,7 @@ extension SearchMapView {
     }
     
     private func highlightMarkerCamera(latitude: Double, longitude: Double, at index: Int) {
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 9)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 10)
         naverMapView.mapView.moveCamera(cameraUpdate)
     }
 }

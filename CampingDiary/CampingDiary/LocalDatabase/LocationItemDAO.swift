@@ -14,8 +14,8 @@ final class LocationItemDAO: Object, DataAccessObject {
     @Persisted var mapx: String
     @Persisted var mapy: String
     
-    init(_ locationItem: LocationItem) {
-        super.init()
+    convenience init(_ locationItem: LocationItem) {
+        self.init()
         
         self.primaryKey = locationItem.roadAddress
         self.title = locationItem.title
