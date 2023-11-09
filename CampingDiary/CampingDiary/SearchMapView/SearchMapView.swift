@@ -154,7 +154,7 @@ extension SearchMapView {
     
     func focusMarker(latitude: Double, longitude: Double, at index: Int) {
         highlightMarkerColor(at: index)
-        highlightMarkerCamera(latitude: latitude, longitude: longitude, at: index)
+        moveCamera(latitude: latitude, longitude: longitude)
     }
     
     private func highlightMarkerColor(at selectedIndex: Int) {
@@ -165,7 +165,7 @@ extension SearchMapView {
         markerList[selectedIndex].iconTintColor = .systemRed
     }
     
-    private func highlightMarkerCamera(latitude: Double, longitude: Double, at index: Int) {
+    func moveCamera(latitude: Double, longitude: Double) {
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 10)
         naverMapView.mapView.moveCamera(cameraUpdate)
     }

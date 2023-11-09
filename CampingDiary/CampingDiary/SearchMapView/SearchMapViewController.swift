@@ -34,7 +34,8 @@ final class SearchMapViewController: UIViewController {
         setupSearchMapView()
         setupTableView()
         requestFetch()
-        bindTableView()
+        bindToTableView()
+        bindToSearchMapView()
     }
     
     private func setupView() {
@@ -83,7 +84,7 @@ final class SearchMapViewController: UIViewController {
         viewModel.fetch()
     }
     
-    private func bindTableView() {
+    private func bindToTableView() {
         viewModel
             .getCellData()
             .bind(to: tableView.rx.items(
@@ -120,6 +121,19 @@ final class SearchMapViewController: UIViewController {
                 searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(),
                                                longitude: locationItem.mapx.toLongitude(),
                                                at: index)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindToSearchMapView() {
+        viewModel
+            .getCellData()
+            .bind { [weak self] locationItems in
+                guard let longitude = locationItems.first?.mapx.toLongitude(),
+                      let latitude = locationItems.first?.mapy.toLatitude() else { return }
+                
+                self?.searchMapView.moveCamera(latitude: latitude,
+                                               longitude: longitude)
             }
             .disposed(by: disposeBag)
     }
