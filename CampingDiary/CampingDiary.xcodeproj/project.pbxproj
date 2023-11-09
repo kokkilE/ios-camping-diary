@@ -13,6 +13,8 @@
 		AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D12AFA072E008E725E /* CombineMoya */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
+		AA5943672AFCC7EF00A7E40A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943662AFCC7EF00A7E40A /* Realm */; };
+		AA5943692AFCC7EF00A7E40A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943682AFCC7EF00A7E40A /* RealmSwift */; };
 		AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CB2AFA19750033EFD5 /* LocationData.swift */; };
 		AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CE2AFA1B800033EFD5 /* Decoder.swift */; };
 		AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D22AFA31300033EFD5 /* CombineMoya */; };
@@ -31,6 +33,9 @@
 		AA68200B2AF780FF00464B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA68200A2AF780FF00464B97 /* Assets.xcassets */; };
 		AA68200E2AF780FF00464B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA68200C2AF780FF00464B97 /* LaunchScreen.storyboard */; };
 		AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7830D32AF935840046FF85 /* SearchMapView.swift */; };
+		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
+		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
+		AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE1A012AFCBCA100DE307F /* RealmManager.swift */; };
 		AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */; };
 		AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F852AFA681300AD26E0 /* Constant.swift */; };
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
@@ -55,6 +60,9 @@
 		AA68200D2AF780FF00464B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA68200F2AF780FF00464B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7830D32AF935840046FF85 /* SearchMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapView.swift; sourceTree = "<group>"; };
+		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
+		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
+		AACE1A012AFCBCA100DE307F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewTableViewCell.swift; sourceTree = "<group>"; };
 		AAD91F852AFA681300AD26E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AAD91F872AFA6A8C00AD26E0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -70,6 +78,7 @@
 			files = (
 				AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */,
 				A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */,
+				AA5943692AFCC7EF00A7E40A /* RealmSwift in Frameworks */,
 				AA6342E02AFA32770033EFD5 /* RxCocoa in Frameworks */,
 				AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */,
 				AA6342D52AFA31300033EFD5 /* Moya in Frameworks */,
@@ -79,6 +88,7 @@
 				AA6342DE2AFA32770033EFD5 /* RxBlocking-Dynamic in Frameworks */,
 				AA4930D42AFA072E008E725E /* Moya in Frameworks */,
 				AA6342D72AFA31300033EFD5 /* ReactiveMoya in Frameworks */,
+				AA5943672AFCC7EF00A7E40A /* Realm in Frameworks */,
 				AA6342E22AFA32770033EFD5 /* RxCocoa-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +175,7 @@
 				AA6342CD2AFA1B6C0033EFD5 /* Utility */,
 				AAD91F842AFA67FE00AD26E0 /* Common */,
 				AA4930D72AFA0C29008E725E /* Network */,
+				AA959E222AFBFA7B009E8657 /* LocalDatabase */,
 				AA67AD8E2AFB911400F01DE6 /* DataManager */,
 				AA7830D22AF935570046FF85 /* SearchMapView */,
 				AAA909A02AF932C700DC1479 /* HomeView */,
@@ -200,6 +211,16 @@
 				AA68200F2AF780FF00464B97 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA959E222AFBFA7B009E8657 /* LocalDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */,
+				AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */,
+				AACE1A012AFCBCA100DE307F /* RealmManager.swift */,
+			);
+			path = LocalDatabase;
 			sourceTree = "<group>";
 		};
 		AAA909A02AF932C700DC1479 /* HomeView */ = {
@@ -256,6 +277,8 @@
 				AA6342DF2AFA32770033EFD5 /* RxCocoa */,
 				AA6342E12AFA32770033EFD5 /* RxCocoa-Dynamic */,
 				AA6342E32AFA32770033EFD5 /* RxRelay */,
+				AA5943662AFCC7EF00A7E40A /* Realm */,
+				AA5943682AFCC7EF00A7E40A /* RealmSwift */,
 			);
 			productName = CampingDiary;
 			productReference = AA681FFE2AF780FE00464B97 /* CampingDiary.app */;
@@ -288,6 +311,7 @@
 			packageReferences = (
 				AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */,
 				AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = AA681FFF2AF780FE00464B97 /* Products */;
 			projectDirPath = "";
@@ -361,9 +385,12 @@
 				AA6342CC2AFA19750033EFD5 /* LocationData.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
+				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
+				AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
+				AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */,
 				AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */,
 				AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
@@ -600,6 +627,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.44.0;
+			};
+		};
 		AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -620,6 +655,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		AA5943662AFCC7EF00A7E40A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		AA5943682AFCC7EF00A7E40A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		AA6342D22AFA31300033EFD5 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
