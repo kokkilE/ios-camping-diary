@@ -36,7 +36,8 @@
 		AA87E4242AFDF589005C8317 /* DataTransferObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4232AFDF588005C8317 /* DataTransferObject.swift */; };
 		AA87E4272AFDF6B0005C8317 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4262AFDF6B0005C8317 /* Location.swift */; };
 		AA87E42B2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */; };
-		AA87E42D2AFE0ED3005C8317 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42C2AFE0ED3005C8317 /* text.swift */; };
+		AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */; };
+		AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */; };
 		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
 		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
 		AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE1A012AFCBCA100DE307F /* RealmManager.swift */; };
@@ -67,7 +68,8 @@
 		AA87E4232AFDF588005C8317 /* DataTransferObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferObject.swift; sourceTree = "<group>"; };
 		AA87E4262AFDF6B0005C8317 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCollectionViewCell.swift; sourceTree = "<group>"; };
-		AA87E42C2AFE0ED3005C8317 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
+		AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
 		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
 		AACE1A012AFCBCA100DE307F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -194,9 +196,9 @@
 		AA7830D22AF935570046FF85 /* SearchMapView */ = {
 			isa = PBXGroup;
 			children = (
-				AA7830D32AF935840046FF85 /* SearchMapView.swift */,
-				AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */,
 				AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */,
+				AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */,
+				AA7830D32AF935840046FF85 /* SearchMapView.swift */,
 				AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */,
 			);
 			path = SearchMapView;
@@ -244,9 +246,10 @@
 		AAA909A02AF932C700DC1479 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */,
 				AA6820052AF780FE00464B97 /* HomeViewController.swift */,
 				AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */,
-				AA87E42C2AFE0ED3005C8317 /* text.swift */,
+				AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA67AD902AFB912500F01DE6 /* DataManager.swift in Sources */,
+				AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */,
 				AA6342CC2AFA19750033EFD5 /* LocationDataDTO.swift in Sources */,
 				AA87E4272AFDF6B0005C8317 /* Location.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
@@ -409,7 +413,6 @@
 				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
 				AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
-				AA87E42D2AFE0ED3005C8317 /* text.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
 				AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */,
@@ -420,6 +423,7 @@
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
 				AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */,
 				AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */,
+				AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */,
 				AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */,
 				AA87E4242AFDF589005C8317 /* DataTransferObject.swift in Sources */,
 				AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */,
