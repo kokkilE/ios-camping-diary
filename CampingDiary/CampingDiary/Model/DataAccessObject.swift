@@ -7,6 +7,6 @@
 
 import RealmSwift
 
-protocol DataAccessObject where Self: Object {
+protocol DataAccessObject: Object {
     var primaryKey: String { get set }
 }

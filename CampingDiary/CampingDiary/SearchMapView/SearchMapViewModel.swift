@@ -27,8 +27,8 @@ final class SearchMapViewModel {
             .subscribe { [weak self] result in
                 switch result {
                 case let .success(response):
-                    let locationData = Decoder.decodeJSON(response.data, returnType: LocationData.self)
-                    guard let locationItems = locationData?.items else { return }
+                    let locationDataDTO = Decoder.decodeJSON(response.data, returnType: LocationDataDTO.self)
+                    guard let locationItems = locationDataDTO?.items else { return }
                     
                     self?.searchedLocations.accept(locationItems)
                 case let .failure(error):
