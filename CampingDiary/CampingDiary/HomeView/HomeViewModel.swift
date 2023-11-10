@@ -1,0 +1,23 @@
+//
+//  HomeViewModel.swift
+//  CampingDiary
+//
+//  Created by 조향래 on 11/10/23.
+//
+
+import RxSwift
+import RxCocoa
+
+final class HomeViewModel {
+    private let dataManager = DataManager.shared
+    private let disposeBag = DisposeBag()
+    private let observableDiary = BehaviorRelay<[Diary]>(value: [])
+    
+    func getObservableBookmarks() -> Observable<[Location]> {
+        return dataManager.observableBookmarks
+    }
+    
+    func getObservableDiary() -> Observable<[Diary]> {
+        return observableDiary.asObservable()
+    }
+}

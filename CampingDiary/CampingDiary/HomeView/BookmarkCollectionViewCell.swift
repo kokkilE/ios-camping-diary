@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 final class BookmarkCollectionViewCell: UICollectionViewCell {
     private lazy var mainStackView = {
