@@ -6,11 +6,16 @@
 //
 
 import UIKit
-import NMapsMap
-import CoreLocation
 
 final class HomeViewController: UIViewController {
+    enum Section: CaseIterable {
+        case Diary
+        case Bookmark
+    }
+    
     private let searchMapView = SearchMapView()
+    private let collectionView = UICollectionView()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,5 +54,39 @@ final class HomeViewController: UIViewController {
             
             navigationController?.pushViewController(searchMapViewController, animated: false)
         }
+    }
+    
+    private func setupCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.reuseIdentifier)
+        
+        collectionView.collectionViewLayout = getCompositionalLayout()
+    }
+    
+    private func getCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+            switch Section.allCases[sectionIndex] {
+            case .Diary:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+                return section
+            case .Bookmark:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+                
+                let section = NSCollectionLayoutSection(group: group)
+                return section
+            }
+        }
+        
+        return layout
     }
 }

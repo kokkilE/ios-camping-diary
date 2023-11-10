@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ReuseIdentifying {}
+protocol ReuseIdentifying { }
 
 extension ReuseIdentifying {
     public static var reuseIdentifier: String {
@@ -15,4 +15,5 @@ extension ReuseIdentifying {
     }
 }
 
-extension UITableViewCell: ReuseIdentifying {}
+extension UITableViewCell: ReuseIdentifying { }
+extension UICollectionViewCell: ReuseIdentifying { }

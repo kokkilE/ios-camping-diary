@@ -29,7 +29,8 @@ final class SearchMapViewModel {
                 case let .success(response):
                     let locationDataDTO = Decoder.decodeJSON(response.data, returnType: LocationDataDTO.self)
                     guard let locationItemDTOList = locationDataDTO?.items else { return }
-                    let locationList = locationItemDTOList.map { return Location($0) }
+                    
+                    let locationList = locationItemDTOList.map { Location($0) }
                     
                     self?.searchedLocations.accept(locationList)
                 case let .failure(error):
