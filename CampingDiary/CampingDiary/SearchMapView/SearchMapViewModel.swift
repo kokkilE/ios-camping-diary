@@ -14,7 +14,7 @@ final class SearchMapViewModel {
     private let dataManager = DataManager.shared
     private var searchKeyworkd: String
     private let disposeBag = DisposeBag()
-    private let searchedLocations = BehaviorRelay<[LocationItem]>(value: [])
+    private let searchedLocations = BehaviorRelay<[Location]>(value: [])
     
     init(searchKeyworkd: String) {
         self.searchKeyworkd = searchKeyworkd
@@ -28,9 +28,10 @@ final class SearchMapViewModel {
                 switch result {
                 case let .success(response):
                     let locationDataDTO = Decoder.decodeJSON(response.data, returnType: LocationDataDTO.self)
-                    guard let locationItems = locationDataDTO?.items else { return }
+                    guard let locationItemDTOList = locationDataDTO?.items else { return }
+                    let locationList = locationItemDTOList.map { return Location($0) }
                     
-                    self?.searchedLocations.accept(locationItems)
+                    self?.searchedLocations.accept(locationList)
                 case let .failure(error):
                     print(error)
                 }
@@ -38,11 +39,11 @@ final class SearchMapViewModel {
             .disposed(by: disposeBag)
     }
     
-    func getCellData() -> Observable<[LocationItem]> {
+    func getCellData() -> Observable<[Location]> {
         return searchedLocations.asObservable()
     }
     
-    func getSelectedLocation(at index: Int) -> LocationItem {
+    func getSelectedLocation(at index: Int) -> Location {
         return searchedLocations.value[index]
     }
     
@@ -50,15 +51,15 @@ final class SearchMapViewModel {
         searchKeyworkd = keyword
     }
     
-    func addBookmark(_ locationItem: LocationItem) {
-        dataManager.addBookmark(locationItem)
+    func addBookmark(_ location: Location) {
+        dataManager.addBookmark(location)
     }
     
-    func removeBookmark(_ locationItem: LocationItem) {
-        dataManager.removeBookmark(locationItem)
+    func removeBookmark(_ location: Location) {
+        dataManager.removeBookmark(location)
     }
     
-    func isBookmarked(_ locationItem: LocationItem) -> Bool {
-        return dataManager.isBookmarked(locationItem)
+    func isBookmarked(_ location: Location) -> Bool {
+        return dataManager.isBookmarked(location)
     }
 }

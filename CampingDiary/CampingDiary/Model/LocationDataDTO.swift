@@ -12,10 +12,10 @@ struct LocationDataDTO: DataTransferObject {
     let total: Int
     let start: Int
     let display: Int
-    let items: [LocationItem]
+    let items: [LocationItemDTO]
 }
 
-struct LocationItem: DataTransferObject {
+struct LocationItemDTO: DataTransferObject {
     let title: String
     let link: String
     let category: String

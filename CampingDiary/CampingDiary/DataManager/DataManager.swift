@@ -14,8 +14,8 @@ final class DataManager {
     
     private let realmManager = RealmManager()
     
-    private var bookmarks = BehaviorRelay<[LocationItem]>(value: [])
-    var observableBookmarks: Observable<[LocationItem]> {
+    private var bookmarks = BehaviorRelay<[Location]>(value: [])
+    var observableBookmarks: Observable<[Location]> {
         return bookmarks.asObservable()
     }
     
@@ -31,12 +31,7 @@ extension DataManager {
             .readAll(type: LocationItemDAO.self)?
             .compactMap { data in
                 if let locationItemDAO = data as? LocationItemDAO {
-                    let location = LocationItem(title: locationItemDAO.title, link: "",
-                                            category: "", description: "",
-                                            telephone: "", address: "",
-                                            roadAddress: locationItemDAO.roadAddress,
-                                            mapx: locationItemDAO.mapx,
-                                            mapy: locationItemDAO.mapy)
+                    let location = Location(locationItemDAO)
                     
                     return location
                 }
@@ -49,27 +44,27 @@ extension DataManager {
         self.bookmarks.accept(bookmarks)
     }
     
-    func addBookmark(_ locationItem: LocationItem) {
+    func addBookmark(_ location: Location) {
         var currentBookmarks = bookmarks.value
-        currentBookmarks.append(locationItem)
+        currentBookmarks.append(location)
         
         bookmarks.accept(currentBookmarks)
-        realmManager.create(LocationItemDAO(locationItem))
+        realmManager.create(LocationItemDAO(location))
     }
     
-    func removeBookmark(_ locationItem: LocationItem) {
+    func removeBookmark(_ location: Location) {
         var currentBookmarks = bookmarks.value
         currentBookmarks.removeAll {
-            $0.roadAddress == locationItem.roadAddress
+            $0.roadAddress == location.roadAddress
         }
         
         bookmarks.accept(currentBookmarks)
-        realmManager.delete(LocationItemDAO(locationItem))
+        realmManager.delete(LocationItemDAO(location))
     }
     
-    func isBookmarked(_ locationItem: LocationItem) -> Bool {
+    func isBookmarked(_ location: Location) -> Bool {
         return bookmarks.value.contains {
-            $0.roadAddress == locationItem.roadAddress
+            $0.roadAddress == location.roadAddress
         }
     }
 }
