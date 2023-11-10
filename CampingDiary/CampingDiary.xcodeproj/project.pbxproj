@@ -35,6 +35,8 @@
 		AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7830D32AF935840046FF85 /* SearchMapView.swift */; };
 		AA87E4242AFDF589005C8317 /* DataTransferObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4232AFDF588005C8317 /* DataTransferObject.swift */; };
 		AA87E4272AFDF6B0005C8317 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4262AFDF6B0005C8317 /* Location.swift */; };
+		AA87E42B2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */; };
+		AA87E42D2AFE0ED3005C8317 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42C2AFE0ED3005C8317 /* text.swift */; };
 		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
 		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
 		AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE1A012AFCBCA100DE307F /* RealmManager.swift */; };
@@ -64,6 +66,8 @@
 		AA7830D32AF935840046FF85 /* SearchMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapView.swift; sourceTree = "<group>"; };
 		AA87E4232AFDF588005C8317 /* DataTransferObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferObject.swift; sourceTree = "<group>"; };
 		AA87E4262AFDF6B0005C8317 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCollectionViewCell.swift; sourceTree = "<group>"; };
+		AA87E42C2AFE0ED3005C8317 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
 		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
 		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
 		AACE1A012AFCBCA100DE307F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				AA6820052AF780FE00464B97 /* HomeViewController.swift */,
+				AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */,
+				AA87E42C2AFE0ED3005C8317 /* text.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -403,9 +409,11 @@
 				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
 				AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
+				AA87E42D2AFE0ED3005C8317 /* text.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
 				AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */,
+				AA87E42B2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift in Sources */,
 				AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */,
 				AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
