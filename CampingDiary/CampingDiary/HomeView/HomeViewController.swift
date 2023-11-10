@@ -6,16 +6,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class HomeViewController: UIViewController {
-    enum Section: CaseIterable {
+    enum Section: Int, CaseIterable {
         case Diary
         case Bookmark
     }
     
     private let searchMapView = SearchMapView()
-    private let collectionView = UICollectionView()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
     private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
+    
+    private let viewModel = HomeViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,9 @@ final class HomeViewController: UIViewController {
         addSubviews()
         layout()
         setupSearchMapView()
+        setupCollectionView()
+        setupDataSource()
+        applySnapshot()
     }
     
     private func setupView() {
@@ -32,6 +40,7 @@ final class HomeViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(searchMapView)
+        view.addSubview(collectionView)
     }
     
     private func layout() {
@@ -41,7 +50,12 @@ final class HomeViewController: UIViewController {
             searchMapView.topAnchor.constraint(equalTo: safe.topAnchor),
             searchMapView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
             searchMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
-            searchMapView.heightAnchor.constraint(equalTo: searchMapView.widthAnchor, multiplier: 1.0)
+            searchMapView.heightAnchor.constraint(equalTo: searchMapView.widthAnchor, multiplier: 1.0),
+            
+            collectionView.topAnchor.constraint(equalTo: searchMapView.bottomAnchor, constant: 12),
+            collectionView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 12),
+            collectionView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -12),
+            collectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -12)
         ])
     }
     
@@ -58,9 +72,8 @@ final class HomeViewController: UIViewController {
     
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.reuseIdentifier)
-        
-        collectionView.collectionViewLayout = getCompositionalLayout()
+        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
+        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
     }
     
     private func getCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -76,6 +89,7 @@ final class HomeViewController: UIViewController {
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
+                
                 return section
             case .Bookmark:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
@@ -83,10 +97,48 @@ final class HomeViewController: UIViewController {
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
+                
                 return section
             }
         }
         
         return layout
+    }
+    
+    private func setupDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView) { collectionView, indexPath, item in
+            if indexPath.section == Section.Diary.rawValue {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell
+                
+                return cell
+            }
+            
+            if indexPath.section == Section.Bookmark.rawValue {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier, for: indexPath) as? BookmarkCollectionViewCell
+                if let item = item as? Location {
+                    cell?.configure(title: item.title.toLocationTitle(),
+                                    address: item.roadAddress)
+                }
+                
+                return cell
+            }
+            
+            return UICollectionViewCell()
+        }
+    }
+    
+    private func applySnapshot() {
+        Observable
+            .combineLatest(viewModel.getObservableDiary(),
+                           viewModel.getObservableBookmarks())
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] diaryList, bookmarkList in
+                var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+                snapshot.appendSections([.Diary, .Bookmark])
+                snapshot.appendItems(diaryList, toSection: .Diary)
+                snapshot.appendItems(bookmarkList, toSection: .Bookmark)
+                self?.dataSource?.apply(snapshot, animatingDifferences: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
