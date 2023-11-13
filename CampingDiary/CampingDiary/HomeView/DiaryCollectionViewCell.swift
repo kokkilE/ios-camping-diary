@@ -23,13 +23,17 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         return label
     }()
     private let imageView = {
-        let image = UIImageView()
+        let imageView = UIImageView()
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
         
-        return image
+        return imageView
     }()
     
     override init(frame: CGRect) {
