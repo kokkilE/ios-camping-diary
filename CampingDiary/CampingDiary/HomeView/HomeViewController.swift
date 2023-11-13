@@ -13,6 +13,15 @@ final class HomeViewController: UIViewController {
     enum Section: Int, CaseIterable {
         case Diary
         case Bookmark
+        
+        var description: String {
+            switch self {
+            case .Diary:
+                return "캠핑 일지"
+            case .Bookmark:
+                return "내 캠핑장"
+            }
+        }
     }
     
     private let searchMapView = SearchMapView()
@@ -31,7 +40,8 @@ final class HomeViewController: UIViewController {
         setupSearchMapView()
         setupCollectionView()
         setupDataSource()
-        applySnapshot()
+        setupDataSourceHeaderView()
+        bindToCellData()
     }
     
     private func setupView() {
@@ -75,33 +85,45 @@ final class HomeViewController: UIViewController {
         collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
         collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
     }
-    
+   
+}
+
+// MARK: configure modern collectionview
+extension HomeViewController {
     private func getCompositionalLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+            var section: NSCollectionLayoutSection
+            
             switch Section.allCases[sectionIndex] {
             case .Diary:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.3))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.3))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.4))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
-                let section = NSCollectionLayoutSection(group: group)
+                section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
-                
-                return section
             case .Bookmark:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
                 
-                let section = NSCollectionLayoutSection(group: group)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
                 
-                return section
+                section = NSCollectionLayoutSection(group: group)
             }
+            
+            let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                         heightDimension: .estimated(44))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize, elementKind: SectionTitleView.reuseIdentifier, alignment: .topLeading)
+            
+            section.boundarySupplementaryItems = [sectionHeader]
+            
+            return section
         }
-        
+                
         return layout
     }
     
@@ -132,7 +154,29 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    private func applySnapshot() {
+    private func setupDataSourceHeaderView() {
+        let headerRegistration = UICollectionView.SupplementaryRegistration
+        <SectionTitleView>(elementKind: SectionTitleView.reuseIdentifier) { supplementaryView, string, indexPath in
+            if indexPath.section == Section.Diary.rawValue {
+                supplementaryView.configure(title: Section.Diary.description)
+                
+                return
+            }
+            
+            if indexPath.section == Section.Bookmark.rawValue {
+                supplementaryView.configure(title: Section.Bookmark.description)
+                
+                return
+            }
+        }
+        
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            return self?.collectionView.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration, for: indexPath)
+        }
+    }
+    
+    private func bindToCellData() {
         Observable
             .combineLatest(viewModel.getObservableDiary(),
                            viewModel.getObservableBookmarks())
