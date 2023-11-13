@@ -11,7 +11,7 @@ class SectionTitleView: UICollectionReusableView, ReuseIdentifying {
     private let label = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .largeTitle)
+        label.font = .preferredFont(forTextStyle: .title1)
         
         return label
     }()

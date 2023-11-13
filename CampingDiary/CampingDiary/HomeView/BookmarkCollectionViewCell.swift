@@ -42,23 +42,14 @@ final class BookmarkCollectionViewCell: UICollectionViewCell {
     }()
     private(set) lazy var bookmarkButton = {
         let button = UIButton()
-        button.setImage(defaultStarImage, for: .normal)
-        button.tintColor = .systemYellow
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.tintColor = .label
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
         return button
     }()
-    private let defaultStarImage = {
-        let image = UIImage(systemName: "star")
-        
-        return image
-    }()
-    private let filledStarImage = {
-        let image = UIImage(systemName: "star.fill")
-        
-        return image
-    }()
+    
     var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -85,15 +76,6 @@ final class BookmarkCollectionViewCell: UICollectionViewCell {
             mainStackView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -8),
             mainStackView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -8)
         ])
-    }
-    
-    func toggleBookmarkButtonImage(shouldFiilStar: Bool) {
-        if shouldFiilStar {
-            bookmarkButton.setImage(filledStarImage, for: .normal)
-            return
-        }
-        
-        bookmarkButton.setImage(defaultStarImage, for: .normal)
     }
     
     func configure(title: String, address: String) {

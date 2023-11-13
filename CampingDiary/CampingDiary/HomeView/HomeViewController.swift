@@ -60,7 +60,7 @@ final class HomeViewController: UIViewController {
             searchMapView.topAnchor.constraint(equalTo: safe.topAnchor),
             searchMapView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
             searchMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
-            searchMapView.heightAnchor.constraint(equalTo: searchMapView.widthAnchor, multiplier: 1.0),
+            searchMapView.heightAnchor.constraint(equalTo: searchMapView.widthAnchor, multiplier: 0.8),
             
             collectionView.topAnchor.constraint(equalTo: searchMapView.bottomAnchor, constant: 12),
             collectionView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 12),
