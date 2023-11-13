@@ -11,13 +11,12 @@ import RxCocoa
 final class HomeViewModel {
     private let dataManager = DataManager.shared
     private let disposeBag = DisposeBag()
-    private let observableDiary = BehaviorRelay<[Diary]>(value: [])
     
     func getObservableBookmarks() -> Observable<[Location]> {
         return dataManager.observableBookmarks
     }
     
     func getObservableDiary() -> Observable<[Diary]> {
-        return observableDiary.asObservable()
+        return dataManager.observableDiaries
     }
 }

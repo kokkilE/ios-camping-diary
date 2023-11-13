@@ -13,6 +13,12 @@ final class DataManager {
     static let shared = DataManager()
     
     private let realmManager = RealmManager()
+    private var disposeBag = DisposeBag()
+    
+    private var diaries = BehaviorRelay<[Diary]>(value: [])
+    var observableDiaries: Observable<[Diary]> {
+        return diaries.asObservable()
+    }
     
     private var bookmarks = BehaviorRelay<[Location]>(value: [])
     var observableBookmarks: Observable<[Location]> {
@@ -20,7 +26,27 @@ final class DataManager {
     }
     
     private init() {
+        initializeDiaries()
         initializeBookmarks()
+    }
+}
+
+// MARK: manage diaries data
+extension DataManager {
+    private func initializeDiaries() {
+        // dummy data
+        observableBookmarks
+            .bind { bookmarks in
+                var diaries = [Diary]()
+                
+                bookmarks.forEach {
+                    let diary = Diary(campsite: $0, content: "testing...")
+                    diaries.append(diary)
+                }
+                
+                self.diaries.accept(diaries)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

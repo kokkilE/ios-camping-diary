@@ -80,11 +80,11 @@ final class HomeViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             switch Section.allCases[sectionIndex] {
             case .Diary:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.3))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.3))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
@@ -109,6 +109,11 @@ final class HomeViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView) { collectionView, indexPath, item in
             if indexPath.section == Section.Diary.rawValue {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell
+                // dummy data
+                if let item = item as? Diary {
+                    cell?.configure(title: item.content,
+                                    image: UIImage(systemName: "star"))
+                }
                 
                 return cell
             }

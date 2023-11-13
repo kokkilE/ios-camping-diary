@@ -251,8 +251,8 @@
 			children = (
 				AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */,
 				AA6820052AF780FE00464B97 /* HomeViewController.swift */,
-				AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */,
 				AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */,
+				AA87E42A2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
