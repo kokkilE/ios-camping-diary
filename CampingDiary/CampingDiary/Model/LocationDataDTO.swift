@@ -1,5 +1,5 @@
 //
-//  LocationData.swift
+//  LocationDataDTO.swift
 //  CampingDiary
 //
 //  Created by 조향래 on 11/7/23.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct LocationData: Decodable {
+struct LocationDataDTO: DataTransferObject {
     let lastBuildDate: String
     let total: Int
     let start: Int
     let display: Int
-    let items: [LocationItem]
+    let items: [LocationItemDTO]
 }
 
-struct LocationItem: Decodable {
+struct LocationItemDTO: DataTransferObject {
     let title: String
     let link: String
     let category: String

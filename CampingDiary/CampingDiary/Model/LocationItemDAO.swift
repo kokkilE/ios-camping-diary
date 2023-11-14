@@ -14,13 +14,13 @@ final class LocationItemDAO: Object, DataAccessObject {
     @Persisted var mapx: String
     @Persisted var mapy: String
     
-    convenience init(_ locationItem: LocationItem) {
+    convenience init(_ location: Location) {
         self.init()
         
-        self.primaryKey = locationItem.roadAddress
-        self.title = locationItem.title
-        self.roadAddress = locationItem.roadAddress
-        self.mapx = locationItem.mapx
-        self.mapy = locationItem.mapy
+        self.primaryKey = location.roadAddress
+        self.title = location.title
+        self.roadAddress = location.roadAddress
+        self.mapx = location.mapx
+        self.mapy = location.mapy
     }
 }
