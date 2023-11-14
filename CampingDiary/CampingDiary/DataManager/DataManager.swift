@@ -40,7 +40,7 @@ extension DataManager {
                 var diaries: [Diary?] = [nil]
                 
                 bookmarks.forEach {
-                    let diary = Diary(campsite: $0, content: "testing...")
+                    let diary = Diary(location: $0, content: "testing...", campSite: "A2", visitDate: Date(), editDate: Date())
                     diaries.append(diary)
                 }
                 
