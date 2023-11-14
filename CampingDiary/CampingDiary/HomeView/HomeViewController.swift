@@ -37,8 +37,8 @@ final class HomeViewController: UIViewController {
         setupView()
         addSubviews()
         layout()
-        bindToSearchMapView()
         setupCollectionView()
+        bindToSearchMapView()
         setupDataSource()
         setupDataSourceHeaderView()
         bindToCellData()
@@ -69,6 +69,13 @@ final class HomeViewController: UIViewController {
         ])
     }
     
+    private func setupCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
+        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
+        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
+    }
+    
     private func bindToSearchMapView() {
         searchMapView.searchButton.rx.tap
             .bind { [weak self] in
@@ -82,13 +89,11 @@ final class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func setupCollectionView() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
-        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
-        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
+    private func presentDiaryViewController() {
+        let diaryViewController = DiaryViewController()
+        
+        navigationController?.pushViewController(diaryViewController, animated: true)
     }
-   
 }
 
 // MARK: configure modern collectionview
@@ -131,7 +136,9 @@ extension HomeViewController {
     }
     
     private func setupDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable?>(collectionView: collectionView) { collectionView, indexPath, item in
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable?>(collectionView: collectionView) { [weak self] collectionView, indexPath, item in
+            guard let self else { return UICollectionViewCell() }
+            
             if indexPath.section == Section.Diary.rawValue {
                 // dummy data
                 if let item = item as? Diary {
@@ -144,6 +151,12 @@ extension HomeViewController {
                 }
                 
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell
+                
+                cell?.addButton.rx.tap
+                    .bind { [weak self] in
+                        self?.presentDiaryViewController()
+                    }
+                    .disposed(by: disposeBag)
                 
                 return cell
             }

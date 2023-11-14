@@ -10,7 +10,7 @@ import RxSwift
 
 final class BookmarkCollectionViewCell: UICollectionViewCell {
     private lazy var mainStackView = {
-        let stackView = UIStackView(arrangedSubviews: [labelStackView, bookmarkButton])
+        let stackView = UIStackView(arrangedSubviews: [labelStackView, deleteButton])
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ final class BookmarkCollectionViewCell: UICollectionViewCell {
         
         return label
     }()
-    private(set) lazy var bookmarkButton = {
+    private let deleteButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash"), for: .normal)
         button.tintColor = .label
