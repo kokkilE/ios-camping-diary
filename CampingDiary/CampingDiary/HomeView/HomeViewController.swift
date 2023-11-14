@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
     
     private let searchMapView = SearchMapView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
-    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
+    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
     
     private let viewModel = HomeViewModel()
     let disposeBag = DisposeBag()
@@ -83,6 +83,7 @@ final class HomeViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
+        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
         collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
     }
    
@@ -100,7 +101,7 @@ extension HomeViewController {
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.4))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalWidth(0.3))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
                 section = NSCollectionLayoutSection(group: group)
@@ -117,7 +118,7 @@ extension HomeViewController {
             
             let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                          heightDimension: .estimated(44))
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize, elementKind: SectionTitleView.reuseIdentifier, alignment: .topLeading)
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize, elementKind: SectionTitleHeaderView.reuseIdentifier, alignment: .topLeading)
             
             section.boundarySupplementaryItems = [sectionHeader]
             
@@ -128,14 +129,19 @@ extension HomeViewController {
     }
     
     private func setupDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView) { collectionView, indexPath, item in
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable?>(collectionView: collectionView) { collectionView, indexPath, item in
             if indexPath.section == Section.Diary.rawValue {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell
                 // dummy data
                 if let item = item as? Diary {
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell
+                    
                     cell?.configure(title: item.content,
                                     image: UIImage(systemName: "star"))
+                    
+                    return cell
                 }
+                
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell
                 
                 return cell
             }
@@ -156,7 +162,7 @@ extension HomeViewController {
     
     private func setupDataSourceHeaderView() {
         let headerRegistration = UICollectionView.SupplementaryRegistration
-        <SectionTitleView>(elementKind: SectionTitleView.reuseIdentifier) { supplementaryView, string, indexPath in
+        <SectionTitleHeaderView>(elementKind: SectionTitleHeaderView.reuseIdentifier) { supplementaryView, string, indexPath in
             if indexPath.section == Section.Diary.rawValue {
                 supplementaryView.configure(title: Section.Diary.description)
                 
@@ -182,7 +188,7 @@ extension HomeViewController {
                            viewModel.getObservableBookmarks())
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] diaryList, bookmarkList in
-                var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+                var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
                 snapshot.appendSections([.Diary, .Bookmark])
                 snapshot.appendItems(diaryList, toSection: .Diary)
                 snapshot.appendItems(bookmarkList, toSection: .Bookmark)

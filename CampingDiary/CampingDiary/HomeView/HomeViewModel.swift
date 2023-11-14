@@ -16,7 +16,7 @@ final class HomeViewModel {
         return dataManager.observableBookmarks
     }
     
-    func getObservableDiary() -> Observable<[Diary]> {
+    func getObservableDiary() -> Observable<[Diary?]> {
         return dataManager.observableDiaries
     }
 }

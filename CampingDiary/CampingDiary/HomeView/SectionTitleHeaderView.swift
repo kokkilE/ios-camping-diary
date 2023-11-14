@@ -1,5 +1,5 @@
 //
-//  SectionTitleView.swift
+//  SectionTitleHeaderView.swift
 //  CampingDiary
 //
 //  Created by 조향래 on 11/13/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SectionTitleView: UICollectionReusableView, ReuseIdentifying {
+class SectionTitleHeaderView: UICollectionReusableView, ReuseIdentifying {
     private let label = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

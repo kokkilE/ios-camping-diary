@@ -15,8 +15,8 @@ final class DataManager {
     private let realmManager = RealmManager()
     private var disposeBag = DisposeBag()
     
-    private var diaries = BehaviorRelay<[Diary]>(value: [])
-    var observableDiaries: Observable<[Diary]> {
+    private var diaries = BehaviorRelay<[Diary?]>(value: [])
+    var observableDiaries: Observable<[Diary?]> {
         return diaries.asObservable()
     }
     
@@ -37,7 +37,7 @@ extension DataManager {
         // dummy data
         observableBookmarks
             .bind { bookmarks in
-                var diaries = [Diary]()
+                var diaries: [Diary?] = [nil]
                 
                 bookmarks.forEach {
                     let diary = Diary(campsite: $0, content: "testing...")

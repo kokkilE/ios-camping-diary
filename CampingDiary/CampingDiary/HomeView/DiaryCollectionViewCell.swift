@@ -39,12 +39,19 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
+        setupView()
         addSubviews()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        layer.cornerRadius = 10.0
+//        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.label.cgColor
     }
     
     private func addSubviews() {
