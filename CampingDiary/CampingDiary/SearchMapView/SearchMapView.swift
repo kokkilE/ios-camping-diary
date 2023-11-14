@@ -50,7 +50,7 @@ final class SearchMapView: UIView {
     let searchButton = {
         let button = UIButton()
         button.setTitle("검색", for: .normal)
-        button.setTitleColor(UIColor.placeholderText, for: .normal)
+        button.setTitleColor(.placeholderText, for: .normal)
         button.isEnabled = false
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)

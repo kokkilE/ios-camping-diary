@@ -12,15 +12,12 @@
 		AA2D771E2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */; };
 		AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */; };
 		AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */; };
-		AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D12AFA072E008E725E /* CombineMoya */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
 		AA5943672AFCC7EF00A7E40A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943662AFCC7EF00A7E40A /* Realm */; };
 		AA5943692AFCC7EF00A7E40A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943682AFCC7EF00A7E40A /* RealmSwift */; };
 		AA6342CC2AFA19750033EFD5 /* LocationDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CB2AFA19750033EFD5 /* LocationDataDTO.swift */; };
 		AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CE2AFA1B800033EFD5 /* Decoder.swift */; };
-		AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D22AFA31300033EFD5 /* CombineMoya */; };
-		AA6342D52AFA31300033EFD5 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D42AFA31300033EFD5 /* Moya */; };
 		AA6342D72AFA31300033EFD5 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D62AFA31300033EFD5 /* ReactiveMoya */; };
 		AA6342D92AFA31300033EFD5 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342D82AFA31300033EFD5 /* RxMoya */; };
 		AA6342DC2AFA32770033EFD5 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = AA6342DB2AFA32770033EFD5 /* RxBlocking */; };
@@ -41,6 +38,7 @@
 		AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */; };
 		AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */; };
 		AA87E4332AFE1A0B005C8317 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4322AFE1A0B005C8317 /* Diary.swift */; };
+		AABF40242B03877300232A5A /* DiaryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF40232B03877300232A5A /* DiaryEditView.swift */; };
 		AACAFD622B03618D00C29C67 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACAFD612B03618D00C29C67 /* DiaryViewController.swift */; };
 		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
 		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
@@ -77,6 +75,7 @@
 		AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA87E4322AFE1A0B005C8317 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		AABF40232B03877300232A5A /* DiaryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEditView.swift; sourceTree = "<group>"; };
 		AACAFD612B03618D00C29C67 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
 		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
@@ -94,12 +93,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA4930D22AFA072E008E725E /* CombineMoya in Frameworks */,
 				A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */,
 				AA5943692AFCC7EF00A7E40A /* RealmSwift in Frameworks */,
 				AA6342E02AFA32770033EFD5 /* RxCocoa in Frameworks */,
-				AA6342D32AFA31300033EFD5 /* CombineMoya in Frameworks */,
-				AA6342D52AFA31300033EFD5 /* Moya in Frameworks */,
 				AA6342D92AFA31300033EFD5 /* RxMoya in Frameworks */,
 				AA6342E42AFA32770033EFD5 /* RxRelay in Frameworks */,
 				AA6342DC2AFA32770033EFD5 /* RxBlocking in Frameworks */,
@@ -135,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				AACAFD612B03618D00C29C67 /* DiaryViewController.swift */,
+				AABF40232B03877300232A5A /* DiaryEditView.swift */,
 			);
 			path = DiaryView;
 			sourceTree = "<group>";
@@ -309,10 +306,7 @@
 			);
 			name = CampingDiary;
 			packageProductDependencies = (
-				AA4930D12AFA072E008E725E /* CombineMoya */,
 				AA4930D32AFA072E008E725E /* Moya */,
-				AA6342D22AFA31300033EFD5 /* CombineMoya */,
-				AA6342D42AFA31300033EFD5 /* Moya */,
 				AA6342D62AFA31300033EFD5 /* ReactiveMoya */,
 				AA6342D82AFA31300033EFD5 /* RxMoya */,
 				AA6342DB2AFA32770033EFD5 /* RxBlocking */,
@@ -440,6 +434,7 @@
 				AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */,
 				AA87E42B2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift in Sources */,
 				AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */,
+				AABF40242B03877300232A5A /* DiaryEditView.swift in Sources */,
 				AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
@@ -698,11 +693,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AA4930D12AFA072E008E725E /* CombineMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = CombineMoya;
-		};
 		AA4930D32AFA072E008E725E /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
@@ -717,16 +707,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
-		};
-		AA6342D22AFA31300033EFD5 /* CombineMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = CombineMoya;
-		};
-		AA6342D42AFA31300033EFD5 /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
 		};
 		AA6342D62AFA31300033EFD5 /* ReactiveMoya */ = {
 			isa = XCSwiftPackageProductDependency;
