@@ -8,7 +8,7 @@
 import UIKit
 
 class DiaryCollectionViewHeaderCell: UICollectionViewCell {
-    private let addButton = {
+    let addButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)

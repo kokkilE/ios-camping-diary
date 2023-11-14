@@ -37,7 +37,7 @@ final class HomeViewController: UIViewController {
         setupView()
         addSubviews()
         layout()
-        setupSearchMapView()
+        bindToSearchMapView()
         setupCollectionView()
         setupDataSource()
         setupDataSourceHeaderView()
@@ -69,15 +69,17 @@ final class HomeViewController: UIViewController {
         ])
     }
     
-    private func setupSearchMapView() {
-        searchMapView.configureSearchButtonAction { [weak self] in
-            guard let self else { return }
-            
-            let searchKeyword = searchMapView.getText()
-            let searchMapViewController = SearchMapViewController(keyword: searchKeyword)
-            
-            navigationController?.pushViewController(searchMapViewController, animated: false)
-        }
+    private func bindToSearchMapView() {
+        searchMapView.searchButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                let searchKeyword = searchMapView.getText()
+                let searchMapViewController = SearchMapViewController(keyword: searchKeyword)
+                
+                navigationController?.pushViewController(searchMapViewController, animated: false)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setupCollectionView() {

@@ -47,18 +47,16 @@ final class SearchMapView: UIView {
         
         return textField
     }()
-    private lazy var searchButton = {
+    let searchButton = {
         let button = UIButton()
         button.setTitle("검색", for: .normal)
         button.setTitleColor(UIColor.placeholderText, for: .normal)
         button.isEnabled = false
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         return button
     }()
-    private var buttonAction: (() -> Void)?
     private let disposeBag = DisposeBag()
     private var markerList = [NMFMarker](repeating: NMFMarker(), count: Constant.maxSearchCount)
     
@@ -129,14 +127,6 @@ final class SearchMapView: UIView {
                 }
             })
             .disposed(by: disposeBag)
-    }
-    
-    @objc private func searchButtonTapped() {
-        buttonAction?()
-    }
-    
-    func configureSearchButtonAction(action: @escaping () -> Void) {
-        buttonAction = action
     }
     
     func getText() -> String {

@@ -32,7 +32,6 @@ final class SearchMapViewController: UIViewController {
         addSubviews()
         layout()
         setupNavigationLeftBarButtonItem()
-        setupSearchMapView()
         setupTableView()
         requestFetch()
         bindToTableView()
@@ -71,16 +70,6 @@ final class SearchMapViewController: UIViewController {
         leftBarButton.tintColor = .systemBlue
         
         navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    private func setupSearchMapView() {
-        searchMapView.configureSearchButtonAction { [weak self] in
-            guard let self else { return }
-            
-            let searchKeyword = searchMapView.getText()
-            viewModel.configureSearchKeyword(searchKeyword)
-            viewModel.fetch()
-        }
     }
     
     private func setupTableView() {
@@ -136,6 +125,16 @@ final class SearchMapViewController: UIViewController {
     }
     
     private func bindToSearchMapView() {
+        searchMapView.searchButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                let searchKeyword = searchMapView.getText()
+                viewModel.configureSearchKeyword(searchKeyword)
+                viewModel.fetch()
+            }
+            .disposed(by: disposeBag)
+        
         viewModel
             .getCellData()
             .bind { [weak self] locationItems in

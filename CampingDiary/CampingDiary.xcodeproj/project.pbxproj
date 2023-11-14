@@ -129,6 +129,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AA14CD8E2B034C0600D50D6D /* DiaryView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DiaryView;
+			sourceTree = "<group>";
+		};
 		AA4930C42AF9E33D008E725E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +202,7 @@
 				AA87E4252AFDF69E005C8317 /* Model */,
 				AA7830D22AF935570046FF85 /* SearchMapView */,
 				AAA909A02AF932C700DC1479 /* HomeView */,
+				AA14CD8E2B034C0600D50D6D /* DiaryView */,
 			);
 			path = CampingDiary;
 			sourceTree = "<group>";
