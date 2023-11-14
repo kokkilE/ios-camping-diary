@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RxSwift
 
 final class DiaryCollectionViewCell: UICollectionViewCell {
     private lazy var mainStackView = {

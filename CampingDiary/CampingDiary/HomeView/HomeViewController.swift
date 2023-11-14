@@ -96,7 +96,7 @@ final class HomeViewController: UIViewController {
     }
 }
 
-// MARK: configure modern collectionview
+// MARK: configure collectionview
 extension HomeViewController {
     private func getCompositionalLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in

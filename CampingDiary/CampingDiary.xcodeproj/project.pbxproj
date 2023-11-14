@@ -14,6 +14,8 @@
 		AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
+		AA527AF52B03BE810003A14A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */; };
+		AA527AF72B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */; };
 		AA5943672AFCC7EF00A7E40A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943662AFCC7EF00A7E40A /* Realm */; };
 		AA5943692AFCC7EF00A7E40A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943682AFCC7EF00A7E40A /* RealmSwift */; };
 		AA6342CC2AFA19750033EFD5 /* LocationDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6342CB2AFA19750033EFD5 /* LocationDataDTO.swift */; };
@@ -38,8 +40,7 @@
 		AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */; };
 		AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */; };
 		AA87E4332AFE1A0B005C8317 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4322AFE1A0B005C8317 /* Diary.swift */; };
-		AABF40242B03877300232A5A /* DiaryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF40232B03877300232A5A /* DiaryEditView.swift */; };
-		AACAFD622B03618D00C29C67 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACAFD612B03618D00C29C67 /* DiaryViewController.swift */; };
+		AABF40242B03877300232A5A /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF40232B03877300232A5A /* DiaryViewController.swift */; };
 		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
 		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
 		AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE1A012AFCBCA100DE307F /* RealmManager.swift */; };
@@ -58,6 +59,8 @@
 		AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
 		AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+publisher.swift"; sourceTree = "<group>"; };
 		AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewModel.swift; sourceTree = "<group>"; };
+		AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		AA6342CB2AFA19750033EFD5 /* LocationDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataDTO.swift; sourceTree = "<group>"; };
 		AA6342CE2AFA1B800033EFD5 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		AA67AD8F2AFB912500F01DE6 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -75,8 +78,7 @@
 		AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA87E4322AFE1A0B005C8317 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
-		AABF40232B03877300232A5A /* DiaryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEditView.swift; sourceTree = "<group>"; };
-		AACAFD612B03618D00C29C67 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
+		AABF40232B03877300232A5A /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
 		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
 		AACE1A012AFCBCA100DE307F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -130,8 +132,9 @@
 		AA14CD8E2B034C0600D50D6D /* DiaryView */ = {
 			isa = PBXGroup;
 			children = (
-				AACAFD612B03618D00C29C67 /* DiaryViewController.swift */,
-				AABF40232B03877300232A5A /* DiaryEditView.swift */,
+				AABF40232B03877300232A5A /* DiaryViewController.swift */,
+				AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */,
+				AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */,
 			);
 			path = DiaryView;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA527AF52B03BE810003A14A /* ImageCollectionViewCell.swift in Sources */,
 				AA67AD902AFB912500F01DE6 /* DataManager.swift in Sources */,
 				AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */,
 				AA6342CC2AFA19750033EFD5 /* LocationDataDTO.swift in Sources */,
@@ -428,14 +432,14 @@
 				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
 				AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
-				AACAFD622B03618D00C29C67 /* DiaryViewController.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,
 				AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */,
 				AA87E42B2AFE0D99005C8317 /* BookmarkCollectionViewCell.swift in Sources */,
 				AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */,
-				AABF40242B03877300232A5A /* DiaryEditView.swift in Sources */,
+				AABF40242B03877300232A5A /* DiaryViewController.swift in Sources */,
 				AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */,
+				AA527AF72B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
 				AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */,

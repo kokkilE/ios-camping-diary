@@ -39,10 +39,10 @@ extension DataManager {
             .bind { bookmarks in
                 var diaries: [Diary?] = [nil]
                 
-                bookmarks.forEach {
-                    let diary = Diary(location: $0, content: "testing...", campSite: "A2", visitDate: Date(), editDate: Date())
-                    diaries.append(diary)
-                }
+//                bookmarks.forEach {
+//                    let diary = Diary(location: $0, content: "testing...", campSite: "A2", visitDate: Date(), editDate: Date())
+//                    diaries.append(diary)
+//                }
                 
                 self.diaries.accept(diaries)
             }
