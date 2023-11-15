@@ -145,7 +145,10 @@ extension SearchMapView {
         markerList.last?.mapView = naverMapView.mapView
     }
     
-    func focusMarker(latitude: Double, longitude: Double, at index: Int) {
+    func focusMarker(at index: Int) {
+        guard let latitude = markerList[safe: index]?.position.lat,
+              let longitude = markerList[safe: index]?.position.lng else { return }
+        
         highlightMarkerColor(at: index)
         moveCamera(latitude: latitude, longitude: longitude)
     }

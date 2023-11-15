@@ -155,14 +155,7 @@ final class SearchMapViewController: UIViewController {
 
 extension SearchMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let selectedLocation = viewModel.getSelectedLocation(at: indexPath.item)
-        
-        searchMapView.focusMarker(latitude: selectedLocation.mapy.toLatitude(),
-                                  longitude: selectedLocation.mapx.toLongitude(),
-                                  at: indexPath.item)
-        
+        searchMapView.focusMarker(at: indexPath.item)
         tableViewCellAction?()
     }
     
