@@ -59,7 +59,7 @@ final class SearchMapView: UIView {
         return button
     }()
     private let disposeBag = DisposeBag()
-    private var markerList = [NMFMarker](repeating: NMFMarker(), count: Constant.maxSearchCount)
+    private var markerList: [NMFMarker] = []
     
     init(inputKeyword: String? = nil) {
         searchTextField.text = inputKeyword
@@ -137,9 +137,16 @@ final class SearchMapView: UIView {
 
 // MARK: control MapView's Marker
 extension SearchMapView {
-    func configureMarkers(latitude: Double, longitude: Double, at index: Int) {
-        markerList[index] = NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude))
+    func configureMarkers(latitude: Double, longitude: Double, caption: String, at index: Int) {
+        if markerList[safe: index] == nil {
+            markerList.append(NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude)))
+        } else {
+            markerList[index] = NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude))
+        }
+        
         markerList[index].iconTintColor = .systemGreen
+        markerList[index].captionText = caption
+        markerList[index].captionMinZoom = 10
         markerList[index].mapView = naverMapView.mapView
     }
     
@@ -149,15 +156,17 @@ extension SearchMapView {
     }
     
     private func highlightMarkerColor(at selectedIndex: Int) {
-        for index in 0..<Constant.maxSearchCount {
+        for index in 0..<markerList.count {
             markerList[index].iconTintColor = .systemGreen
+            markerList[index].isHideCollidedCaptions = false
         }
         
         markerList[selectedIndex].iconTintColor = .systemRed
+        markerList[selectedIndex].isHideCollidedCaptions = true
     }
     
     func moveCamera(latitude: Double, longitude: Double) {
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 10)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 13)
         naverMapView.mapView.moveCamera(cameraUpdate)
     }
 }

@@ -10,6 +10,7 @@
 		A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */; };
 		AA2D771C2B02563F009B1EAE /* SectionTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771B2B02563F009B1EAE /* SectionTitleHeaderView.swift */; };
 		AA2D771E2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */; };
+		AA2EBFA82B054DC600E72098 /* Array+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2EBFA72B054DC600E72098 /* Array+subscript.swift */; };
 		AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */; };
 		AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
@@ -57,6 +58,7 @@
 		A3E07F4CD225E6626D2AF97A /* Pods-CampingDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.release.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.release.xcconfig"; sourceTree = "<group>"; };
 		AA2D771B2B02563F009B1EAE /* SectionTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleHeaderView.swift; sourceTree = "<group>"; };
 		AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
+		AA2EBFA72B054DC600E72098 /* Array+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscript.swift"; sourceTree = "<group>"; };
 		AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
 		AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+publisher.swift"; sourceTree = "<group>"; };
 		AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewModel.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */,
 				AAD91F872AFA6A8C00AD26E0 /* String+.swift */,
+				AA2EBFA72B054DC600E72098 /* Array+subscript.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				AA2D771E2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift in Sources */,
 				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
 				AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */,
+				AA2EBFA82B054DC600E72098 /* Array+subscript.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
 				AA4930C32AF9DE6B008E725E /* SearchMapViewController.swift in Sources */,

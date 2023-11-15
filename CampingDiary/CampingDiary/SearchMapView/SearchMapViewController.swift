@@ -120,6 +120,7 @@ final class SearchMapViewController: UIViewController {
                 
                 searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(),
                                                longitude: locationItem.mapx.toLongitude(),
+                                               caption: locationItem.title.toLocationTitle(),
                                                at: index)
             }
             .disposed(by: disposeBag)
