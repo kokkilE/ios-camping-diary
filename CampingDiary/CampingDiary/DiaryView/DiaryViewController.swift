@@ -178,6 +178,7 @@ extension DiaryViewController {
         setupView()
         addSubviews()
         layout()
+        configureButtonAction()
         setupCollectionView()
     }
     
@@ -200,6 +201,19 @@ extension DiaryViewController {
             
             imageCollectionView.heightAnchor.constraint(equalTo: safe.widthAnchor, multiplier: 0.3)
         ])
+    }
+    
+    private func configureButtonAction() {
+        searchButton.rx.tap
+            .bind { [weak self] in
+                let searchMapViewController = SearchMapViewController(keyword: "")
+                searchMapViewController.configureTableViewCellAction {
+                    print("ABC")
+                }
+                
+                self?.present(searchMapViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -285,11 +299,9 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
                 
                 self?.viewModel.add(image)
             }
-            
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
         }
+        
+        dismiss(animated: true)
     }
     
     private func presentImagePicker() {

@@ -13,6 +13,7 @@ final class SearchMapViewController: UIViewController {
     private let tableView = UITableView()
     private let viewModel: SearchMapViewModel
     private let disposeBag = DisposeBag()
+    private var tableViewCellAction: (() -> Void)?
     
     init(keyword: String) {
         searchMapView = SearchMapView(inputKeyword: keyword)
@@ -154,10 +155,18 @@ final class SearchMapViewController: UIViewController {
 
 extension SearchMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let selectedLocation = viewModel.getSelectedLocation(at: indexPath.item)
         
         searchMapView.focusMarker(latitude: selectedLocation.mapy.toLatitude(),
                                   longitude: selectedLocation.mapx.toLongitude(),
                                   at: indexPath.item)
+        
+        tableViewCellAction?()
+    }
+    
+    func configureTableViewCellAction(action: @escaping () -> Void) {
+        tableViewCellAction = action
     }
 }

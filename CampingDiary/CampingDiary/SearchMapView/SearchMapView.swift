@@ -28,7 +28,7 @@ final class SearchMapView: UIView {
         let stackView = UIStackView(arrangedSubviews: [searchTextField, searchButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = .systemBackground
         stackView.spacing = 4
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -42,6 +42,7 @@ final class SearchMapView: UIView {
     private let searchTextField = {
         let textField = UITextField()
         textField.placeholder = "캠핑장 검색"
+        textField.textColor = .label
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
