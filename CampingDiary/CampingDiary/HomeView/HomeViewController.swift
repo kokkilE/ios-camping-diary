@@ -27,6 +27,7 @@ final class HomeViewController: UIViewController {
     private let searchMapView = SearchMapView()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
     private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
+    private var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
     
     private let viewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
@@ -198,17 +199,32 @@ extension HomeViewController {
     }
     
     private func bindToCellData() {
-        Observable
-            .combineLatest(viewModel.getObservableDiary(),
-                           viewModel.getObservableBookmarks())
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] diaryList, bookmarkList in
-                var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
-                snapshot.appendSections([.Diary, .Bookmark])
-                snapshot.appendItems(diaryList, toSection: .Diary)
-                snapshot.appendItems(bookmarkList, toSection: .Bookmark)
-                self?.dataSource?.apply(snapshot, animatingDifferences: true)
-            })
+        viewModel
+            .getObservableDiary()
+            .bind { [weak self] diaries in
+                guard let self else { return }
+                
+                snapshot.appendSections([.Diary])
+                snapshot.appendItems(diaries, toSection: .Diary)
+                dataSource?.apply(snapshot, animatingDifferences: true)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .getObservableBookmarks()
+            .bind { [weak self] bookmarks in
+                guard let self else { return }
+                
+                snapshot.appendSections([.Bookmark])
+                snapshot.appendItems(bookmarks, toSection: .Bookmark)
+                dataSource?.apply(snapshot, animatingDifferences: true)
+                
+                bookmarks.forEach {
+                    self.searchMapView.configureMarkers(latitude: $0.mapy.toLatitude(),
+                                                   longitude: $0.mapx.toLongitude(),
+                                                   caption: $0.title.toLocationTitle())
+                }
+            }
             .disposed(by: disposeBag)
     }
 }

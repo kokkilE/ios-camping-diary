@@ -137,17 +137,12 @@ final class SearchMapView: UIView {
 
 // MARK: control MapView's Marker
 extension SearchMapView {
-    func configureMarkers(latitude: Double, longitude: Double, caption: String, at index: Int) {
-        if markerList[safe: index] == nil {
-            markerList.append(NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude)))
-        } else {
-            markerList[index] = NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude))
-        }
-        
-        markerList[index].iconTintColor = .systemGreen
-        markerList[index].captionText = caption
-        markerList[index].captionMinZoom = 10
-        markerList[index].mapView = naverMapView.mapView
+    func configureMarkers(latitude: Double, longitude: Double, caption: String) {
+        markerList.append(NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude)))
+        markerList.last?.iconTintColor = .systemGreen
+        markerList.last?.captionText = caption
+        markerList.last?.captionMinZoom = 10
+        markerList.last?.mapView = naverMapView.mapView
     }
     
     func focusMarker(latitude: Double, longitude: Double, at index: Int) {
@@ -157,12 +152,12 @@ extension SearchMapView {
     
     private func highlightMarkerColor(at selectedIndex: Int) {
         for index in 0..<markerList.count {
-            markerList[index].iconTintColor = .systemGreen
-            markerList[index].isHideCollidedCaptions = false
+            markerList[safe: index]?.iconTintColor = .systemGreen
+            markerList[safe: index]?.isHideCollidedCaptions = false
         }
         
-        markerList[selectedIndex].iconTintColor = .systemRed
-        markerList[selectedIndex].isHideCollidedCaptions = true
+        markerList[safe: selectedIndex]?.iconTintColor = .systemRed
+        markerList[safe: selectedIndex]?.isHideCollidedCaptions = true
     }
     
     func moveCamera(latitude: Double, longitude: Double) {
