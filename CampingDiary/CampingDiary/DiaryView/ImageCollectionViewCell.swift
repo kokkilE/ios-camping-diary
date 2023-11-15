@@ -11,6 +11,7 @@ import RxSwift
 final class ImageCollectionViewCell: UICollectionViewCell {
     private let imageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
         

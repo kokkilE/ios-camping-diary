@@ -6,7 +6,6 @@
 //
 
 import RxSwift
-import RxCocoa
 
 final class HomeViewModel {
     private let dataManager = DataManager.shared

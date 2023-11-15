@@ -132,8 +132,12 @@ final class DiaryViewController: UIViewController {
         return button
     }()
     
-    private lazy var imageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
-    
+    private lazy var imageCollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return collectionView
+    }()
     private lazy var contentStackView = {
         let stackView = UIStackView(arrangedSubviews: [contentTitleLabel, contentTextView])
         stackView.axis = .vertical
@@ -160,8 +164,9 @@ final class DiaryViewController: UIViewController {
         return textView
     }()
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, UIImage?>?
-    private var disposeBag = DisposeBag()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
+    private let viewModel = DiaryViewModel()
+    private let disposeBag = DisposeBag()
 }
 
 // MARK: method
@@ -190,7 +195,9 @@ extension DiaryViewController {
             mainStackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 12),
             mainStackView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 12),
             mainStackView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -12),
-            mainStackView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -12)
+            mainStackView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -12),
+            
+            imageCollectionView.heightAnchor.constraint(equalTo: safe.widthAnchor, multiplier: 0.3)
         ])
     }
 }
@@ -198,7 +205,7 @@ extension DiaryViewController {
 // MARK: configure collectionview
 extension DiaryViewController {
     enum Section {
-        case main
+        case image
     }
     
     private func setupCollectionView() {
@@ -231,10 +238,12 @@ extension DiaryViewController {
     }
     
     private func setupDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, UIImage?>(collectionView: imageCollectionView) { [weak self] collectionView, indexPath, image in
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable?>(collectionView: imageCollectionView) { [weak self] collectionView, indexPath, image in
             guard let self else { return UICollectionViewCell() }
-            if let image {
+            
+            if let image = image as? UIImage {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewCell
+                cell?.configure(image: image)
                 
                 return cell
             }
@@ -252,6 +261,14 @@ extension DiaryViewController {
     }
     
     private func bindToCellData() {
-        
+        viewModel
+            .getCellData()
+            .bind { [weak self] images in
+                var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
+                snapshot.appendSections([.image])
+                snapshot.appendItems(images, toSection: .image)
+                self?.dataSource?.apply(snapshot, animatingDifferences: true)
+            }
+            .disposed(by: disposeBag)
     }
 }

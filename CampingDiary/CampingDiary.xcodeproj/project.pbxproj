@@ -44,6 +44,7 @@
 		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
 		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
 		AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE1A012AFCBCA100DE307F /* RealmManager.swift */; };
+		AAD1E1CD2B047EEF00022F82 /* DiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E1CC2B047EEF00022F82 /* DiaryViewModel.swift */; };
 		AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */; };
 		AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F852AFA681300AD26E0 /* Constant.swift */; };
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
@@ -82,6 +83,7 @@
 		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
 		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
 		AACE1A012AFCBCA100DE307F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		AAD1E1CC2B047EEF00022F82 /* DiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewModel.swift; sourceTree = "<group>"; };
 		AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewTableViewCell.swift; sourceTree = "<group>"; };
 		AAD91F852AFA681300AD26E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AAD91F872AFA6A8C00AD26E0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		AA14CD8E2B034C0600D50D6D /* DiaryView */ = {
 			isa = PBXGroup;
 			children = (
+				AAD1E1CC2B047EEF00022F82 /* DiaryViewModel.swift */,
 				AABF40232B03877300232A5A /* DiaryViewController.swift */,
 				AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */,
 				AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */,
@@ -439,6 +442,7 @@
 				AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */,
 				AABF40242B03877300232A5A /* DiaryViewController.swift in Sources */,
 				AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */,
+				AAD1E1CD2B047EEF00022F82 /* DiaryViewModel.swift in Sources */,
 				AA527AF72B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift in Sources */,
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
