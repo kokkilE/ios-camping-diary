@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import PhotosUI
 
 final class DiaryViewController: UIViewController {
 // MARK: define properties
@@ -252,7 +253,7 @@ extension DiaryViewController {
             
             cell?.addButton.rx.tap
                 .bind { [weak self] in
-                    
+                    self?.presentImagePicker()
                 }
                 .disposed(by: disposeBag)
             
@@ -270,5 +271,34 @@ extension DiaryViewController {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             }
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: present PHPickerViewController
+extension DiaryViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        results.forEach { result in
+            guard result.itemProvider.canLoadObject(ofClass: UIImage.self) else { return }
+            
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard let image = image as? UIImage else { return }
+                
+                self?.viewModel.add(image)
+            }
+            
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
+    private func presentImagePicker() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 5
+        configuration.filter = .images
+        let imagePicker = PHPickerViewController(configuration: configuration)
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true)
     }
 }

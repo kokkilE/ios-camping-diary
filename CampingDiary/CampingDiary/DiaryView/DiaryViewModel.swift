@@ -17,4 +17,11 @@ final class DiaryViewModel {
     func getCellData() -> Observable<[UIImage?]> {
         return images.asObservable()
     }
+    
+    func add(_ image: UIImage) {
+        var addedImages = images.value
+        addedImages.append(image)
+        
+        images.accept(addedImages)
+    }
 }
