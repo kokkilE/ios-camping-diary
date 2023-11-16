@@ -16,14 +16,7 @@ final class DataManager {
     private var disposeBag = DisposeBag()
     
     private var diaries = BehaviorRelay<[Diary?]>(value: [])
-    var observableDiaries: Observable<[Diary?]> {
-        return diaries.asObservable()
-    }
-    
     private var bookmarks = BehaviorRelay<[Location]>(value: [])
-    var observableBookmarks: Observable<[Location]> {
-        return bookmarks.asObservable()
-    }
     
     private init() {
         initializeDiaries()
@@ -33,6 +26,10 @@ final class DataManager {
 
 // MARK: manage diaries data
 extension DataManager {
+    var observableDiaries: Observable<[Diary?]> {
+        return diaries.asObservable()
+    }
+    
     private func initializeDiaries() {
         // dummy data
         observableBookmarks
@@ -52,6 +49,14 @@ extension DataManager {
 
 // MARK: manage bookmarks data
 extension DataManager {
+    var observableBookmarks: Observable<[Location]> {
+        return bookmarks.asObservable()
+    }
+    
+    var currentBookmarks: [Location] {
+        return bookmarks.value
+    }
+    
     private func initializeBookmarks() {
         let bookmarks = realmManager
             .readAll(type: LocationItemDAO.self)?

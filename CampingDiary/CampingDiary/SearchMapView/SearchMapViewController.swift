@@ -75,7 +75,7 @@ final class SearchMapViewController: UIViewController {
     
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(SearchMapViewTableViewCell.self, forCellReuseIdentifier: SearchMapViewTableViewCell.reuseIdentifier)
+        tableView.register(SearchMapTableViewCell.self, forCellReuseIdentifier: SearchMapTableViewCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.delegate = self
     }
@@ -88,8 +88,8 @@ final class SearchMapViewController: UIViewController {
         viewModel
             .getCellData()
             .bind(to: tableView.rx.items(
-                cellIdentifier: SearchMapViewTableViewCell.reuseIdentifier,
-                cellType: SearchMapViewTableViewCell.self)
+                cellIdentifier: SearchMapTableViewCell.reuseIdentifier,
+                cellType: SearchMapTableViewCell.self)
             ) { [weak self] index, locationItem, cell in
                 guard let self else { return }
                 

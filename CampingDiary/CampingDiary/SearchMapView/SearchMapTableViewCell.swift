@@ -1,5 +1,5 @@
 //
-//  SearchMapViewTableViewCell.swift
+//  SearchMapTableViewCell.swift
 //  CampingDiary
 //
 //  Created by 조향래 on 11/7/23.
@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class SearchMapViewTableViewCell: UITableViewCell {
+class SearchMapTableViewCell: UITableViewCell {
     private lazy var mainStackView = {
         let stackView = UIStackView(arrangedSubviews: [labelStackView, bookmarkButton])
         stackView.axis = .horizontal

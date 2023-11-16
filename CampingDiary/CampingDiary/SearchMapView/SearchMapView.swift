@@ -139,7 +139,7 @@ class SearchMapView: UIView {
 // MARK: control MapView's Marker
 extension SearchMapView {
     func configureDefaultMarkers(locations: [Location]) {
-        markerList.removeAll()
+        clearMarker()
         
         locations.forEach {
             markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
@@ -152,7 +152,7 @@ extension SearchMapView {
     }
     
     func configureBookmarkMarkers(locations: [Location]) {
-        markerList.removeAll()
+        clearMarker()
         
         locations.forEach {
             markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
@@ -163,6 +163,14 @@ extension SearchMapView {
             markerList.last?.captionMinZoom = 10
             markerList.last?.mapView = naverMapView.mapView
         }
+    }
+    
+    private func clearMarker() {
+        markerList.forEach {
+            $0.mapView = nil
+        }
+        
+        markerList.removeAll()
     }
     
     func focusMarker(at index: Int) {

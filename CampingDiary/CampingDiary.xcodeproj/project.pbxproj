@@ -47,8 +47,10 @@
 		AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE1A012AFCBCA100DE307F /* RealmManager.swift */; };
 		AAD0773C2B05FEF4004A2E87 /* LocationSelectionViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0773B2B05FEF4004A2E87 /* LocationSelectionViewContoller.swift */; };
 		AAD0773E2B061381004A2E87 /* LocationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0773D2B061381004A2E87 /* LocationSelectionView.swift */; };
+		AAD077412B061AC9004A2E87 /* LocationSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD077402B061AC9004A2E87 /* LocationSelectionTableViewCell.swift */; };
+		AAD077432B06223F004A2E87 /* LocationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD077422B06223F004A2E87 /* LocationSelectionViewModel.swift */; };
 		AAD1E1CD2B047EEF00022F82 /* DiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E1CC2B047EEF00022F82 /* DiaryViewModel.swift */; };
-		AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */; };
+		AAD91F812AFA617300AD26E0 /* SearchMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F802AFA617300AD26E0 /* SearchMapTableViewCell.swift */; };
 		AAD91F862AFA681300AD26E0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F852AFA681300AD26E0 /* Constant.swift */; };
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
 		AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE62DB42AFA7563004DCD67 /* UserAPI.swift */; };
@@ -89,8 +91,10 @@
 		AACE1A012AFCBCA100DE307F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		AAD0773B2B05FEF4004A2E87 /* LocationSelectionViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewContoller.swift; sourceTree = "<group>"; };
 		AAD0773D2B061381004A2E87 /* LocationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionView.swift; sourceTree = "<group>"; };
+		AAD077402B061AC9004A2E87 /* LocationSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		AAD077422B06223F004A2E87 /* LocationSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewModel.swift; sourceTree = "<group>"; };
 		AAD1E1CC2B047EEF00022F82 /* DiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewModel.swift; sourceTree = "<group>"; };
-		AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewTableViewCell.swift; sourceTree = "<group>"; };
+		AAD91F802AFA617300AD26E0 /* SearchMapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapTableViewCell.swift; sourceTree = "<group>"; };
 		AAD91F852AFA681300AD26E0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AAD91F872AFA6A8C00AD26E0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		AAE62DB42AFA7563004DCD67 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
@@ -227,7 +231,7 @@
 				AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */,
 				AA4930C22AF9DE6B008E725E /* SearchMapViewController.swift */,
 				AA7830D32AF935840046FF85 /* SearchMapView.swift */,
-				AAD91F802AFA617300AD26E0 /* SearchMapViewTableViewCell.swift */,
+				AAD91F802AFA617300AD26E0 /* SearchMapTableViewCell.swift */,
 			);
 			path = SearchMapView;
 			sourceTree = "<group>";
@@ -288,8 +292,10 @@
 		AAD0773F2B0613A2004A2E87 /* LocationSelectionView */ = {
 			isa = PBXGroup;
 			children = (
+				AAD077422B06223F004A2E87 /* LocationSelectionViewModel.swift */,
 				AAD0773B2B05FEF4004A2E87 /* LocationSelectionViewContoller.swift */,
 				AAD0773D2B061381004A2E87 /* LocationSelectionView.swift */,
+				AAD077402B061AC9004A2E87 /* LocationSelectionTableViewCell.swift */,
 			);
 			path = LocationSelectionView;
 			sourceTree = "<group>";
@@ -453,6 +459,7 @@
 				AA2D771E2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift in Sources */,
 				AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */,
 				AACE1A022AFCBCA100DE307F /* RealmManager.swift in Sources */,
+				AAD077432B06223F004A2E87 /* LocationSelectionViewModel.swift in Sources */,
 				AA2EBFA82B054DC600E72098 /* Array+subscript.swift in Sources */,
 				AA6820022AF780FE00464B97 /* AppDelegate.swift in Sources */,
 				AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */,
@@ -468,10 +475,11 @@
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
 				AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */,
 				AA2D771C2B02563F009B1EAE /* SectionTitleHeaderView.swift in Sources */,
-				AAD91F812AFA617300AD26E0 /* SearchMapViewTableViewCell.swift in Sources */,
+				AAD91F812AFA617300AD26E0 /* SearchMapTableViewCell.swift in Sources */,
 				AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */,
 				AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */,
 				AA87E4242AFDF589005C8317 /* DataTransferObject.swift in Sources */,
+				AAD077412B061AC9004A2E87 /* LocationSelectionTableViewCell.swift in Sources */,
 				AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */,
 				AA87E4332AFE1A0B005C8317 /* Diary.swift in Sources */,
 			);
