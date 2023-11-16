@@ -46,6 +46,10 @@ final class LocationSelectionViewModel {
         return dataManager.observableBookmarks
     }
     
+    func getSearchedLocations() -> [Location] {
+        return searchedLocations.value
+    }
+    
     func getBookmarks() -> [Location] {
         return dataManager.currentBookmarks
     }

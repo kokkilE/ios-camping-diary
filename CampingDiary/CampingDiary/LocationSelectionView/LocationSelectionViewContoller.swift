@@ -108,9 +108,8 @@ final class LocationSelectionViewContoller: UIViewController {
     
     private func bindToSecmentedControl() {
         segmentedControl.rx.selectedSegmentIndex
-            .distinctUntilChanged()
             .bind { [weak self] index in
-                guard let self else { return }  // 주석 2
+                guard let self else { return }
                 
                 tableView.dataSource = nil
                 
@@ -186,33 +185,25 @@ final class LocationSelectionViewContoller: UIViewController {
     }
         
     private func configureMapMarkerForBookmarks() {
-        viewModel
-            .getObservableBookmarks()
-            .bind { [weak self] locationItems in
-                guard let self,
-                      let longitude = locationItems.first?.mapx.toLongitude(),
-                      let latitude = locationItems.first?.mapy.toLatitude() else { return }
-                
-                searchMapView.moveCamera(latitude: latitude, longitude: longitude)
-                searchMapView.configureBookmarkMarkers(locations: locationItems)
-            }
-            .disposed(by: disposeBag)
+        let locations = viewModel.getBookmarks()
+
+        searchMapView.configureBookmarkMarkers(locations: locations)
+        
+        guard let longitude = locations.first?.mapx.toLongitude(),
+              let latitude = locations.first?.mapy.toLatitude() else { return }
+        
+        searchMapView.moveCamera(latitude: latitude, longitude: longitude)
     }
     
     private func configureMapMarkerForSearchedLocations() {
-        viewModel
-            .getObservableSearchedLocations()
-            .bind { [weak self] locationItems in
-                guard let self else { return }
-                
-                searchMapView.configureDefaultMarkers(locations: locationItems)
-                
-                guard let longitude = locationItems.first?.mapx.toLongitude(),
-                      let latitude = locationItems.first?.mapy.toLatitude() else { return }
-                
-                searchMapView.moveCamera(latitude: latitude, longitude: longitude)
-            }
-            .disposed(by: disposeBag)
+        let locations = viewModel.getSearchedLocations()
+
+        searchMapView.configureDefaultMarkers(locations: locations)
+        
+        guard let longitude = locations.first?.mapx.toLongitude(),
+              let latitude = locations.first?.mapy.toLatitude() else { return }
+        
+        searchMapView.moveCamera(latitude: latitude, longitude: longitude)
     }
 }
 
