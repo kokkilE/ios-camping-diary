@@ -11,6 +11,6 @@ struct Diary: Hashable {
     var location: Location
     var content: String
     var campSite: String
-    var visitDate: Date
-    var editDate: Date
+    var visitDate: String
+    var editDate: String
 }

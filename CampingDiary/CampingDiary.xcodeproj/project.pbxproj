@@ -41,6 +41,7 @@
 		AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */; };
 		AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */; };
 		AA87E4332AFE1A0B005C8317 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA87E4322AFE1A0B005C8317 /* Diary.swift */; };
+		AAADE2972B06564E0035AE43 /* LocationReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADE2962B06564E0035AE43 /* LocationReceivable.swift */; };
 		AABF40242B03877300232A5A /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF40232B03877300232A5A /* DiaryViewController.swift */; };
 		AACE19FC2AFCB07E00DE307F /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */; };
 		AACE1A002AFCB1DB00DE307F /* LocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */; };
@@ -85,6 +86,7 @@
 		AA87E42E2AFE1362005C8317 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AA87E4302AFE17CD005C8317 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA87E4322AFE1A0B005C8317 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		AAADE2962B06564E0035AE43 /* LocationReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationReceivable.swift; sourceTree = "<group>"; };
 		AABF40232B03877300232A5A /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
 		AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationItemDAO.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				AAD1E1CC2B047EEF00022F82 /* DiaryViewModel.swift */,
+				AAADE2962B06564E0035AE43 /* LocationReceivable.swift */,
 				AABF40232B03877300232A5A /* DiaryViewController.swift */,
 				AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */,
 				AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */,
@@ -477,6 +480,7 @@
 				AA2D771C2B02563F009B1EAE /* SectionTitleHeaderView.swift in Sources */,
 				AAD91F812AFA617300AD26E0 /* SearchMapTableViewCell.swift in Sources */,
 				AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */,
+				AAADE2972B06564E0035AE43 /* LocationReceivable.swift in Sources */,
 				AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */,
 				AA87E4242AFDF589005C8317 /* DataTransferObject.swift in Sources */,
 				AAD077412B061AC9004A2E87 /* LocationSelectionTableViewCell.swift in Sources */,

@@ -180,6 +180,7 @@ extension DiaryViewController {
         layout()
         configureButtonAction()
         setupCollectionView()
+        bindLocationLabelToDiary()
     }
     
     private func setupView() {
@@ -207,6 +208,7 @@ extension DiaryViewController {
         searchButton.rx.tap
             .bind { [weak self] in
                 let locationSelectionViewContoller = LocationSelectionViewContoller()
+                locationSelectionViewContoller.delegate = self
                 
                 self?.present(locationSelectionViewContoller, animated: true)
             }
@@ -309,5 +311,27 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
         imagePicker.delegate = self
         
         present(imagePicker, animated: true)
+    }
+}
+
+// MARK: protocol for delegate
+extension DiaryViewController: LocationReceivable {
+    func receive(_ location: Location) {
+        viewModel.configureDiary(location)
+    }
+}
+
+// MARK: bind to locationLabel with diary
+extension DiaryViewController {
+    private func bindLocationLabelToDiary() {
+        viewModel
+            .getObservableEditingDiary()
+            .bind { [weak self] diary in
+                guard let self, let diary else { return }
+                
+                locationLabel.text = diary.location.title.toLocationTitle()
+                locationLabel.textColor = .label
+            }
+            .disposed(by: disposeBag)
     }
 }

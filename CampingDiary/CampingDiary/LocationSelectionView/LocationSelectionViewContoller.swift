@@ -24,7 +24,7 @@ final class LocationSelectionViewContoller: UIViewController {
     private let tableView = UITableView()
     private let viewModel: LocationSelectionViewModel
     private let disposeBag = DisposeBag()
-    private var tableViewCellAction: (() -> Void)?
+    var delegate: LocationReceivable?
     
     init() {
         searchMapView = SearchMapView(inputKeyword: "")
@@ -141,6 +141,9 @@ final class LocationSelectionViewContoller: UIViewController {
                 cell.bookmarkButton.rx.tap
                     .bind { [weak self] in
                         guard let self else { return }
+                        
+                        delegate?.receive(locationItem)
+                        dismiss(animated: true)
                     }
                     .disposed(by: cell.disposeBag)
                 
@@ -163,6 +166,9 @@ final class LocationSelectionViewContoller: UIViewController {
                 cell.bookmarkButton.rx.tap
                     .bind { [weak self] in
                         guard let self else { return }
+                        
+                        delegate?.receive(locationItem)
+                        dismiss(animated: true)
                     }
                     .disposed(by: cell.disposeBag)
                 
@@ -214,6 +220,7 @@ extension LocationSelectionViewContoller: UITableViewDelegate {
     }
 }
 
+// MARK: enum for segmentedControl
 extension LocationSelectionViewContoller {
     enum CellType: Int {
         case bookmark = 0

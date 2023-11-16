@@ -13,7 +13,6 @@ final class SearchMapViewController: UIViewController {
     private let tableView = UITableView()
     private let viewModel: SearchMapViewModel
     private let disposeBag = DisposeBag()
-    private var tableViewCellAction: (() -> Void)?
     
     init(keyword: String) {
         searchMapView = SearchMapView(inputKeyword: keyword)
