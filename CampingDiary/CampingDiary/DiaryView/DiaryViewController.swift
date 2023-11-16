@@ -340,10 +340,3 @@ extension DiaryViewController {
             .disposed(by: disposeBag)
     }
 }
-
-extension DiaryViewController {
-    private func presentDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-    }
-}

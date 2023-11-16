@@ -216,7 +216,10 @@ final class LocationSelectionViewContoller: UIViewController {
 extension LocationSelectionViewContoller: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchMapView.focusMarker(at: indexPath.item)
-        searchMapView.highlightMarkerColor(at: indexPath.item)
+        
+        if segmentedControl.selectedSegmentIndex == CellType.search.rawValue {
+            searchMapView.highlightMarkerColor(at: indexPath.item)
+        }
     }
 }
 

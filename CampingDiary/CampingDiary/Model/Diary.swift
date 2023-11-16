@@ -10,7 +10,7 @@ import Foundation
 struct Diary: Hashable {
     var location: Location
     var content: String
-    var campSite: String
+    var campSite: String?
     var visitDate: String
     var editDate: String
 }
