@@ -93,7 +93,7 @@ final class DiaryViewController: UIViewController {
     }()
     
     private lazy var visitDateStackView = {
-        let stackView = UIStackView(arrangedSubviews: [visitDateTitleLabel, visitDateLabel, dateSelectButton])
+        let stackView = UIStackView(arrangedSubviews: [visitDateTitleLabel, visitDateTextField])
         stackView.axis = .horizontal
         stackView.spacing = 12
         stackView.backgroundColor = .systemBackground
@@ -113,24 +113,21 @@ final class DiaryViewController: UIViewController {
         
         return label
     }()
-    private let visitDateLabel = {
-        let label = UILabel()
-        label.textColor = .placeholderText
-        label.text = "방문 일자를 선택하세요."
-        label.numberOfLines = 1
-        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    private lazy var visitDateTextField = {
+        let textField = UITextField()
+        textField.inputView = visitDatePicker
+        textField.placeholder = "방문 일자를 입력하세요."
         
-        return label
+        return textField
     }()
-    private let dateSelectButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "calendar"), for: .normal)
-        button.tintColor = .systemBlue
-        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+    private lazy var visitDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.datePickerMode = .date
+        datePicker.locale = Locale(identifier: "ko-KR")
+        datePicker.addTarget(self, action: #selector(handleDatePciker), for: .valueChanged)
         
-        return button
+        return datePicker
     }()
     
     private lazy var imageCollectionView = {
@@ -213,6 +210,14 @@ extension DiaryViewController {
                 self?.present(locationSelectionViewContoller, animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    @objc func handleDatePciker(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy. MM. dd."
+        
+        visitDateTextField.text = dateFormatter.string(from: sender.date)
+        visitDateTextField.endEditing(true)
     }
 }
 
@@ -333,5 +338,12 @@ extension DiaryViewController {
                 locationLabel.textColor = .label
             }
             .disposed(by: disposeBag)
+    }
+}
+
+extension DiaryViewController {
+    private func presentDatePicker() {
+        let datePicker = UIDatePicker()
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
     }
 }
