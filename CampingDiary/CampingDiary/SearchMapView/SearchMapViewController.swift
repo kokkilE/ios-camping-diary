@@ -109,18 +109,14 @@ final class SearchMapViewController: UIViewController {
                     }
                     .disposed(by: cell.disposeBag)
                 
+                cell.configure(title: locationItem.title.toLocationTitle(),
+                               address: locationItem.roadAddress)
+                
                 if viewModel.isBookmarked(locationItem) {
                     cell.toggleBookmarkButtonImage(shouldFiilStar: true)
                 } else {
                     cell.toggleBookmarkButtonImage(shouldFiilStar: false)
                 }
-                
-                cell.configure(title: locationItem.title.toLocationTitle(),
-                               address: locationItem.roadAddress)
-                
-                searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(),
-                                               longitude: locationItem.mapx.toLongitude(),
-                                               caption: locationItem.title.toLocationTitle())
             }
             .disposed(by: disposeBag)
     }
@@ -139,11 +135,12 @@ final class SearchMapViewController: UIViewController {
         viewModel
             .getCellData()
             .bind { [weak self] locationItems in
-                guard let longitude = locationItems.first?.mapx.toLongitude(),
+                guard let self,
+                      let longitude = locationItems.first?.mapx.toLongitude(),
                       let latitude = locationItems.first?.mapy.toLatitude() else { return }
                 
-                self?.searchMapView.moveCamera(latitude: latitude,
-                                               longitude: longitude)
+                searchMapView.moveCamera(latitude: latitude, longitude: longitude)
+                searchMapView.configureDefaultMarkers(locations: locationItems)
             }
             .disposed(by: disposeBag)
     }

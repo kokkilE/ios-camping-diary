@@ -137,12 +137,31 @@ final class SearchMapView: UIView {
 
 // MARK: control MapView's Marker
 extension SearchMapView {
-    func configureMarkers(latitude: Double, longitude: Double, caption: String) {
-        markerList.append(NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude)))
-        markerList.last?.iconTintColor = .systemGreen
-        markerList.last?.captionText = caption
-        markerList.last?.captionMinZoom = 10
-        markerList.last?.mapView = naverMapView.mapView
+    func configureDefaultMarkers(locations: [Location]) {
+        markerList.removeAll()
+        
+        locations.forEach {
+            markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
+                                                            lng: $0.mapx.toLongitude())))
+            markerList.last?.iconTintColor = .black
+            markerList.last?.captionText = $0.title
+            markerList.last?.captionMinZoom = 10
+            markerList.last?.mapView = naverMapView.mapView
+        }
+    }
+    
+    func configureBookmarkMarkers(locations: [Location]) {
+        markerList.removeAll()
+        
+        locations.forEach {
+            markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
+                                                            lng: $0.mapx.toLongitude())))
+            markerList.last?.iconTintColor = .yellow
+            markerList.last?.iconImage = NMFOverlayImage(image: UIImage(systemName: "star.fill")!)
+            markerList.last?.captionText = $0.title
+            markerList.last?.captionMinZoom = 10
+            markerList.last?.mapView = naverMapView.mapView
+        }
     }
     
     func focusMarker(at index: Int) {
@@ -155,11 +174,11 @@ extension SearchMapView {
     
     private func highlightMarkerColor(at selectedIndex: Int) {
         for index in 0..<markerList.count {
-            markerList[safe: index]?.iconTintColor = .systemGreen
+            markerList[safe: index]?.iconTintColor = .black
             markerList[safe: index]?.isHideCollidedCaptions = false
         }
         
-        markerList[safe: selectedIndex]?.iconTintColor = .systemRed
+        markerList[safe: selectedIndex]?.iconTintColor = .yellow
         markerList[safe: selectedIndex]?.isHideCollidedCaptions = true
     }
     

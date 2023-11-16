@@ -42,6 +42,7 @@ final class HomeViewController: UIViewController {
         bindToSearchMapView()
         setupDataSource()
         setupDataSourceHeaderView()
+        configureSnapshotSections()
         bindToCellData()
     }
     
@@ -199,13 +200,17 @@ extension HomeViewController {
         }
     }
     
+    private func configureSnapshotSections() {
+        snapshot.appendSections([.Diary])
+        snapshot.appendSections([.Bookmark])
+    }
+    
     private func bindToCellData() {
         viewModel
             .getObservableDiary()
             .bind { [weak self] diaries in
                 guard let self else { return }
                 
-                snapshot.appendSections([.Diary])
                 snapshot.appendItems(diaries, toSection: .Diary)
                 dataSource?.apply(snapshot, animatingDifferences: true)
             }
@@ -216,15 +221,10 @@ extension HomeViewController {
             .bind { [weak self] bookmarks in
                 guard let self else { return }
                 
-                snapshot.appendSections([.Bookmark])
                 snapshot.appendItems(bookmarks, toSection: .Bookmark)
                 dataSource?.apply(snapshot, animatingDifferences: true)
                 
-                bookmarks.forEach {
-                    self.searchMapView.configureMarkers(latitude: $0.mapy.toLatitude(),
-                                                   longitude: $0.mapx.toLongitude(),
-                                                   caption: $0.title.toLocationTitle())
-                }
+                searchMapView.configureBookmarkMarkers(locations: bookmarks)
             }
             .disposed(by: disposeBag)
     }
