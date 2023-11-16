@@ -206,9 +206,9 @@ extension DiaryViewController {
     private func configureButtonAction() {
         searchButton.rx.tap
             .bind { [weak self] in
-                let searchMapViewController = SearchMapViewController(keyword: "")
+                let locationSelectionViewContoller = LocationSelectionViewContoller()
                 
-                self?.present(searchMapViewController, animated: true)
+                self?.present(locationSelectionViewContoller, animated: true)
             }
             .disposed(by: disposeBag)
     }

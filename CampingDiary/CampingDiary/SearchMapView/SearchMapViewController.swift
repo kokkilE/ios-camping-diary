@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SearchMapViewController: UIViewController {
+final class SearchMapViewController: UIViewController {
     private let searchMapView: SearchMapView
     private let tableView = UITableView()
     private let viewModel: SearchMapViewModel

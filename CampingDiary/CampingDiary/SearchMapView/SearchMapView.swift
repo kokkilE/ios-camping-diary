@@ -11,7 +11,7 @@ import CoreLocation
 import RxSwift
 import RxCocoa
 
-final class SearchMapView: UIView {
+class SearchMapView: UIView {
     private var locationManager = CLLocationManager()
     
     private let naverMapView = {
@@ -83,7 +83,8 @@ final class SearchMapView: UIView {
     
     private func addSubviews() {
         addSubview(naverMapView)
-        addSubview(searchTextFieldStackView)
+        
+        naverMapView.addSubview(searchTextFieldStackView)
     }
     
     private func layout() {
@@ -95,9 +96,9 @@ final class SearchMapView: UIView {
             naverMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: 0),
             naverMapView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -8),
             
-            searchTextFieldStackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 24),
+            searchTextFieldStackView.topAnchor.constraint(equalTo: naverMapView.topAnchor, constant: 16),
             searchTextFieldStackView.widthAnchor.constraint(equalTo: naverMapView.widthAnchor, multiplier: 0.8),
-            searchTextFieldStackView.centerXAnchor.constraint(equalTo: safe.centerXAnchor)
+            searchTextFieldStackView.centerXAnchor.constraint(equalTo: naverMapView.centerXAnchor)
         ])
     }
     
