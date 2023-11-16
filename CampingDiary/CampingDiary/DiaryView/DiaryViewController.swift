@@ -207,9 +207,6 @@ extension DiaryViewController {
         searchButton.rx.tap
             .bind { [weak self] in
                 let searchMapViewController = SearchMapViewController(keyword: "")
-                searchMapViewController.configureTableViewCellAction {
-                    print("ABC")
-                }
                 
                 self?.present(searchMapViewController, animated: true)
             }

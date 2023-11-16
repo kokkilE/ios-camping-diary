@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class SearchMapViewController: UIViewController {
+class SearchMapViewController: UIViewController {
     private let searchMapView: SearchMapView
     private let tableView = UITableView()
     private let viewModel: SearchMapViewModel
@@ -153,10 +153,6 @@ final class SearchMapViewController: UIViewController {
 extension SearchMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchMapView.focusMarker(at: indexPath.item)
-        tableViewCellAction?()
-    }
-    
-    func configureTableViewCellAction(action: @escaping () -> Void) {
-        tableViewCellAction = action
+        searchMapView.highlightMarkerColor(at: indexPath.item)
     }
 }

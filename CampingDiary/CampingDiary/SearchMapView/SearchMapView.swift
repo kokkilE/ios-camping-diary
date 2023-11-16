@@ -144,7 +144,7 @@ extension SearchMapView {
             markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
                                                             lng: $0.mapx.toLongitude())))
             markerList.last?.iconTintColor = .black
-            markerList.last?.captionText = $0.title
+            markerList.last?.captionText = $0.title.toLocationTitle()
             markerList.last?.captionMinZoom = 10
             markerList.last?.mapView = naverMapView.mapView
         }
@@ -158,7 +158,7 @@ extension SearchMapView {
                                                             lng: $0.mapx.toLongitude())))
             markerList.last?.iconTintColor = .yellow
             markerList.last?.iconImage = NMFOverlayImage(image: UIImage(systemName: "star.fill")!)
-            markerList.last?.captionText = $0.title
+            markerList.last?.captionText = $0.title.toLocationTitle()
             markerList.last?.captionMinZoom = 10
             markerList.last?.mapView = naverMapView.mapView
         }
@@ -168,11 +168,10 @@ extension SearchMapView {
         guard let latitude = markerList[safe: index]?.position.lat,
               let longitude = markerList[safe: index]?.position.lng else { return }
         
-        highlightMarkerColor(at: index)
         moveCamera(latitude: latitude, longitude: longitude)
     }
     
-    private func highlightMarkerColor(at selectedIndex: Int) {
+    func highlightMarkerColor(at selectedIndex: Int) {
         for index in 0..<markerList.count {
             markerList[safe: index]?.iconTintColor = .black
             markerList[safe: index]?.isHideCollidedCaptions = false
