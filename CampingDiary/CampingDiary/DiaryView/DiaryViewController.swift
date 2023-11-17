@@ -167,7 +167,7 @@ final class DiaryViewController: UIViewController {
     private let disposeBag = DisposeBag()
 }
 
-// MARK: method
+// MARK: methods
 extension DiaryViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -325,13 +325,6 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
     }
 }
 
-// MARK: protocol for delegate
-extension DiaryViewController: LocationReceivable {
-    func receive(_ location: Location) {
-        viewModel.configureDiary(location)
-    }
-}
-
 // MARK: bind to locationLabel with diary
 extension DiaryViewController {
     private func bindLocationLabelToDiary() {
@@ -344,5 +337,12 @@ extension DiaryViewController {
                 locationLabel.textColor = .label
             }
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: protocol implement for delegate
+extension DiaryViewController: LocationReceivable {
+    func receive(_ location: Location) {
+        viewModel.configureDiary(location)
     }
 }

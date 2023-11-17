@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 
 final class LocationSelectionViewContoller: UIViewController {
+// MARK: define properties & init
     private let searchMapView: SearchMapView
     private let segmentedControl = {
         let segmentedControl = UISegmentedControl(items: [CellType.bookmark.description,
@@ -21,7 +22,16 @@ final class LocationSelectionViewContoller: UIViewController {
         
         return segmentedControl
     }()
-    private let tableView = UITableView()
+    private lazy var tableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(LocationSelectionTableViewCell.self, forCellReuseIdentifier: LocationSelectionTableViewCell.reuseIdentifier)
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        
+        return tableView
+    }()
+    
     private let viewModel: LocationSelectionViewModel
     private let disposeBag = DisposeBag()
     var delegate: LocationReceivable?
@@ -36,18 +46,18 @@ final class LocationSelectionViewContoller: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: methods
+extension LocationSelectionViewContoller {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         addSubviews()
         layout()
-        setupTableView()
         requestFetch()
-        bindToSearchedLocation()
-        bindToSecmentedControl()
-        bindToSearchMapView()
+        bindToUIObjects()
     }
     
     private func setupView() {
@@ -82,52 +92,13 @@ final class LocationSelectionViewContoller: UIViewController {
         ])
     }
     
-    private func setupTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(LocationSelectionTableViewCell.self, forCellReuseIdentifier: LocationSelectionTableViewCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-    }
-    
     private func requestFetch() {
         viewModel.fetch()
     }
-    
-    private func bindToSearchedLocation() {
-        viewModel
-            .getObservableSearchedLocations()
-            .skip(1)
-            .bind { [weak self] _ in
-                guard let self else { return }
-                
-                segmentedControl.selectedSegmentIndex = CellType.search.rawValue
-                segmentedControl.sendActions(for: .valueChanged)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindToSecmentedControl() {
-        segmentedControl.rx.selectedSegmentIndex
-            .bind { [weak self] index in
-                guard let self else { return }
-                
-                tableView.dataSource = nil
-                
-                if index == CellType.bookmark.rawValue {
-                    configureCellForBookmarks()
-                    configureMapMarkerForBookmarks()
-                    return
-                }
-                
-                if index == CellType.search.rawValue {
-                    configureCellForSearchedLocations()
-                    configureMapMarkerForSearchedLocations()
-                    return
-                }
-            }
-            .disposed(by: disposeBag)
-    }
-    
+}
+
+// MARK: configure tableView
+extension LocationSelectionViewContoller {
     private func configureCellForBookmarks() {
         viewModel
             .getObservableBookmarks()
@@ -177,6 +148,61 @@ final class LocationSelectionViewContoller: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+}
+
+// MARK: UITableViewDelegate
+extension LocationSelectionViewContoller: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchMapView.focusMarker(at: indexPath.item)
+        
+        if segmentedControl.selectedSegmentIndex == CellType.search.rawValue {
+            searchMapView.highlightMarkerColor(at: indexPath.item)
+        }
+    }
+}
+
+// MARK: configure UI Objects
+extension LocationSelectionViewContoller {
+    private func bindToUIObjects() {
+        bindToSearchedLocation()
+        bindToSecmentedControl()
+        bindToSearchMapView()
+    }
+    
+    private func bindToSearchedLocation() {
+        viewModel
+            .getObservableSearchedLocations()
+            .skip(1)
+            .bind { [weak self] _ in
+                guard let self else { return }
+                
+                segmentedControl.selectedSegmentIndex = CellType.search.rawValue
+                segmentedControl.sendActions(for: .valueChanged)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindToSecmentedControl() {
+        segmentedControl.rx.selectedSegmentIndex
+            .bind { [weak self] index in
+                guard let self else { return }
+                
+                tableView.dataSource = nil
+                
+                if index == CellType.bookmark.rawValue {
+                    configureCellForBookmarks()
+                    configureMapMarkerForBookmarks()
+                    return
+                }
+                
+                if index == CellType.search.rawValue {
+                    configureCellForSearchedLocations()
+                    configureMapMarkerForSearchedLocations()
+                    return
+                }
+            }
+            .disposed(by: disposeBag)
+    }
     
     private func bindToSearchMapView() {
         searchMapView.searchButton.rx.tap
@@ -210,16 +236,6 @@ final class LocationSelectionViewContoller: UIViewController {
               let latitude = locations.first?.mapy.toLatitude() else { return }
         
         searchMapView.moveCamera(latitude: latitude, longitude: longitude)
-    }
-}
-
-extension LocationSelectionViewContoller: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchMapView.focusMarker(at: indexPath.item)
-        
-        if segmentedControl.selectedSegmentIndex == CellType.search.rawValue {
-            searchMapView.highlightMarkerColor(at: indexPath.item)
-        }
     }
 }
 

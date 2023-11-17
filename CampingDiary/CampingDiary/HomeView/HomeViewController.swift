@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class HomeViewController: UIViewController {
+// MARK: define properties
     enum Section: Int, CaseIterable {
         case Diary
         case Bookmark
@@ -25,20 +26,32 @@ final class HomeViewController: UIViewController {
     }
     
     private let searchMapView = SearchMapView()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
+    private lazy var collectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
+        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
+        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
+        
+        return collectionView
+    }()
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
     private var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
     
     private let viewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
-    
+}
+
+// MARK: methods
+extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         addSubviews()
         layout()
-        setupCollectionView()
         bindToSearchMapView()
         setupDataSource()
         setupDataSourceHeaderView()
@@ -71,14 +84,6 @@ final class HomeViewController: UIViewController {
         ])
     }
     
-    private func setupCollectionView() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.delegate = self
-        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
-        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
-        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
-    }
-    
     private func bindToSearchMapView() {
         searchMapView.searchButton.rx.tap
             .bind { [weak self] in
@@ -90,12 +95,6 @@ final class HomeViewController: UIViewController {
                 navigationController?.pushViewController(searchMapViewController, animated: false)
             }
             .disposed(by: disposeBag)
-    }
-    
-    private func presentDiaryViewController() {
-        let diaryViewController = DiaryViewController()
-        
-        navigationController?.pushViewController(diaryViewController, animated: true)
     }
 }
 
@@ -159,7 +158,9 @@ extension HomeViewController {
                     .bind { [weak self] in
                         guard let self else { return }
                         
-                        presentDiaryViewController()
+                        let diaryViewController = DiaryViewController()
+                        
+                        navigationController?.pushViewController(diaryViewController, animated: true)
                     }
                     .disposed(by: disposeBag)
                 
@@ -232,6 +233,7 @@ extension HomeViewController {
     }
 }
 
+// MARK: UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == Section.Bookmark.rawValue {
