@@ -157,7 +157,9 @@ extension HomeViewController {
                 
                 cell?.addButton.rx.tap
                     .bind { [weak self] in
-                        self?.presentDiaryViewController()
+                        guard let self else { return }
+                        
+                        presentDiaryViewController()
                     }
                     .disposed(by: disposeBag)
                 

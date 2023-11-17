@@ -23,6 +23,8 @@ final class LocationSelectionViewModel {
         
         provider.rx.request(.search(keyword: searchKeyworkd))
             .subscribe { [weak self] result in
+                guard let self else { return }
+                
                 switch result {
                 case let .success(response):
                     let locationDataDTO = Decoder.decodeJSON(response.data, returnType: LocationDataDTO.self)
@@ -30,7 +32,7 @@ final class LocationSelectionViewModel {
                     
                     let locationList = locationItemDTOList.map { Location($0) }
                     
-                    self?.searchedLocations.accept(locationList)
+                    searchedLocations.accept(locationList)
                 case let .failure(error):
                     print(error)
                 }

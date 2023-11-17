@@ -204,10 +204,12 @@ extension DiaryViewController {
     private func configureButtonAction() {
         searchButton.rx.tap
             .bind { [weak self] in
+                guard let self else { return }
+                
                 let locationSelectionViewContoller = LocationSelectionViewContoller()
                 locationSelectionViewContoller.delegate = self
                 
-                self?.present(locationSelectionViewContoller, animated: true)
+                present(locationSelectionViewContoller, animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -271,7 +273,9 @@ extension DiaryViewController {
             
             cell?.addButton.rx.tap
                 .bind { [weak self] in
-                    self?.presentImagePicker()
+                    guard let self else { return }
+                    
+                    presentImagePicker()
                 }
                 .disposed(by: disposeBag)
             
@@ -283,10 +287,12 @@ extension DiaryViewController {
         viewModel
             .getCellData()
             .bind { [weak self] images in
+                guard let self else { return }
+                
                 var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
                 snapshot.appendSections([.image])
                 snapshot.appendItems(images, toSection: .image)
-                self?.dataSource?.apply(snapshot, animatingDifferences: true)
+                dataSource?.apply(snapshot, animatingDifferences: true)
             }
             .disposed(by: disposeBag)
     }
@@ -299,9 +305,9 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
             guard result.itemProvider.canLoadObject(ofClass: UIImage.self) else { return }
             
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                guard let image = image as? UIImage else { return }
+                guard let self, let image = image as? UIImage else { return }
                 
-                self?.viewModel.add(image)
+                viewModel.add(image)
             }
         }
         

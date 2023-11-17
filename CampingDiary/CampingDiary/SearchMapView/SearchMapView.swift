@@ -119,15 +119,17 @@ class SearchMapView: UIView {
     
     private func bindTextToButtonState() {
         searchTextField.rx.text
-            .subscribe(onNext: { [weak self] text in
+            .bind { [weak self] text in
+                guard let self else { return }
+                
                 if let text, !text.isEmpty {
-                    self?.searchButton.isEnabled = true
-                    self?.searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                    searchButton.isEnabled = true
+                    searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
                 } else {
-                    self?.searchButton.isEnabled = false
-                    self?.searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
+                    searchButton.isEnabled = false
+                    searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
                 }
-            })
+            }
             .disposed(by: disposeBag)
     }
     
