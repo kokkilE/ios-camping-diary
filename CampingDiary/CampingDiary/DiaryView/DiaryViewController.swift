@@ -234,7 +234,15 @@ extension DiaryViewController {
     }
     
     private func saveDiary() {
-        
+        do {
+            try viewModel.addDiary(campSite: campSiteTextField.text,
+                                   visitDate: visitDateTextField.text,
+                                   content: contentTextView.text)
+            
+            navigationController?.popViewController(animated: true)
+        } catch {
+            
+        }
     }
     
     private func configureButtonAction() {
@@ -262,10 +270,7 @@ extension DiaryViewController {
     }
     
     private func handleDatePciker(date: Date) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy. MM. dd."
-        
-        visitDateTextField.text = dateFormatter.string(from: date)
+        visitDateTextField.text = DateFormatter.getString(date: date)
         visitDateTextField.endEditing(true)
     }
 }
@@ -377,10 +382,10 @@ extension DiaryViewController {
     private func bindLocationLabelToDiary() {
         viewModel
             .getObservableEditingDiary()
-            .bind { [weak self] diary in
-                guard let self, let diary else { return }
+            .bind { [weak self] location in
+                guard let self, let location else { return }
                 
-                locationLabel.text = diary.location.title.toLocationTitle()
+                locationLabel.text = location.title.toLocationTitle()
                 locationLabel.textColor = .label
             }
             .disposed(by: disposeBag)
@@ -390,6 +395,6 @@ extension DiaryViewController {
 // MARK: protocol implement for delegate
 extension DiaryViewController: LocationReceivable {
     func receive(_ location: Location) {
-        viewModel.configureDiary(location)
+        viewModel.configure(location)
     }
 }

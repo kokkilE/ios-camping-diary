@@ -45,6 +45,14 @@ extension DataManager {
             }
             .disposed(by: disposeBag)
     }
+    
+    func addDiary(_ diary: Diary) {
+        var currentDiaries = diaries.value
+        currentDiaries.append(diary)
+        
+        diaries.accept(currentDiaries)
+//        realmManager.create(LocationItemDAO(location))
+    }
 }
 
 // MARK: manage bookmarks data

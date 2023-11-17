@@ -13,7 +13,7 @@ final class DiaryViewModel {
     private let dataManager = DataManager.shared
     private let disposeBag = DisposeBag()
     private let images = BehaviorRelay<[UIImage?]>(value: [nil])
-    private var editingDiary = BehaviorRelay<Diary?>(value: nil)
+    private var selectedLocation = BehaviorRelay<Location?>(value: nil)
     
     func getCellData() -> Observable<[UIImage?]> {
         return images.asObservable()
@@ -26,19 +26,21 @@ final class DiaryViewModel {
         images.accept(addedImages)
     }
     
-    func configureDiary(_ location: Location) {
-        if var newDiary = editingDiary.value {
-            newDiary.location = location
-            editingDiary.accept(newDiary)
-            
-            return
-        }
-        
-        let newDiary = Diary(location: location, content: "", campSite: "", visitDate: "", editDate: "")
-        editingDiary.accept(newDiary)
+    func configure(_ location: Location) {
+        selectedLocation.accept(location)
     }
     
-    func getObservableEditingDiary() -> Observable<Diary?> {
-        return editingDiary.asObservable()
+    func getObservableEditingDiary() -> Observable<Location?> {
+        return selectedLocation.asObservable()
+    }
+    
+    func addDiary(campSite: String?, visitDate: String?, content: String?) throws {        
+        guard let location = selectedLocation.value else { throw DiaryError.nilLocation }
+        
+        let diary = Diary(location: location, campSite: campSite,
+                          visitDate: visitDate, editDate: DateFormatter.getString(date: Date()),
+                          content: content, images: images.value)
+        
+        dataManager.addDiary(diary)
     }
 }

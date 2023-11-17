@@ -61,7 +61,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(title: String, image: UIImage?) {
+    func configure(title: String?, image: UIImage?) {
         titleLabel.text = title
         imageView.image = image
     }
