@@ -66,8 +66,15 @@ final class SearchMapViewController: UIViewController {
     private func setupNavigationLeftBarButtonItem() {
         let backImage = UIImage(systemName: "arrow.left")
         
-        let leftBarButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(dismissViewController))
+        let leftBarButton = UIBarButtonItem(image: backImage)
         leftBarButton.tintColor = .systemBlue
+        leftBarButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                navigationController?.popViewController(animated: false)
+            }
+            .disposed(by: disposeBag)
         
         navigationItem.leftBarButtonItem = leftBarButton
     }
@@ -142,10 +149,6 @@ final class SearchMapViewController: UIViewController {
                 searchMapView.configureDefaultMarkers(locations: locationItems)
             }
             .disposed(by: disposeBag)
-    }
-    
-    @objc func dismissViewController() {
-        navigationController?.popViewController(animated: false)
     }
 }
 

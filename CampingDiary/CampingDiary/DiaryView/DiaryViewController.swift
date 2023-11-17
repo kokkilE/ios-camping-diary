@@ -125,7 +125,6 @@ final class DiaryViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko-KR")
-        datePicker.addTarget(self, action: #selector(handleDatePciker), for: .valueChanged)
         
         return datePicker
     }()
@@ -175,7 +174,9 @@ extension DiaryViewController {
         setupView()
         addSubviews()
         layout()
+        setupNavigationLeftBarButtonItem()
         configureButtonAction()
+        configureDatePickerAction()
         setupCollectionView()
         bindLocationLabelToDiary()
     }
@@ -214,11 +215,22 @@ extension DiaryViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func handleDatePciker(sender: UIDatePicker) {
+    private func configureDatePickerAction() {
+        visitDatePicker.rx.date
+            .skip(1)
+            .bind { [weak self] date in
+                guard let self else { return }
+                
+                handleDatePciker(date: date)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func handleDatePciker(date: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy. MM. dd."
         
-        visitDateTextField.text = dateFormatter.string(from: sender.date)
+        visitDateTextField.text = dateFormatter.string(from: date)
         visitDateTextField.endEditing(true)
     }
 }
