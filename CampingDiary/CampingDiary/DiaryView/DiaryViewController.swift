@@ -175,6 +175,7 @@ extension DiaryViewController {
         addSubviews()
         layout()
         setupNavigationLeftBarButtonItem()
+        setupNavigationRightBarButtonItem()
         configureButtonAction()
         configureDatePickerAction()
         setupCollectionView()
@@ -200,6 +201,40 @@ extension DiaryViewController {
             
             imageCollectionView.heightAnchor.constraint(equalTo: safe.widthAnchor, multiplier: 0.3)
         ])
+    }
+    
+    private func setupNavigationLeftBarButtonItem() {
+        let backImage = UIImage(systemName: "arrow.left")
+        
+        let leftBarButton = UIBarButtonItem(image: backImage)
+        leftBarButton.tintColor = .systemBlue
+        leftBarButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    private func setupNavigationRightBarButtonItem() {
+        let rightBarButton = UIBarButtonItem(title: "done")
+        rightBarButton.tintColor = .systemBlue
+        rightBarButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                saveDiary()
+            }
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    private func saveDiary() {
+        
     }
     
     private func configureButtonAction() {
