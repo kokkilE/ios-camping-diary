@@ -238,10 +238,10 @@ extension DiaryViewController {
             try viewModel.addDiary(campSite: campSiteTextField.text,
                                    visitDate: visitDateTextField.text,
                                    content: contentTextView.text)
-            
+            // 얼럿 구현
             navigationController?.popViewController(animated: true)
         } catch {
-            
+            // 구현 필요
         }
     }
     
@@ -359,7 +359,9 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                 guard let self, let image = image as? UIImage else { return }
                 
-                viewModel.add(image)
+                if !viewModel.containImage(image) {
+                    viewModel.add(image)
+                }
             }
         }
         
@@ -370,6 +372,7 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 5
         configuration.filter = .images
+        
         let imagePicker = PHPickerViewController(configuration: configuration)
         imagePicker.delegate = self
         
