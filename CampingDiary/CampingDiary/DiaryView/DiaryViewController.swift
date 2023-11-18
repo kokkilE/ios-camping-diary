@@ -238,10 +238,19 @@ extension DiaryViewController {
             try viewModel.addDiary(campSite: campSiteTextField.text,
                                    visitDate: visitDateTextField.text,
                                    content: contentTextView.text)
-            // 얼럿 구현
-            navigationController?.popViewController(animated: true)
+            let confirmMessage = "캠핑 일지를 작성하였습니다."
+            
+            let alert = AlertManager.getCompletionAlert(message: confirmMessage) { [weak self] _ in
+                guard let self else { return }
+                
+                navigationController?.popViewController(animated: true)
+            }
+            
+            present(alert, animated: true)
         } catch {
-            // 구현 필요
+            guard let alert = AlertManager.getErrorAlert(error: error as? DiaryError) else { return }
+            
+            present(alert, animated: true)
         }
     }
     

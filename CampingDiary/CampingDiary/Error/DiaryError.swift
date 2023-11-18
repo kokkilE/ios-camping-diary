@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum DiaryError: Error {
+enum DiaryError: LocalizedError {
     case nilLocation
 }
 
 extension DiaryError {
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .nilLocation:
-            "캠핑장은 필수 입력 항목입니다. 캠핑장을 입력해주세요."
+            "캠핑장은 필수 입력 항목입니다. \n 캠핑장을 입력해주세요."
         }
     }
 }
