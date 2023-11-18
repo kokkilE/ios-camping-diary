@@ -331,13 +331,14 @@ extension DiaryViewController {
             }
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewHeaderCell {
+                cell.disposeBag = DisposeBag()
                 cell.addButton.rx.tap
                     .bind { [weak self] in
                         guard let self else { return }
                         
                         presentImagePicker()
                     }
-                    .disposed(by: disposeBag)
+                    .disposed(by: cell.disposeBag)
                 
                 return cell
             }

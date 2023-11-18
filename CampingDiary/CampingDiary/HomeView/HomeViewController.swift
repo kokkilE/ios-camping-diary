@@ -151,6 +151,7 @@ extension HomeViewController {
                 }
                 
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell {
+                    cell.disposeBag = DisposeBag()
                     cell.addButton.rx.tap
                         .bind { [weak self] in
                             guard let self else { return }
@@ -159,7 +160,7 @@ extension HomeViewController {
                             
                             navigationController?.pushViewController(diaryViewController, animated: true)
                         }
-                        .disposed(by: disposeBag)
+                        .disposed(by: cell.disposeBag)
                     
                     return cell
                 }
@@ -171,13 +172,14 @@ extension HomeViewController {
                     cell.configure(title: item.title.toLocationTitle(),
                                    address: item.roadAddress)
                     
+                    cell.disposeBag = DisposeBag()
                     cell.deleteButton.rx.tap
                         .bind { [weak self] in
                             guard let self else { return }
                             
                             viewModel.removeBookmark(item)
                         }
-                        .disposed(by: disposeBag)
+                        .disposed(by: cell.disposeBag)
                     
                     return cell
                 }

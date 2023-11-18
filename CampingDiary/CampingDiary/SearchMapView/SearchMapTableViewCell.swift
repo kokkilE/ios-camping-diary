@@ -59,6 +59,7 @@ class SearchMapTableViewCell: UITableViewCell {
         
         return image
     }()
+    
     var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

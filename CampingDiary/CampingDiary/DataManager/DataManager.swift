@@ -45,7 +45,7 @@ extension DataManager {
         
         guard let diaries else { return }
         
-        self.diaries.accept([nil] + diaries)
+        self.diaries.accept([nil] + diaries.sorted(by: { $0.editDate > $1.editDate }))
     }
     
     func addDiary(_ diary: Diary) {
@@ -81,7 +81,7 @@ extension DataManager {
             }
         
         guard let bookmarks else { return }
-        
+                
         self.bookmarks.accept(bookmarks)
     }
     

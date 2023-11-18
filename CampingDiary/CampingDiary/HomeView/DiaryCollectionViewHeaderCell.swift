@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class DiaryCollectionViewHeaderCell: UICollectionViewCell {
     let addButton = {
@@ -16,6 +17,7 @@ class DiaryCollectionViewHeaderCell: UICollectionViewCell {
         
         return button
     }()
+    var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
