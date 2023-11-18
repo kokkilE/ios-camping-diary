@@ -17,6 +17,7 @@
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
 		AA4F43812B07AC97008E5F40 /* DiaryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F43802B07AC97008E5F40 /* DiaryError.swift */; };
 		AA4F43832B07B07D008E5F40 /* DateFormatter+getString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F43822B07B07D008E5F40 /* DateFormatter+getString.swift */; };
+		AA4F43852B07B2D9008E5F40 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F43842B07B2D9008E5F40 /* AlertManager.swift */; };
 		AA527AF52B03BE810003A14A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */; };
 		AA527AF72B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */; };
 		AA5943672AFCC7EF00A7E40A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AA5943662AFCC7EF00A7E40A /* Realm */; };
@@ -70,6 +71,7 @@
 		AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewModel.swift; sourceTree = "<group>"; };
 		AA4F43802B07AC97008E5F40 /* DiaryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryError.swift; sourceTree = "<group>"; };
 		AA4F43822B07B07D008E5F40 /* DateFormatter+getString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+getString.swift"; sourceTree = "<group>"; };
+		AA4F43842B07B2D9008E5F40 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		AA527AF42B03BE810003A14A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA527AF62B03BE9C0003A14A /* ImageCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		AA6342CB2AFA19750033EFD5 /* LocationDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataDTO.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				AA4930C42AF9E33D008E725E /* Extension */,
 				AAE832E82AFA4D0A001D4202 /* Protocol */,
 				AA6342CE2AFA1B800033EFD5 /* Decoder.swift */,
+				AA4F43842B07B2D9008E5F40 /* AlertManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */,
 				AA6820042AF780FE00464B97 /* SceneDelegate.swift in Sources */,
 				AA6342CF2AFA1B800033EFD5 /* Decoder.swift in Sources */,
+				AA4F43852B07B2D9008E5F40 /* AlertManager.swift in Sources */,
 				AA2D771C2B02563F009B1EAE /* SectionTitleHeaderView.swift in Sources */,
 				AAD91F812AFA617300AD26E0 /* SearchMapTableViewCell.swift in Sources */,
 				AA87E4312AFE17CD005C8317 /* DiaryCollectionViewCell.swift in Sources */,

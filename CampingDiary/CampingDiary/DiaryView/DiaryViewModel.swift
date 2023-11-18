@@ -43,4 +43,15 @@ final class DiaryViewModel {
         
         dataManager.addDiary(diary)
     }
+    
+    func containImage(_ image: UIImage) -> Bool {
+        return images.value.contains { existingImage in
+            guard let existingImageData = existingImage?.pngData(),
+                  let newImageData = image.pngData() else {
+                return false
+            }
+            
+            return existingImageData == newImageData
+        }
+    }
 }
