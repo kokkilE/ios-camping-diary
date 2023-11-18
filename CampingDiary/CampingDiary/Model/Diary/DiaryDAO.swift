@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 final class DiaryDAO: Object, DataAccessObject {
-    @Persisted(primaryKey: true) var primaryKey = UUID().uuidString
+    @Persisted(primaryKey: true) var primaryKey: String
     
     @Persisted var location: DiaryLocationItemDAO?
     @Persisted var campSite: String?
@@ -25,6 +25,7 @@ final class DiaryDAO: Object, DataAccessObject {
     convenience init(_ diary: Diary) {
         self.init()
         
+        self.primaryKey = DateFormatter.getLongStringForKey(date: diary.editDate)
         self.location = DiaryLocationItemDAO(diary.location)
         self.campSite = diary.campSite
         self.visitDate = diary.visitDate

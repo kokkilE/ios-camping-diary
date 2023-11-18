@@ -15,6 +15,13 @@ extension DateFormatter {
         return dateFormatter.string(from: date)
     }
     
+    static func getLongStringForKey(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy MMMM dd HH:mm:ss"
+        
+        return dateFormatter.string(from: date)
+    }
+    
     static func getDate(text: String?) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy. MM. dd."
