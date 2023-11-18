@@ -5,11 +5,10 @@
 //  Created by 조향래 on 11/9/23.
 //
 
-import Foundation
 import RealmSwift
 
 final class LocationItemDAO: Object, DataAccessObject {
-    @Persisted(primaryKey: true) var primaryKey = UUID().uuidString
+    @Persisted(primaryKey: true) var primaryKey: String
     @Persisted var title: String
     @Persisted var roadAddress: String
     @Persisted var mapx: String
@@ -22,6 +21,7 @@ final class LocationItemDAO: Object, DataAccessObject {
         
         self.init()
         
+        self.primaryKey = location.roadAddress
         self.title = location.title
         self.roadAddress = location.roadAddress
         self.mapx = location.mapx

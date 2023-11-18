@@ -171,6 +171,14 @@ extension HomeViewController {
                     cell.configure(title: item.title.toLocationTitle(),
                                    address: item.roadAddress)
                     
+                    cell.deleteButton.rx.tap
+                        .bind { [weak self] in
+                            guard let self else { return }
+                            
+                            viewModel.removeBookmark(item)
+                        }
+                        .disposed(by: disposeBag)
+                    
                     return cell
                 }
             }

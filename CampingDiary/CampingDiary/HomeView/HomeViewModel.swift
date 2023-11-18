@@ -18,4 +18,8 @@ final class HomeViewModel {
     func getObservableDiary() -> Observable<[Diary?]> {
         return dataManager.observableDiaries
     }
+    
+    func removeBookmark(_ location: Location) {
+        dataManager.removeBookmark(location)
+    }
 }
