@@ -126,14 +126,14 @@ extension HomeViewController {
             }
             
             let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                         heightDimension: .estimated(44))
+                                                          heightDimension: .estimated(44))
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize, elementKind: SectionTitleHeaderView.reuseIdentifier, alignment: .topLeading)
             
             section.boundarySupplementaryItems = [sectionHeader]
             
             return section
         }
-                
+        
         return layout
     }
     
@@ -142,11 +142,10 @@ extension HomeViewController {
             guard let self else { return UICollectionViewCell() }
             
             if indexPath.section == Section.Diary.rawValue {
-                // dummy data
                 if let item = item as? Diary,
                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell {
                     cell.configure(locationTitle: item.location.title.toLocationTitle(),
-                                   editDate: item.editDate)
+                                   editDate: DateFormatter.getString(date: item.editDate))
                     
                     return cell
                 }
@@ -170,7 +169,7 @@ extension HomeViewController {
                 if let item = item as? Location,
                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier, for: indexPath) as? BookmarkCollectionViewCell {
                     cell.configure(title: item.title.toLocationTitle(),
-                                    address: item.roadAddress)
+                                   address: item.roadAddress)
                     
                     return cell
                 }
@@ -213,6 +212,7 @@ extension HomeViewController {
             .bind { [weak self] diaries in
                 guard let self else { return }
                 
+                snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .Diary))
                 snapshot.appendItems(diaries, toSection: .Diary)
                 dataSource?.apply(snapshot, animatingDifferences: true)
             }
@@ -223,6 +223,7 @@ extension HomeViewController {
             .bind { [weak self] bookmarks in
                 guard let self else { return }
                 
+                snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .Bookmark))
                 snapshot.appendItems(bookmarks, toSection: .Bookmark)
                 dataSource?.apply(snapshot, animatingDifferences: true)
                 

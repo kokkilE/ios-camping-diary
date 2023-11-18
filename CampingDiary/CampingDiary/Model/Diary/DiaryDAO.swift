@@ -13,8 +13,8 @@ final class DiaryDAO: Object, DataAccessObject {
     
     @Persisted var location: DiaryLocationItemDAO?
     @Persisted var campSite: String?
-    @Persisted var visitDate: String?
-    @Persisted var editDate: String
+    @Persisted var visitDate: Date?
+    @Persisted var editDate: Date
     @Persisted var content: String?
     @Persisted var imageData: List<DiaryImageDataDAO>
     

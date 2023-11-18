@@ -14,4 +14,13 @@ extension DateFormatter {
         
         return dateFormatter.string(from: date)
     }
+    
+    static func getDate(text: String?) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy. MM. dd."
+        
+        guard let text else { return nil }
+        
+        return dateFormatter.date(from: text)
+    }
 }

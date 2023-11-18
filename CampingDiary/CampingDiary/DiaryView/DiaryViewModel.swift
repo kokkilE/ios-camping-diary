@@ -34,11 +34,11 @@ final class DiaryViewModel {
         return selectedLocation.asObservable()
     }
     
-    func addDiary(campSite: String?, visitDate: String?, content: String?) throws {        
+    func addDiary(campSite: String?, visitDate: Date?, content: String?) throws {
         guard let location = selectedLocation.value else { throw DiaryError.nilLocation }
         
         let diary = Diary(location: location, campSite: campSite,
-                          visitDate: visitDate, editDate: DateFormatter.getString(date: Date()),
+                          visitDate: visitDate, editDate: Date(),
                           content: content, images: images.value)
         
         dataManager.addDiary(diary)

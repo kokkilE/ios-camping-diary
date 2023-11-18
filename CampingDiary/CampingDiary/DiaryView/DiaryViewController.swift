@@ -236,7 +236,7 @@ extension DiaryViewController {
     private func saveDiary() {
         do {
             try viewModel.addDiary(campSite: campSiteTextField.text,
-                                   visitDate: visitDateTextField.text,
+                                   visitDate: DateFormatter.getDate(text: visitDateTextField.text),
                                    content: contentTextView.text)
             let confirmMessage = "캠핑 일지를 작성하였습니다."
             

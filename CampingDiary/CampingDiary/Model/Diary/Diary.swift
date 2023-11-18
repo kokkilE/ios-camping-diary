@@ -12,8 +12,8 @@ struct Diary: Hashable {
     let uuid = UUID()
     var location: Location
     var campSite: String?
-    var visitDate: String?
-    var editDate: String
+    var visitDate: Date?
+    var editDate: Date
     var content: String?
     var images: [UIImage?]?
 }
