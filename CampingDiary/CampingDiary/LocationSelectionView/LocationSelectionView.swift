@@ -7,6 +7,4 @@
 
 import Foundation
 
-final class LocationSelectionView: SearchMapView {
-    
-}
+final class LocationSelectionView: SearchMapView { }

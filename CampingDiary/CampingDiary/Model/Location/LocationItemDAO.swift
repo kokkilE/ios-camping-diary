@@ -14,7 +14,11 @@ final class LocationItemDAO: Object, DataAccessObject {
     @Persisted var mapx: String
     @Persisted var mapy: String
     
-    convenience init(_ location: Location) {
+    convenience init(_ location: Location?) {
+        guard let location else {
+            fatalError("Invalid DAO type provided for Location initialization.")
+        }
+        
         self.init()
         
         self.primaryKey = location.roadAddress

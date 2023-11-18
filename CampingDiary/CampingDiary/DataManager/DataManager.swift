@@ -31,27 +31,29 @@ extension DataManager {
     }
     
     private func initializeDiaries() {
-        // dummy data
-        observableBookmarks
-            .bind { bookmarks in
-                var diaries: [Diary?] = [nil]
+        let diaries = realmManager
+            .readAll(type: DiaryDAO.self)?
+            .compactMap { data in
+                if let diaryDAO = data as? DiaryDAO {
+                    let diary = Diary(diaryDAO)
+                    
+                    return diary
+                }
                 
-//                bookmarks.forEach {
-//                    let diary = Diary(location: $0, content: "testing...", campSite: "A2", visitDate: Date(), editDate: Date())
-//                    diaries.append(diary)
-//                }
-                
-                self.diaries.accept(diaries)
+                return nil
             }
-            .disposed(by: disposeBag)
+        
+        guard let diaries else { return }
+        
+        self.diaries.accept([nil] + diaries)
     }
     
     func addDiary(_ diary: Diary) {
         var currentDiaries = diaries.value
-        currentDiaries.append(diary)
+        currentDiaries.insert(diary, at: 1)
         
         diaries.accept(currentDiaries)
-//        realmManager.create(LocationItemDAO(location))
+        realmManager.create(DiaryDAO(diary))
     }
 }
 

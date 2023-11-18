@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */; };
+		AA1A15A42B08DE250015F81B /* DiaryLocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A15A32B08DE250015F81B /* DiaryLocationItemDAO.swift */; };
 		AA2D771C2B02563F009B1EAE /* SectionTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771B2B02563F009B1EAE /* SectionTitleHeaderView.swift */; };
 		AA2D771E2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */; };
 		AA2EBFA82B054DC600E72098 /* Array+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2EBFA72B054DC600E72098 /* Array+subscript.swift */; };
@@ -58,11 +59,14 @@
 		AAD91F882AFA6A8C00AD26E0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD91F872AFA6A8C00AD26E0 /* String+.swift */; };
 		AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE62DB42AFA7563004DCD67 /* UserAPI.swift */; };
 		AAE832EA2AFA4D1D001D4202 /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */; };
+		AAF38B422B08C21D007220A6 /* DiaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF38B412B08C21D007220A6 /* DiaryDAO.swift */; };
+		AAF38B462B08CED7007220A6 /* DiaryImageDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF38B452B08CED7007220A6 /* DiaryImageDataDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampingDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E07F4CD225E6626D2AF97A /* Pods-CampingDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.release.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.release.xcconfig"; sourceTree = "<group>"; };
+		AA1A15A32B08DE250015F81B /* DiaryLocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryLocationItemDAO.swift; sourceTree = "<group>"; };
 		AA2D771B2B02563F009B1EAE /* SectionTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleHeaderView.swift; sourceTree = "<group>"; };
 		AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		AA2EBFA72B054DC600E72098 /* Array+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscript.swift"; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		AAD91F872AFA6A8C00AD26E0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		AAE62DB42AFA7563004DCD67 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
+		AAF38B412B08C21D007220A6 /* DiaryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDAO.swift; sourceTree = "<group>"; };
+		AAF38B452B08CED7007220A6 /* DiaryImageDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryImageDataDAO.swift; sourceTree = "<group>"; };
 		D63B5224631A1CCA4367C293 /* Pods-CampingDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.debug.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,12 +281,9 @@
 		AA87E4252AFDF69E005C8317 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AA87E4322AFE1A0B005C8317 /* Diary.swift */,
-				AA87E4262AFDF6B0005C8317 /* Location.swift */,
-				AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */,
-				AA6342CB2AFA19750033EFD5 /* LocationDataDTO.swift */,
-				AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */,
-				AA87E4232AFDF588005C8317 /* DataTransferObject.swift */,
+				AAF38B402B08C1EF007220A6 /* Protocol */,
+				AAF38B432B08CE35007220A6 /* Diary */,
+				AAF38B442B08CE3B007220A6 /* Location */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,36 @@
 				AAE832E92AFA4D1D001D4202 /* ReuseIdentifying.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		AAF38B402B08C1EF007220A6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AACE19FB2AFCB07E00DE307F /* DataAccessObject.swift */,
+				AA87E4232AFDF588005C8317 /* DataTransferObject.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		AAF38B432B08CE35007220A6 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				AA87E4322AFE1A0B005C8317 /* Diary.swift */,
+				AAF38B412B08C21D007220A6 /* DiaryDAO.swift */,
+				AAF38B452B08CED7007220A6 /* DiaryImageDataDAO.swift */,
+				AA1A15A32B08DE250015F81B /* DiaryLocationItemDAO.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		AAF38B442B08CE3B007220A6 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				AA87E4262AFDF6B0005C8317 /* Location.swift */,
+				AACE19FF2AFCB1DB00DE307F /* LocationItemDAO.swift */,
+				AA6342CB2AFA19750033EFD5 /* LocationDataDTO.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,6 +495,7 @@
 				AA87E42F2AFE1362005C8317 /* HomeViewModel.swift in Sources */,
 				AA6342CC2AFA19750033EFD5 /* LocationDataDTO.swift in Sources */,
 				AA87E4272AFDF6B0005C8317 /* Location.swift in Sources */,
+				AAF38B462B08CED7007220A6 /* DiaryImageDataDAO.swift in Sources */,
 				AAD0773E2B061381004A2E87 /* LocationSelectionView.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
 				AAD0773C2B05FEF4004A2E87 /* LocationSelectionViewContoller.swift in Sources */,
@@ -491,6 +525,8 @@
 				AAADE2972B06564E0035AE43 /* LocationReceivable.swift in Sources */,
 				AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */,
 				AA87E4242AFDF589005C8317 /* DataTransferObject.swift in Sources */,
+				AAF38B422B08C21D007220A6 /* DiaryDAO.swift in Sources */,
+				AA1A15A42B08DE250015F81B /* DiaryLocationItemDAO.swift in Sources */,
 				AAD077412B061AC9004A2E87 /* LocationSelectionTableViewCell.swift in Sources */,
 				AAE62DB52AFA7563004DCD67 /* UserAPI.swift in Sources */,
 				AA87E4332AFE1A0B005C8317 /* Diary.swift in Sources */,
