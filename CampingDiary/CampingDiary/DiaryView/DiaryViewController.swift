@@ -323,24 +323,26 @@ extension DiaryViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable?>(collectionView: imageCollectionView) { [weak self] collectionView, indexPath, image in
             guard let self else { return UICollectionViewCell() }
             
-            if let image = image as? UIImage {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewCell
-                cell?.configure(image: image)
+            if let image = image as? UIImage,
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewCell {
+                cell.configure(image: image)
                 
                 return cell
             }
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewHeaderCell
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewHeaderCell {
+                cell.addButton.rx.tap
+                    .bind { [weak self] in
+                        guard let self else { return }
+                        
+                        presentImagePicker()
+                    }
+                    .disposed(by: disposeBag)
+                
+                return cell
+            }
             
-            cell?.addButton.rx.tap
-                .bind { [weak self] in
-                    guard let self else { return }
-                    
-                    presentImagePicker()
-                }
-                .disposed(by: disposeBag)
-            
-            return cell
+            return UICollectionViewCell()
         }
     }
     

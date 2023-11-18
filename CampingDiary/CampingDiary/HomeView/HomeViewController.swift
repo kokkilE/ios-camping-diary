@@ -143,38 +143,37 @@ extension HomeViewController {
             
             if indexPath.section == Section.Diary.rawValue {
                 // dummy data
-                if let item = item as? Diary {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell
-                    
-                    cell?.configure(title: item.content,
-                                    image: UIImage(systemName: "star"))
+                if let item = item as? Diary,
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell {
+                    cell.configure(locationTitle: item.location.title.toLocationTitle(),
+                                   editDate: item.editDate)
                     
                     return cell
                 }
                 
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell
-                
-                cell?.addButton.rx.tap
-                    .bind { [weak self] in
-                        guard let self else { return }
-                        
-                        let diaryViewController = DiaryViewController()
-                        
-                        navigationController?.pushViewController(diaryViewController, animated: true)
-                    }
-                    .disposed(by: disposeBag)
-                
-                return cell
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell {
+                    cell.addButton.rx.tap
+                        .bind { [weak self] in
+                            guard let self else { return }
+                            
+                            let diaryViewController = DiaryViewController()
+                            
+                            navigationController?.pushViewController(diaryViewController, animated: true)
+                        }
+                        .disposed(by: disposeBag)
+                    
+                    return cell
+                }
             }
             
             if indexPath.section == Section.Bookmark.rawValue {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier, for: indexPath) as? BookmarkCollectionViewCell
-                if let item = item as? Location {
-                    cell?.configure(title: item.title.toLocationTitle(),
+                if let item = item as? Location,
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier, for: indexPath) as? BookmarkCollectionViewCell {
+                    cell.configure(title: item.title.toLocationTitle(),
                                     address: item.roadAddress)
+                    
+                    return cell
                 }
-                
-                return cell
             }
             
             return UICollectionViewCell()
