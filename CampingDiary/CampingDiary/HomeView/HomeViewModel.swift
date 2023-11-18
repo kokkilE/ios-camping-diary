@@ -22,4 +22,8 @@ final class HomeViewModel {
     func removeBookmark(_ location: Location) {
         dataManager.removeBookmark(location)
     }
+    
+    func removeDiary(_ diary: Diary) {
+        dataManager.removeDiary(diary)
+    }
 }

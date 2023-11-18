@@ -29,4 +29,14 @@ final class AlertManager {
         
         return alert
     }
+    
+    static func getSingleActionSheet(sourceView: UIView, actionName: String, completion: @escaping (UIAlertAction) -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let action = UIAlertAction(title: actionName, style: .cancel, handler: completion)
+        
+        alert.addAction(action)
+        
+        return alert
+    }
 }

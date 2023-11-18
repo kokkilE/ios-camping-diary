@@ -55,6 +55,16 @@ extension DataManager {
         diaries.accept(currentDiaries)
         realmManager.create(DiaryDAO(diary))
     }
+    
+    func removeDiary(_ diary: Diary) {
+        var currentDiaries = diaries.value
+        currentDiaries.removeAll {
+            $0?.uuid == diary.uuid
+        }
+        
+        diaries.accept(currentDiaries)
+        realmManager.delete(DiaryDAO(diary))
+    }
 }
 
 // MARK: manage bookmarks data

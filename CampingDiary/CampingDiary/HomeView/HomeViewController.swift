@@ -57,6 +57,18 @@ extension HomeViewController {
         setupDataSourceHeaderView()
         configureSnapshotSections()
         bindToCellData()
+        
+        
+//        collectionView.rx.modelSelected(DiaryCollectionViewCell.self)
+//            .flatMap { cellModel -> Observable<DiaryCollectionViewCell> in
+//                // Access long press gesture from the cell
+//                return cellModel.collectionViewCell.longPressGesture.map { _ in cellModel }
+//            }
+//            .subscribe(onNext: { cellModel in
+//                // Handle long press gesture for the specific cell
+//                print("Long press gesture for cell with model: \(cellModel)")
+//            })
+//            .disposed(by: disposeBag)
     }
     
     private func setupView() {
@@ -146,6 +158,21 @@ extension HomeViewController {
                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell {
                     cell.configure(locationTitle: item.location.title.toLocationTitle(),
                                    editDate: DateFormatter.getString(date: item.editDate))
+                    
+                    cell.disposeBag = DisposeBag()
+                    cell.longPressGesture
+                        .bind { [weak self] _ in
+                            guard let self else { return }
+                            
+                            let actionSheet = AlertManager.getSingleActionSheet(sourceView: cell, actionName: "삭제하기") { [weak self] _ in
+                                guard let self else { return }
+                                
+                                viewModel.removeDiary(item)
+                            }
+                            
+                            present(actionSheet, animated: true)
+                        }
+                        .disposed(by: cell.disposeBag)
                     
                     return cell
                 }

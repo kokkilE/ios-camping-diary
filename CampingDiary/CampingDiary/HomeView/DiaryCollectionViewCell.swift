@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class DiaryCollectionViewCell: UICollectionViewCell {
     private lazy var mainStackView = {
@@ -49,6 +50,8 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         
         return label
     }()
+    
+    var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

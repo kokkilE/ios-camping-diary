@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A4452AFDAEA879B0FC65DC72 /* Pods_CampingDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */; };
 		AA1A15A42B08DE250015F81B /* DiaryLocationItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A15A32B08DE250015F81B /* DiaryLocationItemDAO.swift */; };
+		AA1A15A62B08FA780015F81B /* UICollectionView+longPressGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A15A52B08FA780015F81B /* UICollectionView+longPressGesture.swift */; };
 		AA2D771C2B02563F009B1EAE /* SectionTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771B2B02563F009B1EAE /* SectionTitleHeaderView.swift */; };
 		AA2D771E2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */; };
 		AA2EBFA82B054DC600E72098 /* Array+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2EBFA72B054DC600E72098 /* Array+subscript.swift */; };
@@ -67,6 +68,7 @@
 		46DA13D5E5B2F7C60D7CB259 /* Pods_CampingDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampingDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E07F4CD225E6626D2AF97A /* Pods-CampingDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampingDiary.release.xcconfig"; path = "Target Support Files/Pods-CampingDiary/Pods-CampingDiary.release.xcconfig"; sourceTree = "<group>"; };
 		AA1A15A32B08DE250015F81B /* DiaryLocationItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryLocationItemDAO.swift; sourceTree = "<group>"; };
+		AA1A15A52B08FA780015F81B /* UICollectionView+longPressGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+longPressGesture.swift"; sourceTree = "<group>"; };
 		AA2D771B2B02563F009B1EAE /* SectionTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleHeaderView.swift; sourceTree = "<group>"; };
 		AA2D771D2B026642009B1EAE /* DiaryCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		AA2EBFA72B054DC600E72098 /* Array+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscript.swift"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */,
+				AA1A15A52B08FA780015F81B /* UICollectionView+longPressGesture.swift */,
 				AAD91F872AFA6A8C00AD26E0 /* String+.swift */,
 				AA2EBFA72B054DC600E72098 /* Array+subscript.swift */,
 				AA4F43822B07B07D008E5F40 /* DateFormatter+getString.swift */,
@@ -497,6 +500,7 @@
 				AA87E4272AFDF6B0005C8317 /* Location.swift in Sources */,
 				AAF38B462B08CED7007220A6 /* DiaryImageDataDAO.swift in Sources */,
 				AAD0773E2B061381004A2E87 /* LocationSelectionView.swift in Sources */,
+				AA1A15A62B08FA780015F81B /* UICollectionView+longPressGesture.swift in Sources */,
 				AA6820062AF780FE00464B97 /* HomeViewController.swift in Sources */,
 				AAD0773C2B05FEF4004A2E87 /* LocationSelectionViewContoller.swift in Sources */,
 				AA7830D42AF935840046FF85 /* SearchMapView.swift in Sources */,
