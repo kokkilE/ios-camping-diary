@@ -1,5 +1,5 @@
 //
-//  SearchMapViewTableViewCell.swift
+//  SearchMapTableViewCell.swift
 //  CampingDiary
 //
 //  Created by 조향래 on 11/7/23.
@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class SearchMapViewTableViewCell: UITableViewCell {
+class SearchMapTableViewCell: UITableViewCell {
     private lazy var mainStackView = {
         let stackView = UIStackView(arrangedSubviews: [labelStackView, bookmarkButton])
         stackView.axis = .horizontal
@@ -59,17 +59,23 @@ final class SearchMapViewTableViewCell: UITableViewCell {
         
         return image
     }()
+    
     var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setupView()
         addSubviews()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        selectionStyle = .none
     }
     
     private func addSubviews() {

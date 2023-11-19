@@ -16,14 +16,7 @@ final class DataManager {
     private var disposeBag = DisposeBag()
     
     private var diaries = BehaviorRelay<[Diary?]>(value: [])
-    var observableDiaries: Observable<[Diary?]> {
-        return diaries.asObservable()
-    }
-    
     private var bookmarks = BehaviorRelay<[Location]>(value: [])
-    var observableBookmarks: Observable<[Location]> {
-        return bookmarks.asObservable()
-    }
     
     private init() {
         initializeDiaries()
@@ -33,25 +26,73 @@ final class DataManager {
 
 // MARK: manage diaries data
 extension DataManager {
+    var observableDiaries: Observable<[Diary?]> {
+        return diaries.asObservable()
+    }
+    
     private func initializeDiaries() {
-        // dummy data
-        observableBookmarks
-            .bind { bookmarks in
-                var diaries: [Diary?] = [nil]
-                
-                bookmarks.forEach {
-                    let diary = Diary(location: $0, content: "testing...", campSite: "A2", visitDate: Date(), editDate: Date())
-                    diaries.append(diary)
+        let diaries = realmManager
+            .readAll(type: DiaryDAO.self)?
+            .compactMap { data in
+                if let diaryDAO = data as? DiaryDAO {
+                    let diary = Diary(diaryDAO)
+                    
+                    return diary
                 }
                 
-                self.diaries.accept(diaries)
+                return nil
             }
-            .disposed(by: disposeBag)
+        
+        guard let diaries else { return }
+        
+        self.diaries.accept([nil] + diaries.sorted(by: { $0.editDate > $1.editDate }))
+    }
+    
+    func addDiary(_ diary: Diary) {
+        var currentDiaries = diaries.value
+        currentDiaries.append(diary)
+        
+        diaries.accept(sortedDiaries(currentDiaries))
+        realmManager.create(DiaryDAO(diary))
+    }
+    
+    func updateDiary(_ diary: Diary) {
+        var currentDiaries = diaries.value
+
+        guard let index = currentDiaries.firstIndex(where: { $0?.createDate == diary.createDate }) else { return }
+        currentDiaries[safe: index] = diary
+        
+        diaries.accept(sortedDiaries(currentDiaries))
+        realmManager.update(DiaryDAO(diary), type: DiaryDAO.self)
+    }
+    
+    func removeDiary(_ diary: Diary) {
+        var currentDiaries = diaries.value
+        currentDiaries.removeAll {
+            $0?.uuid == diary.uuid
+        }
+        
+        diaries.accept(currentDiaries)
+        realmManager.delete(DiaryDAO(diary))
+    }
+    
+    private func sortedDiaries(_ diaries: [Diary?]) -> [Diary?] {
+        let diaries = diaries.compactMap { $0 }
+        
+        return [nil] + diaries.sorted { $0.editDate > $1.editDate }
     }
 }
 
 // MARK: manage bookmarks data
 extension DataManager {
+    var observableBookmarks: Observable<[Location]> {
+        return bookmarks.asObservable()
+    }
+    
+    var currentBookmarks: [Location] {
+        return bookmarks.value
+    }
+    
     private func initializeBookmarks() {
         let bookmarks = realmManager
             .readAll(type: LocationItemDAO.self)?
@@ -66,7 +107,7 @@ extension DataManager {
             }
         
         guard let bookmarks else { return }
-        
+                
         self.bookmarks.accept(bookmarks)
     }
     

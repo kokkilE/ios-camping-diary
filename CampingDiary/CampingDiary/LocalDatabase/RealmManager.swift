@@ -36,6 +36,20 @@ final class RealmManager {
         return realm.objects(type).compactMap { $0 as? DataAccessObject }
     }
     
+    func update(_ data: DataAccessObject, type: DataAccessObject.Type) {
+        guard let realm = realm else { return }
+        
+        do {
+            try realm.write {
+                guard let object = read(type: type, primaryKey: data.primaryKey) else { return }
+                
+                object.update(data)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func delete(_ data: DataAccessObject) {
         guard let realm = realm,
               let object = read(type: type(of: data), primaryKey: data.primaryKey) else { return }

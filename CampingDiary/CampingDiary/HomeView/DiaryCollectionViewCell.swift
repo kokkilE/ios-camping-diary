@@ -10,17 +10,17 @@ import RxSwift
 
 final class DiaryCollectionViewCell: UICollectionViewCell {
     private lazy var mainStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, imageView])
+        let stackView = UIStackView(arrangedSubviews: [locationLabel, editDateLabel])
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
-    private let titleLabel = {
+    private let locationLabel = {
         let label = UILabel()
         label.textColor = .label
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
@@ -28,23 +28,38 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         
         return label
     }()
-    private let imageView = {
-        let imageView = UIImageView()
-        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+    private let editDateLabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
-        return imageView
+        return label
     }()
+    
+    var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
+        setupView()
         addSubviews()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        backgroundColor = .systemBackground
+        
+        layer.cornerRadius = 10.0
+        layer.borderWidth = 0.6
+        layer.borderColor = UIColor.label.cgColor
     }
     
     private func addSubviews() {
@@ -62,8 +77,8 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(title: String, image: UIImage?) {
-        titleLabel.text = title
-        imageView.image = image
+    func configure(locationTitle: String, editDate: String) {
+        locationLabel.text = locationTitle
+        editDateLabel.text = "수정된 날짜: \(editDate)"
     }
 }

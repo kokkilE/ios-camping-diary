@@ -6,7 +6,6 @@
 //
 
 import RxSwift
-import RxCocoa
 
 final class HomeViewModel {
     private let dataManager = DataManager.shared
@@ -18,5 +17,13 @@ final class HomeViewModel {
     
     func getObservableDiary() -> Observable<[Diary?]> {
         return dataManager.observableDiaries
+    }
+    
+    func removeBookmark(_ location: Location) {
+        dataManager.removeBookmark(location)
+    }
+    
+    func removeDiary(_ diary: Diary) {
+        dataManager.removeDiary(diary)
     }
 }

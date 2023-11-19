@@ -11,7 +11,7 @@ import CoreLocation
 import RxSwift
 import RxCocoa
 
-final class SearchMapView: UIView {
+class SearchMapView: UIView {
     private var locationManager = CLLocationManager()
     
     private let naverMapView = {
@@ -28,7 +28,7 @@ final class SearchMapView: UIView {
         let stackView = UIStackView(arrangedSubviews: [searchTextField, searchButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = .systemBackground
         stackView.spacing = 4
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -42,6 +42,7 @@ final class SearchMapView: UIView {
     private let searchTextField = {
         let textField = UITextField()
         textField.placeholder = "캠핑장 검색"
+        textField.textColor = .label
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
@@ -50,7 +51,7 @@ final class SearchMapView: UIView {
     let searchButton = {
         let button = UIButton()
         button.setTitle("검색", for: .normal)
-        button.setTitleColor(UIColor.placeholderText, for: .normal)
+        button.setTitleColor(.placeholderText, for: .normal)
         button.isEnabled = false
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -58,7 +59,7 @@ final class SearchMapView: UIView {
         return button
     }()
     private let disposeBag = DisposeBag()
-    private var markerList = [NMFMarker](repeating: NMFMarker(), count: Constant.maxSearchCount)
+    private var markerList: [NMFMarker] = []
     
     init(inputKeyword: String? = nil) {
         searchTextField.text = inputKeyword
@@ -82,7 +83,8 @@ final class SearchMapView: UIView {
     
     private func addSubviews() {
         addSubview(naverMapView)
-        addSubview(searchTextFieldStackView)
+        
+        naverMapView.addSubview(searchTextFieldStackView)
     }
     
     private func layout() {
@@ -94,9 +96,9 @@ final class SearchMapView: UIView {
             naverMapView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: 0),
             naverMapView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -8),
             
-            searchTextFieldStackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 24),
+            searchTextFieldStackView.topAnchor.constraint(equalTo: naverMapView.topAnchor, constant: 16),
             searchTextFieldStackView.widthAnchor.constraint(equalTo: naverMapView.widthAnchor, multiplier: 0.8),
-            searchTextFieldStackView.centerXAnchor.constraint(equalTo: safe.centerXAnchor)
+            searchTextFieldStackView.centerXAnchor.constraint(equalTo: naverMapView.centerXAnchor)
         ])
     }
     
@@ -117,46 +119,86 @@ final class SearchMapView: UIView {
     
     private func bindTextToButtonState() {
         searchTextField.rx.text
-            .subscribe(onNext: { [weak self] text in
+            .bind { [weak self] text in
+                guard let self else { return }
+                
                 if let text, !text.isEmpty {
-                    self?.searchButton.isEnabled = true
-                    self?.searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                    searchButton.isEnabled = true
+                    searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
                 } else {
-                    self?.searchButton.isEnabled = false
-                    self?.searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
+                    searchButton.isEnabled = false
+                    searchButton.setTitleColor(UIColor.placeholderText, for: .normal)
                 }
-            })
+            }
             .disposed(by: disposeBag)
     }
     
     func getText() -> String {
         return searchTextField.text ?? ""
     }
+    
+    func cleatText() {
+        searchTextField.text = ""
+        searchTextField.sendActions(for: .valueChanged)
+    }
 }
 
 // MARK: control MapView's Marker
 extension SearchMapView {
-    func configureMarkers(latitude: Double, longitude: Double, at index: Int) {
-        markerList[index] = NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude))
-        markerList[index].iconTintColor = .systemGreen
-        markerList[index].mapView = naverMapView.mapView
+    func configureDefaultMarkers(locations: [Location]) {
+        clearMarker()
+        
+        locations.forEach {
+            markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
+                                                            lng: $0.mapx.toLongitude())))
+            markerList.last?.iconTintColor = .black
+            markerList.last?.captionText = $0.title.toLocationTitle()
+            markerList.last?.captionMinZoom = 10
+            markerList.last?.mapView = naverMapView.mapView
+        }
     }
     
-    func focusMarker(latitude: Double, longitude: Double, at index: Int) {
-        highlightMarkerColor(at: index)
+    func configureBookmarkMarkers(locations: [Location]) {
+        clearMarker()
+        
+        locations.forEach {
+            markerList.append(NMFMarker(position: NMGLatLng(lat: $0.mapy.toLatitude(),
+                                                            lng: $0.mapx.toLongitude())))
+            markerList.last?.iconTintColor = .yellow
+            markerList.last?.iconImage = NMFOverlayImage(image: UIImage(systemName: "star.fill")!)
+            markerList.last?.captionText = $0.title.toLocationTitle()
+            markerList.last?.captionMinZoom = 10
+            markerList.last?.mapView = naverMapView.mapView
+        }
+    }
+    
+    private func clearMarker() {
+        markerList.forEach {
+            $0.mapView = nil
+        }
+        
+        markerList.removeAll()
+    }
+    
+    func focusMarker(at index: Int) {
+        guard let latitude = markerList[safe: index]?.position.lat,
+              let longitude = markerList[safe: index]?.position.lng else { return }
+        
         moveCamera(latitude: latitude, longitude: longitude)
     }
     
-    private func highlightMarkerColor(at selectedIndex: Int) {
-        for index in 0..<Constant.maxSearchCount {
-            markerList[index].iconTintColor = .systemGreen
+    func highlightMarkerColor(at selectedIndex: Int) {
+        for index in 0..<markerList.count {
+            markerList[safe: index]?.iconTintColor = .black
+            markerList[safe: index]?.isHideCollidedCaptions = false
         }
         
-        markerList[selectedIndex].iconTintColor = .systemRed
+        markerList[safe: selectedIndex]?.iconTintColor = .yellow
+        markerList[safe: selectedIndex]?.isHideCollidedCaptions = true
     }
     
     func moveCamera(latitude: Double, longitude: Double) {
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 10)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 13)
         naverMapView.mapView.moveCamera(cameraUpdate)
     }
 }

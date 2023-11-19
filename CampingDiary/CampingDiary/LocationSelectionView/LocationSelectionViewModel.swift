@@ -1,8 +1,8 @@
 //
-//  SearchMapViewModel.swift
+//  LocationSelectionViewModel.swift
 //  CampingDiary
 //
-//  Created by 조향래 on 11/7/23.
+//  Created by 조향래 on 11/16/23.
 //
 
 import Moya
@@ -10,17 +10,15 @@ import RxMoya
 import RxSwift
 import RxCocoa
 
-final class SearchMapViewModel {
+final class LocationSelectionViewModel {
     private let dataManager = DataManager.shared
-    private var searchKeyworkd: String
+    private var searchKeyworkd: String?
     private let disposeBag = DisposeBag()
     private let searchedLocations = BehaviorRelay<[Location]>(value: [])
     
-    init(searchKeyworkd: String) {
-        self.searchKeyworkd = searchKeyworkd
-    }
-    
     func fetch() {
+        guard let searchKeyworkd else { return }
+        
         let provider = MoyaProvider<UserAPI>()
         
         provider.rx.request(.search(keyword: searchKeyworkd))
@@ -42,27 +40,23 @@ final class SearchMapViewModel {
             .disposed(by: disposeBag)
     }
     
-    func getCellData() -> Observable<[Location]> {
+    func getObservableSearchedLocations() -> Observable<[Location]> {
         return searchedLocations.asObservable()
     }
     
-    func getSelectedLocation(at index: Int) -> Location {
-        return searchedLocations.value[index]
+    func getObservableBookmarks() -> Observable<[Location]> {
+        return dataManager.observableBookmarks
+    }
+    
+    func getSearchedLocations() -> [Location] {
+        return searchedLocations.value
+    }
+    
+    func getBookmarks() -> [Location] {
+        return dataManager.currentBookmarks
     }
     
     func configureSearchKeyword(_ keyword: String) {
         searchKeyworkd = keyword
-    }
-    
-    func addBookmark(_ location: Location) {
-        dataManager.addBookmark(location)
-    }
-    
-    func removeBookmark(_ location: Location) {
-        dataManager.removeBookmark(location)
-    }
-    
-    func isBookmarked(_ location: Location) -> Bool {
-        return dataManager.isBookmarked(location)
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 
 final class SearchMapViewController: UIViewController {
+    // MARK: define properties & init
     private let searchMapView: SearchMapView
     private let tableView = UITableView()
     private let viewModel: SearchMapViewModel
@@ -24,7 +25,10 @@ final class SearchMapViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: methods
+extension SearchMapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,15 +70,22 @@ final class SearchMapViewController: UIViewController {
     private func setupNavigationLeftBarButtonItem() {
         let backImage = UIImage(systemName: "arrow.left")
         
-        let leftBarButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(dismissViewController))
+        let leftBarButton = UIBarButtonItem(image: backImage)
         leftBarButton.tintColor = .systemBlue
+        leftBarButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                navigationController?.popViewController(animated: false)
+            }
+            .disposed(by: disposeBag)
         
         navigationItem.leftBarButtonItem = leftBarButton
     }
     
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(SearchMapViewTableViewCell.self, forCellReuseIdentifier: SearchMapViewTableViewCell.reuseIdentifier)
+        tableView.register(SearchMapTableViewCell.self, forCellReuseIdentifier: SearchMapTableViewCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.delegate = self
     }
@@ -87,8 +98,8 @@ final class SearchMapViewController: UIViewController {
         viewModel
             .getCellData()
             .bind(to: tableView.rx.items(
-                cellIdentifier: SearchMapViewTableViewCell.reuseIdentifier,
-                cellType: SearchMapViewTableViewCell.self)
+                cellIdentifier: SearchMapTableViewCell.reuseIdentifier,
+                cellType: SearchMapTableViewCell.self)
             ) { [weak self] index, locationItem, cell in
                 guard let self else { return }
                 
@@ -108,18 +119,14 @@ final class SearchMapViewController: UIViewController {
                     }
                     .disposed(by: cell.disposeBag)
                 
+                cell.configure(title: locationItem.title.toLocationTitle(),
+                               address: locationItem.roadAddress)
+                
                 if viewModel.isBookmarked(locationItem) {
                     cell.toggleBookmarkButtonImage(shouldFiilStar: true)
                 } else {
                     cell.toggleBookmarkButtonImage(shouldFiilStar: false)
                 }
-                
-                cell.configure(title: locationItem.title.toLocationTitle(),
-                               address: locationItem.roadAddress)
-                
-                searchMapView.configureMarkers(latitude: locationItem.mapy.toLatitude(),
-                                               longitude: locationItem.mapx.toLongitude(),
-                                               at: index)
             }
             .disposed(by: disposeBag)
     }
@@ -138,26 +145,21 @@ final class SearchMapViewController: UIViewController {
         viewModel
             .getCellData()
             .bind { [weak self] locationItems in
-                guard let longitude = locationItems.first?.mapx.toLongitude(),
+                guard let self,
+                      let longitude = locationItems.first?.mapx.toLongitude(),
                       let latitude = locationItems.first?.mapy.toLatitude() else { return }
                 
-                self?.searchMapView.moveCamera(latitude: latitude,
-                                               longitude: longitude)
+                searchMapView.moveCamera(latitude: latitude, longitude: longitude)
+                searchMapView.configureDefaultMarkers(locations: locationItems)
             }
             .disposed(by: disposeBag)
     }
-    
-    @objc func dismissViewController() {
-        navigationController?.popViewController(animated: false)
-    }
 }
 
+// MARK: UITableViewDelegate
 extension SearchMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedLocation = viewModel.getSelectedLocation(at: indexPath.item)
-        
-        searchMapView.focusMarker(latitude: selectedLocation.mapy.toLatitude(),
-                                  longitude: selectedLocation.mapx.toLongitude(),
-                                  at: indexPath.item)
+        searchMapView.focusMarker(at: indexPath.item)
+        searchMapView.highlightMarkerColor(at: indexPath.item)
     }
 }

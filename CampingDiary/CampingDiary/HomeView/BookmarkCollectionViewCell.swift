@@ -40,7 +40,7 @@ final class BookmarkCollectionViewCell: UICollectionViewCell {
         
         return label
     }()
-    private let deleteButton = {
+    let deleteButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash"), for: .normal)
         button.tintColor = .label

@@ -9,4 +9,6 @@ import RealmSwift
 
 protocol DataAccessObject: Object {
     var primaryKey: String { get set }
+    
+    func update(_ data: DataAccessObject)
 }

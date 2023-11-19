@@ -8,8 +8,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
-final class HomeViewController: UIViewController {
+// MARK: enum for collectionView section
+extension HomeViewController {
     enum Section: Int, CaseIterable {
         case Diary
         case Bookmark
@@ -23,25 +25,48 @@ final class HomeViewController: UIViewController {
             }
         }
     }
-    
+}
+
+final class HomeViewController: UIViewController {
+// MARK: define properties
     private let searchMapView = SearchMapView()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
+    private lazy var collectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
+        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
+        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
+        
+        return collectionView
+    }()
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
+    private var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
     
     private let viewModel = HomeViewModel()
-    let disposeBag = DisposeBag()
-    
+    private let disposeBag = DisposeBag()
+}
+
+// MARK: methods
+extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         addSubviews()
         layout()
-        setupCollectionView()
         bindToSearchMapView()
         setupDataSource()
         setupDataSourceHeaderView()
+        configureSnapshotSections()
         bindToCellData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        searchMapView.cleatText()
     }
     
     private func setupView() {
@@ -69,13 +94,6 @@ final class HomeViewController: UIViewController {
         ])
     }
     
-    private func setupCollectionView() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier)
-        collectionView.register(DiaryCollectionViewHeaderCell.self, forCellWithReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier)
-        collectionView.register(BookmarkCollectionViewCell.self, forCellWithReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier)
-    }
-    
     private func bindToSearchMapView() {
         searchMapView.searchButton.rx.tap
             .bind { [weak self] in
@@ -88,15 +106,9 @@ final class HomeViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
-    private func presentDiaryViewController() {
-        let diaryViewController = DiaryViewController()
-        
-        navigationController?.pushViewController(diaryViewController, animated: true)
-    }
 }
 
-// MARK: configure modern collectionview
+// MARK: configure collectionview
 extension HomeViewController {
     private func getCompositionalLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
@@ -124,14 +136,14 @@ extension HomeViewController {
             }
             
             let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                         heightDimension: .estimated(44))
+                                                          heightDimension: .estimated(44))
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize, elementKind: SectionTitleHeaderView.reuseIdentifier, alignment: .topLeading)
             
             section.boundarySupplementaryItems = [sectionHeader]
             
             return section
         }
-                
+        
         return layout
     }
     
@@ -140,35 +152,73 @@ extension HomeViewController {
             guard let self else { return UICollectionViewCell() }
             
             if indexPath.section == Section.Diary.rawValue {
-                // dummy data
-                if let item = item as? Diary {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell
+                if let item = item as? Diary,
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewCell {
+                    cell.configure(locationTitle: item.location.title.toLocationTitle(),
+                                   editDate: DateFormatter.getString(date: item.editDate))
                     
-                    cell?.configure(title: item.content,
-                                    image: UIImage(systemName: "star"))
+                    cell.disposeBag = DisposeBag()
+                    cell.longPressGesture
+                        .bind { [weak self] _ in
+                            guard let self else { return }
+                            
+                            let actionSheet = AlertManager.getSingleActionSheet(sourceView: cell, actionName: "삭제하기") { [weak self] _ in
+                                guard let self else { return }
+                                
+                                viewModel.removeDiary(item)
+                            }
+                            
+                            present(actionSheet, animated: true)
+                        }
+                        .disposed(by: cell.disposeBag)
                     
+                    cell.contentView.rx.tapGesture()
+                        .when(.recognized)
+                        .bind { [weak self] _ in
+                            guard let self else { return }
+                            
+                            let diaryViewController = DiaryViewController(item)
+                            
+                            navigationController?.pushViewController(diaryViewController, animated: true)
+                        }
+                        .disposed(by: cell.disposeBag)
+                                        
                     return cell
                 }
                 
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell
-                
-                cell?.addButton.rx.tap
-                    .bind { [weak self] in
-                        self?.presentDiaryViewController()
-                    }
-                    .disposed(by: disposeBag)
-                
-                return cell
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? DiaryCollectionViewHeaderCell {
+                    cell.disposeBag = DisposeBag()
+                    cell.addButton.rx.tap
+                        .bind { [weak self] in
+                            guard let self else { return }
+                            
+                            let diaryViewController = DiaryViewController()
+                            
+                            navigationController?.pushViewController(diaryViewController, animated: true)
+                        }
+                        .disposed(by: cell.disposeBag)
+                    
+                    return cell
+                }
             }
             
             if indexPath.section == Section.Bookmark.rawValue {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier, for: indexPath) as? BookmarkCollectionViewCell
-                if let item = item as? Location {
-                    cell?.configure(title: item.title.toLocationTitle(),
-                                    address: item.roadAddress)
+                if let item = item as? Location,
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkCollectionViewCell.reuseIdentifier, for: indexPath) as? BookmarkCollectionViewCell {
+                    cell.configure(title: item.title.toLocationTitle(),
+                                   address: item.roadAddress)
+                    
+                    cell.disposeBag = DisposeBag()
+                    cell.deleteButton.rx.tap
+                        .bind { [weak self] in
+                            guard let self else { return }
+                            
+                            viewModel.removeBookmark(item)
+                        }
+                        .disposed(by: cell.disposeBag)
+                    
+                    return cell
                 }
-                
-                return cell
             }
             
             return UICollectionViewCell()
@@ -197,18 +247,43 @@ extension HomeViewController {
         }
     }
     
+    private func configureSnapshotSections() {
+        snapshot.appendSections([.Diary])
+        snapshot.appendSections([.Bookmark])
+    }
+    
     private func bindToCellData() {
-        Observable
-            .combineLatest(viewModel.getObservableDiary(),
-                           viewModel.getObservableBookmarks())
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] diaryList, bookmarkList in
-                var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable?>()
-                snapshot.appendSections([.Diary, .Bookmark])
-                snapshot.appendItems(diaryList, toSection: .Diary)
-                snapshot.appendItems(bookmarkList, toSection: .Bookmark)
-                self?.dataSource?.apply(snapshot, animatingDifferences: true)
-            })
+        viewModel
+            .getObservableDiary()
+            .bind { [weak self] diaries in
+                guard let self else { return }
+                
+                snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .Diary))
+                snapshot.appendItems(diaries, toSection: .Diary)
+                dataSource?.apply(snapshot, animatingDifferences: true)
+            }
             .disposed(by: disposeBag)
+        
+        viewModel
+            .getObservableBookmarks()
+            .bind { [weak self] bookmarks in
+                guard let self else { return }
+                
+                snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .Bookmark))
+                snapshot.appendItems(bookmarks, toSection: .Bookmark)
+                dataSource?.apply(snapshot, animatingDifferences: true)
+                
+                searchMapView.configureBookmarkMarkers(locations: bookmarks)
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == Section.Bookmark.rawValue {
+            searchMapView.focusMarker(at: indexPath.item)
+        }
     }
 }
