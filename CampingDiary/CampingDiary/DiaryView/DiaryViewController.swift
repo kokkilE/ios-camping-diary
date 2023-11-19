@@ -9,8 +9,16 @@ import UIKit
 import RxSwift
 import PhotosUI
 
+// MARK: enum for Create & Edit mode
+extension LocationSelectionViewContoller {
+    enum Mode {
+        case create
+        case edit
+    }
+}
+
 final class DiaryViewController: UIViewController {
-// MARK: define properties
+// MARK: define properties & init
     private lazy var mainStackView = {
         let stackView = UIStackView(arrangedSubviews: [locationStackView, campSiteStackView, visitDateStackView, imageCollectionView, contentStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -164,6 +172,15 @@ final class DiaryViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
     private let viewModel = DiaryViewModel()
     private let disposeBag = DisposeBag()
+    
+    init(keyword: String) {
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 // MARK: methods
@@ -238,7 +255,7 @@ extension DiaryViewController {
             try viewModel.addDiary(campSite: campSiteTextField.text,
                                    visitDate: DateFormatter.getDate(text: visitDateTextField.text),
                                    content: contentTextView.text)
-            let confirmMessage = "캠핑 일지를 작성하였습니다."
+            let confirmMessage = "작성을 완료하였습니다."
             
             let alert = AlertManager.getCompletionAlert(message: confirmMessage) { [weak self] _ in
                 guard let self else { return }

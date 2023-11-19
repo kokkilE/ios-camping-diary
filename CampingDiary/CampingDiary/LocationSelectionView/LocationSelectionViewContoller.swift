@@ -8,6 +8,23 @@
 import UIKit
 import RxSwift
 
+// MARK: enum for segmentedControl
+extension LocationSelectionViewContoller {
+    enum CellType: Int {
+        case bookmark = 0
+        case search = 1
+        
+        var description: String {
+            switch self {
+            case .bookmark:
+                return "내 캠핑장"
+            case .search:
+                return "검색 결과"
+            }
+        }
+    }
+}
+
 final class LocationSelectionViewContoller: UIViewController {
 // MARK: define properties & init
     private let searchMapView: SearchMapView
@@ -236,22 +253,5 @@ extension LocationSelectionViewContoller {
               let latitude = locations.first?.mapy.toLatitude() else { return }
         
         searchMapView.moveCamera(latitude: latitude, longitude: longitude)
-    }
-}
-
-// MARK: enum for segmentedControl
-extension LocationSelectionViewContoller {
-    enum CellType: Int {
-        case bookmark = 0
-        case search = 1
-        
-        var description: String {
-            switch self {
-            case .bookmark:
-                return "내 캠핑장"
-            case .search:
-                return "검색 결과"
-            }
-        }
     }
 }

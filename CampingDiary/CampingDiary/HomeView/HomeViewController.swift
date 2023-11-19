@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class HomeViewController: UIViewController {
-// MARK: define properties
+// MARK: enum for collectionView section
+extension HomeViewController {
     enum Section: Int, CaseIterable {
         case Diary
         case Bookmark
@@ -24,7 +24,10 @@ final class HomeViewController: UIViewController {
             }
         }
     }
-    
+}
+
+final class HomeViewController: UIViewController {
+// MARK: define properties
     private let searchMapView = SearchMapView()
     private lazy var collectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
@@ -57,18 +60,6 @@ extension HomeViewController {
         setupDataSourceHeaderView()
         configureSnapshotSections()
         bindToCellData()
-        
-        
-//        collectionView.rx.modelSelected(DiaryCollectionViewCell.self)
-//            .flatMap { cellModel -> Observable<DiaryCollectionViewCell> in
-//                // Access long press gesture from the cell
-//                return cellModel.collectionViewCell.longPressGesture.map { _ in cellModel }
-//            }
-//            .subscribe(onNext: { cellModel in
-//                // Handle long press gesture for the specific cell
-//                print("Long press gesture for cell with model: \(cellModel)")
-//            })
-//            .disposed(by: disposeBag)
     }
     
     private func setupView() {

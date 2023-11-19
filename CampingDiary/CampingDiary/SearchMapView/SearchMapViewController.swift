@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 
 final class SearchMapViewController: UIViewController {
+    // MARK: define properties & init
     private let searchMapView: SearchMapView
     private let tableView = UITableView()
     private let viewModel: SearchMapViewModel
@@ -24,7 +25,10 @@ final class SearchMapViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: methods
+extension SearchMapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -152,6 +156,7 @@ final class SearchMapViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDelegate
 extension SearchMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchMapView.focusMarker(at: indexPath.item)
