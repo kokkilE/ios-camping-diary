@@ -17,6 +17,7 @@
 		AA4930C62AF9E35A008E725E /* UITextField+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930C52AF9E35A008E725E /* UITextField+publisher.swift */; };
 		AA4930D42AFA072E008E725E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA4930D32AFA072E008E725E /* Moya */; };
 		AA4930D62AFA0796008E725E /* SearchMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4930D52AFA0796008E725E /* SearchMapViewModel.swift */; };
+		AA4F433C2B09DA580041E6FB /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = AA4F433B2B09DA580041E6FB /* RxGesture */; };
 		AA4F43812B07AC97008E5F40 /* DiaryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F43802B07AC97008E5F40 /* DiaryError.swift */; };
 		AA4F43832B07B07D008E5F40 /* DateFormatter+getString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F43822B07B07D008E5F40 /* DateFormatter+getString.swift */; };
 		AA4F43852B07B2D9008E5F40 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F43842B07B2D9008E5F40 /* AlertManager.swift */; };
@@ -131,6 +132,7 @@
 				AA4930D42AFA072E008E725E /* Moya in Frameworks */,
 				AA6342D72AFA31300033EFD5 /* ReactiveMoya in Frameworks */,
 				AA5943672AFCC7EF00A7E40A /* Realm in Frameworks */,
+				AA4F433C2B09DA580041E6FB /* RxGesture in Frameworks */,
 				AA6342E22AFA32770033EFD5 /* RxCocoa-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +392,7 @@
 				AA6342E32AFA32770033EFD5 /* RxRelay */,
 				AA5943662AFCC7EF00A7E40A /* Realm */,
 				AA5943682AFCC7EF00A7E40A /* RealmSwift */,
+				AA4F433B2B09DA580041E6FB /* RxGesture */,
 			);
 			productName = CampingDiary;
 			productReference = AA681FFE2AF780FE00464B97 /* CampingDiary.app */;
@@ -423,6 +426,7 @@
 				AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */,
 				AA6342DA2AFA32770033EFD5 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */,
+				AA4F433A2B09DA580041E6FB /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = AA681FFF2AF780FE00464B97 /* Products */;
 			projectDirPath = "";
@@ -762,6 +766,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		AA4F433A2B09DA580041E6FB /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 		AA5943652AFCC7EF00A7E40A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -785,6 +797,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA4930D02AFA072E008E725E /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		AA4F433B2B09DA580041E6FB /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA4F433A2B09DA580041E6FB /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		AA5943662AFCC7EF00A7E40A /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
