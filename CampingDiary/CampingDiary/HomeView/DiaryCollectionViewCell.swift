@@ -39,17 +39,6 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         
         return label
     }()
-    private let visitDateLabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.numberOfLines = 2
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        
-        return label
-    }()
     
     var disposeBag = DisposeBag()
     

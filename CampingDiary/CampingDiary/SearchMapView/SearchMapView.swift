@@ -136,6 +136,11 @@ class SearchMapView: UIView {
     func getText() -> String {
         return searchTextField.text ?? ""
     }
+    
+    func cleatText() {
+        searchTextField.text = ""
+        searchTextField.sendActions(for: .valueChanged)
+    }
 }
 
 // MARK: control MapView's Marker

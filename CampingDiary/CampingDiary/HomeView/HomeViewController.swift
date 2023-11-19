@@ -63,6 +63,12 @@ extension HomeViewController {
         bindToCellData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        searchMapView.cleatText()
+    }
+    
     private func setupView() {
         view.backgroundColor = .systemBackground
     }
