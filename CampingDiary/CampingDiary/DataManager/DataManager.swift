@@ -50,9 +50,9 @@ extension DataManager {
     
     func addDiary(_ diary: Diary) {
         var currentDiaries = diaries.value
-        currentDiaries.insert(diary, at: 1)
+        currentDiaries.append(diary)
         
-        diaries.accept(currentDiaries)
+        diaries.accept(sortedDiaries(currentDiaries))
         realmManager.create(DiaryDAO(diary))
     }
     
@@ -62,7 +62,7 @@ extension DataManager {
         guard let index = currentDiaries.firstIndex(where: { $0?.createDate == diary.createDate }) else { return }
         currentDiaries[safe: index] = diary
         
-        diaries.accept(currentDiaries)
+        diaries.accept(sortedDiaries(currentDiaries))
         realmManager.update(DiaryDAO(diary), type: DiaryDAO.self)
     }
     
@@ -74,6 +74,12 @@ extension DataManager {
         
         diaries.accept(currentDiaries)
         realmManager.delete(DiaryDAO(diary))
+    }
+    
+    private func sortedDiaries(_ diaries: [Diary?]) -> [Diary?] {
+        let diaries = diaries.compactMap { $0 }
+        
+        return [nil] + diaries.sorted { $0.editDate > $1.editDate }
     }
 }
 
