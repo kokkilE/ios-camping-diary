@@ -56,6 +56,16 @@ extension DataManager {
         realmManager.create(DiaryDAO(diary))
     }
     
+    func updateDiary(_ diary: Diary) {
+        var currentDiaries = diaries.value
+
+        guard let index = currentDiaries.firstIndex(where: { $0?.createDate == diary.createDate }) else { return }
+        currentDiaries[safe: index] = diary
+        
+        diaries.accept(currentDiaries)
+        realmManager.update(DiaryDAO(diary), type: DiaryDAO.self)
+    }
+    
     func removeDiary(_ diary: Diary) {
         var currentDiaries = diaries.value
         currentDiaries.removeAll {

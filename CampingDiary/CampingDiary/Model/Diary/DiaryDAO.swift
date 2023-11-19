@@ -40,3 +40,16 @@ final class DiaryDAO: Object, DataAccessObject {
         }
     }
 }
+
+extension DiaryDAO {
+    func update(_ data: DataAccessObject) {
+        guard let diary = data as? DiaryDAO else { return }
+        
+        self.location = diary.location
+        self.campSite = diary.campSite
+        self.visitDate = diary.visitDate
+        self.editDate = diary.editDate
+        self.content = diary.content
+        self.imageData = diary.imageData
+    }
+}

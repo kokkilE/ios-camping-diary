@@ -52,13 +52,17 @@ final class DiaryViewModel {
     func saveDiary(campSite: String?, visitDate: Date?, content: String?) throws {
         guard let location = selectedLocation.value else { throw DiaryError.nilLocation }
         
-        let createDate = originalDiary != nil ? originalDiary!.editDate : Date()
+        let createDate = originalDiary != nil ? originalDiary!.createDate : Date()
         
         let diary = Diary(location: location, campSite: campSite,
                           visitDate: visitDate, editDate: Date(), createDate: createDate,
                           content: content, images: images.value)
         
-        dataManager.addDiary(diary)
+        if originalDiary == nil {
+            dataManager.addDiary(diary)
+            return
+        }
+        dataManager.updateDiary(diary)
     }
     
     func containImage(_ image: UIImage) -> Bool {

@@ -28,3 +28,14 @@ final class LocationItemDAO: Object, DataAccessObject {
         self.mapy = location.mapy
     }
 }
+
+extension LocationItemDAO {
+    func update(_ data: DataAccessObject) {
+        guard let location = data as? LocationItemDAO else { return }
+        
+        self.title = location.title
+        self.roadAddress = location.roadAddress
+        self.mapx = location.mapx
+        self.mapy = location.mapy
+    }
+}
