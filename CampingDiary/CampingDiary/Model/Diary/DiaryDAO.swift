@@ -15,6 +15,7 @@ final class DiaryDAO: Object, DataAccessObject {
     @Persisted var campSite: String?
     @Persisted var visitDate: Date?
     @Persisted var editDate: Date
+    @Persisted var createDate: Date
     @Persisted var content: String?
     @Persisted var imageData: List<DiaryImageDataDAO>
     
@@ -25,11 +26,12 @@ final class DiaryDAO: Object, DataAccessObject {
     convenience init(_ diary: Diary) {
         self.init()
         
-        self.primaryKey = DateFormatter.getLongStringForKey(date: diary.editDate)
+        self.primaryKey = DateFormatter.getLongStringForKey(date: diary.createDate)
         self.location = DiaryLocationItemDAO(diary.location)
         self.campSite = diary.campSite
         self.visitDate = diary.visitDate
         self.editDate = diary.editDate
+        self.createDate = diary.createDate
         self.content = diary.content
         self.imageData = List<DiaryImageDataDAO>()
         

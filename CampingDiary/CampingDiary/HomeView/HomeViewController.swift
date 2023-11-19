@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 // MARK: enum for collectionView section
 extension HomeViewController {
@@ -165,6 +166,17 @@ extension HomeViewController {
                         }
                         .disposed(by: cell.disposeBag)
                     
+                    cell.contentView.rx.tapGesture()
+                        .when(.recognized)
+                        .bind { [weak self] _ in
+                            guard let self else { return }
+                            
+                            let diaryViewController = DiaryViewController(item)
+                            
+                            navigationController?.pushViewController(diaryViewController, animated: true)
+                        }
+                        .disposed(by: cell.disposeBag)
+                                        
                     return cell
                 }
                 

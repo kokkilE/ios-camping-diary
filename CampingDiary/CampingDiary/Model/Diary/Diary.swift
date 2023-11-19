@@ -14,6 +14,7 @@ struct Diary: Hashable {
     var campSite: String?
     var visitDate: Date?
     var editDate: Date
+    var createDate: Date
     var content: String?
     var images: [UIImage?]?
 }
@@ -25,6 +26,7 @@ extension Diary {
             self.campSite = dao.campSite
             self.visitDate = dao.visitDate
             self.editDate = dao.editDate
+            self.createDate = dao.createDate
             self.content = dao.content
             self.images = dao.images
             

@@ -10,7 +10,7 @@ import RxSwift
 import PhotosUI
 
 // MARK: enum for Create & Edit mode
-extension LocationSelectionViewContoller {
+extension DiaryViewController {
     enum Mode {
         case create
         case edit
@@ -170,10 +170,18 @@ final class DiaryViewController: UIViewController {
     }()
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable?>?
-    private let viewModel = DiaryViewModel()
+    private let viewModel: DiaryViewModel
     private let disposeBag = DisposeBag()
+    private let mode: Mode
     
-    init(keyword: String) {
+    init(_ diary: Diary? = nil) {
+        if let diary {
+            mode = .edit
+            viewModel = DiaryViewModel(diary)
+        } else {
+            mode = .create
+            viewModel = DiaryViewModel()
+        }
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -191,6 +199,7 @@ extension DiaryViewController {
         setupView()
         addSubviews()
         layout()
+        configureInitialUI()
         setupNavigationLeftBarButtonItem()
         setupNavigationRightBarButtonItem()
         configureButtonAction()
@@ -218,6 +227,17 @@ extension DiaryViewController {
             
             imageCollectionView.heightAnchor.constraint(equalTo: safe.widthAnchor, multiplier: 0.3)
         ])
+    }
+    
+    private func configureInitialUI() {
+        guard mode == .edit else { return }
+        
+        campSiteTextField.text = viewModel.originalDiary?.campSite
+        if let visitDate = viewModel.originalDiary?.visitDate {
+            visitDateTextField.text = DateFormatter.getString(date: visitDate)
+        }
+        
+        contentTextView.text = viewModel.originalDiary?.content
     }
     
     private func setupNavigationLeftBarButtonItem() {
@@ -252,10 +272,11 @@ extension DiaryViewController {
     
     private func saveDiary() {
         do {
-            try viewModel.addDiary(campSite: campSiteTextField.text,
-                                   visitDate: DateFormatter.getDate(text: visitDateTextField.text),
-                                   content: contentTextView.text)
-            let confirmMessage = "작성을 완료하였습니다."
+            try viewModel.saveDiary(campSite: campSiteTextField.text,
+                                    visitDate: DateFormatter.getDate(text: visitDateTextField.text),
+                                    content: contentTextView.text)
+            
+            let confirmMessage = mode == .create ? "작성을 완료하였습니다." : "수정을 완료하였습니다."
             
             let alert = AlertManager.getCompletionAlert(message: confirmMessage) { [weak self] _ in
                 guard let self else { return }
