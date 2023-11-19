@@ -41,6 +41,13 @@ final class DiaryViewModel {
         images.accept(addedImages)
     }
     
+    func delete(_ image: UIImage) {
+        var addedImages = images.value
+        addedImages.removeAll { $0 == image }
+        
+        images.accept(addedImages)
+    }
+    
     func configure(_ location: Location) {
         selectedLocation.accept(location)
     }

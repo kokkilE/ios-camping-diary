@@ -365,6 +365,16 @@ extension DiaryViewController {
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewCell {
                 cell.configure(image: image)
                 
+                cell.disposeBag = DisposeBag()
+                cell.deleteButton.rx.tap
+                    .bind { [weak self] in
+                        guard let self else { return }
+                        
+                        print("ABC")
+                        viewModel.delete(image)
+                    }
+                    .disposed(by: cell.disposeBag)
+                
                 return cell
             }
             
