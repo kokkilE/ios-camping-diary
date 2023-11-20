@@ -148,6 +148,8 @@ final class DiaryViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [contentTitleLabel, contentTextView])
         stackView.axis = .vertical
         stackView.spacing = 12
+        stackView.backgroundColor = .systemBackground
+        stackView.layer.cornerRadius = 10.0
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         
