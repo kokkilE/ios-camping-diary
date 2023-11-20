@@ -140,6 +140,7 @@ final class DiaryViewController: UIViewController {
     private lazy var imageCollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionalLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
         
         return collectionView
     }()
@@ -370,7 +371,6 @@ extension DiaryViewController {
                     .bind { [weak self] in
                         guard let self else { return }
                         
-                        print("ABC")
                         viewModel.delete(image)
                     }
                     .disposed(by: cell.disposeBag)
@@ -380,6 +380,16 @@ extension DiaryViewController {
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewHeaderCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewHeaderCell {
                 cell.disposeBag = DisposeBag()
+                viewModel
+                    .getCellData()
+                    .observe(on: MainScheduler.instance)
+                    .bind { [weak self] _ in
+                        guard let self else { return }
+                        
+                        cell.configure("\(viewModel.getSelectedImagesCount())/\(viewModel.maxImageCount)")
+                    }
+                    .disposed(by: cell.disposeBag)
+                
                 cell.addButton.rx.tap
                     .bind { [weak self] in
                         guard let self else { return }
@@ -430,7 +440,7 @@ extension DiaryViewController: PHPickerViewControllerDelegate {
     
     private func presentImagePicker() {
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 5
+        configuration.selectionLimit = viewModel.maxImageCount
         configuration.filter = .images
         
         let imagePicker = PHPickerViewController(configuration: configuration)

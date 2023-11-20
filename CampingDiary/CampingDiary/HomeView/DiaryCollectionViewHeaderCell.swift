@@ -37,11 +37,11 @@ class DiaryCollectionViewHeaderCell: UICollectionViewCell {
     }
     
     private func addSubviews() {
-        addSubview(addButton)
+        contentView.addSubview(addButton)
     }
     
     private func layout() {
-        let safe = safeAreaLayoutGuide
+        let safe = contentView.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
             addButton.widthAnchor.constraint(equalTo: safe.widthAnchor, multiplier: 0.5),

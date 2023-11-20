@@ -13,6 +13,7 @@ final class DiaryViewModel {
     private let dataManager = DataManager.shared
     private let disposeBag = DisposeBag()
     private let images = BehaviorRelay<[UIImage?]>(value: [nil])
+    let maxImageCount = 5
     private var selectedLocation = BehaviorRelay<Location?>(value: nil)
     let originalDiary: Diary?
     
@@ -35,6 +36,8 @@ final class DiaryViewModel {
     }
     
     func add(_ image: UIImage) {
+        guard getSelectedImagesCount() < maxImageCount else { return }
+        
         var addedImages = images.value
         addedImages.append(image)
         
@@ -46,6 +49,16 @@ final class DiaryViewModel {
         addedImages.removeAll { $0 == image }
         
         images.accept(addedImages)
+    }
+    
+    func getSelectedImagesCount() -> Int {
+        var count = 0
+        
+        images.value.forEach {
+            if $0 != nil { count += 1 }
+        }
+        
+        return count
     }
     
     func configure(_ location: Location) {

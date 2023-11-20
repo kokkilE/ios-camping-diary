@@ -14,14 +14,16 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        imageView.layer.cornerRadius = 10.0
+        imageView.clipsToBounds = true
         
         return imageView
     }()
     let deleteButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .systemRed
+        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .systemGray
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
@@ -50,13 +52,13 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         let safe = contentView.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 4),
-            imageView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 4),
-            imageView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -4),
-            imageView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -4),
+            imageView.topAnchor.constraint(equalTo: safe.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
             
-            deleteButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: 12),
-            deleteButton.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -12)
+            deleteButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: -4),
+            deleteButton.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: 4)
         ])
     }
     
