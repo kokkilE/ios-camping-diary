@@ -162,13 +162,16 @@ extension HomeViewController {
                         .bind { [weak self] _ in
                             guard let self else { return }
                             
-                            let actionSheet = AlertManager.getSingleActionSheet(sourceView: cell, actionName: "삭제하기") { [weak self] _ in
+                            cell.contentView.gestureRecognizers?.forEach { $0.isEnabled = false }
+                            
+                            let actionSheet = AlertManager.getSingleActionSheet(actionName: "삭제하기") { [weak self] _ in
                                 guard let self else { return }
                                 
                                 viewModel.removeDiary(item)
                             }
                             
                             present(actionSheet, animated: true)
+                            cell.contentView.gestureRecognizers?.forEach { $0.isEnabled = true }
                         }
                         .disposed(by: cell.disposeBag)
                     
