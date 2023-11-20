@@ -34,6 +34,7 @@ class ImageCollectionViewHeaderCell: UICollectionViewCell {
         
         return label
     }()
+    
     var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {

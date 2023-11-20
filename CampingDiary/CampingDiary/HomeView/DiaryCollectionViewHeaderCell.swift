@@ -17,6 +17,7 @@ class DiaryCollectionViewHeaderCell: UICollectionViewCell {
         
         return button
     }()
+    
     var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {

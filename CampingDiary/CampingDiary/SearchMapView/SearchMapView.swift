@@ -58,6 +58,7 @@ class SearchMapView: UIView {
         
         return button
     }()
+    
     private let disposeBag = DisposeBag()
     private var markerList: [NMFMarker] = []
     
