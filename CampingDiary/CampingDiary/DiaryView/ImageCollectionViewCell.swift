@@ -57,8 +57,8 @@ final class ImageCollectionViewCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
             
-            deleteButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: -4),
-            deleteButton.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: 4)
+            deleteButton.topAnchor.constraint(equalTo: safe.topAnchor, constant: -8),
+            deleteButton.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: 8)
         ])
     }
     

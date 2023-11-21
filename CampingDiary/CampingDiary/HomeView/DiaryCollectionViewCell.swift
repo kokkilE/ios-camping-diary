@@ -22,7 +22,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         label.textColor = .label
         label.numberOfLines = 2
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
+        label.minimumScaleFactor = 0.70
         label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
@@ -33,7 +33,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         label.textColor = .label
         label.numberOfLines = 2
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
+        label.minimumScaleFactor = 0.70
         label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
