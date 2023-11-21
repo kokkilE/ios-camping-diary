@@ -11,7 +11,16 @@ import RxSwift
 final class SearchMapViewController: UIViewController {
     // MARK: define properties & init
     private let searchMapView: SearchMapView
-    private let tableView = UITableView()
+    private lazy var tableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(SearchMapTableViewCell.self, forCellReuseIdentifier: SearchMapTableViewCell.reuseIdentifier)
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        
+        return tableView
+    }()
+    
     private let viewModel: SearchMapViewModel
     private let disposeBag = DisposeBag()
     
@@ -36,7 +45,6 @@ extension SearchMapViewController {
         addSubviews()
         layout()
         setupNavigationLeftBarButtonItem()
-        setupTableView()
         requestFetch()
         bindToTableView()
         bindToSearchMapView()
@@ -81,13 +89,6 @@ extension SearchMapViewController {
             .disposed(by: disposeBag)
         
         navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    private func setupTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(SearchMapTableViewCell.self, forCellReuseIdentifier: SearchMapTableViewCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.delegate = self
     }
     
     private func requestFetch() {
