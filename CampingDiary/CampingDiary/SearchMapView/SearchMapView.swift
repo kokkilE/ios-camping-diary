@@ -7,7 +7,6 @@
 
 import UIKit
 import NMapsMap
-import CoreLocation
 import RxSwift
 import RxCocoa
 
